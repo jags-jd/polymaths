@@ -1,0 +1,6 @@
+# Order per CONVENTIONS.md: lint → typecheck → unit tests → data:validate.
+# Never bypass with --no-verify.
+pnpm exec lint-staged
+pnpm typecheck
+pnpm test
+pnpm data:validate
