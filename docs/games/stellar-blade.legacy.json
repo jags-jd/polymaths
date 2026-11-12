@@ -1,0 +1,205 @@
+{
+  "slug": "stellar-blade",
+  "title": "Stellar Blade",
+  "categories": [
+    {
+      "id": "main-missions",
+      "name": "Main Missions",
+      "items": [
+        { "id": "sb-mission-7th-airborne-squad", "title": "Complete 7th Airborne Squad", "spoiler": false },
+        { "id": "sb-mission-scavenger-adam", "title": "Complete Scavenger Adam", "spoiler": false },
+        { "id": "sb-mission-xion-last-remaining-city", "title": "Complete Xion, the Last Remaining City", "spoiler": false },
+        { "id": "sb-mission-altess-levoire", "title": "Complete Altess Levoire", "spoiler": false },
+        { "id": "sb-mission-light-of-hope", "title": "Complete Light of Hope", "spoiler": false },
+        { "id": "sb-mission-alpha-signal", "title": "Complete Alpha Signal", "spoiler": false },
+        { "id": "sb-mission-hidden-truth", "title": "Complete Hidden Truth", "spoiler": false },
+        { "id": "sb-mission-abyss-levoire", "title": "Complete Abyss Levoire", "spoiler": false },
+        { "id": "sb-mission-orcals-testimony", "title": "Complete Orcal's Testimony", "spoiler": true },
+        {
+          "id": "sb-mission-secret-garden",
+          "title": "Complete Secret Garden",
+          "description": "Optional mission. Only available if Lily's progress bar is full.",
+          "spoiler": true
+        },
+        { "id": "sb-mission-eye-of-the-hurricane", "title": "Complete Eye of the Hurricane", "spoiler": true },
+        { "id": "sb-mission-burning-xion", "title": "Complete Burning Xion", "spoiler": true },
+        { "id": "sb-mission-last-fragment", "title": "Complete Last Fragment", "spoiler": true },
+        { "id": "sb-mission-selection-of-species", "title": "Complete Selection of Species", "spoiler": true },
+        { "id": "sb-mission-eve-protocol", "title": "Complete EVE Protocol", "spoiler": true }
+      ]
+    },
+    {
+      "id": "bosses",
+      "name": "Bosses",
+      "items": [
+        { "id": "sb-boss-brute", "title": "Defeat Brute", "spoiler": false },
+        { "id": "sb-boss-abaddon", "title": "Defeat Abaddon", "spoiler": false },
+        { "id": "sb-boss-corrupter", "title": "Defeat Corrupter", "spoiler": false },
+        { "id": "sb-boss-gigas", "title": "Defeat Gigas", "spoiler": false },
+        { "id": "sb-boss-maelstrom", "title": "Defeat Maelstrom", "spoiler": false },
+        { "id": "sb-boss-stalker", "title": "Defeat Stalker", "spoiler": false },
+        { "id": "sb-boss-juggernaut", "title": "Defeat Juggernaut", "spoiler": false },
+        { "id": "sb-boss-tachy", "title": "Defeat Tachy", "spoiler": true },
+        { "id": "sb-boss-behemoth", "title": "Defeat Behemoth", "spoiler": false },
+        { "id": "sb-boss-belial", "title": "Defeat Belial", "spoiler": false },
+        { "id": "sb-boss-karakuri", "title": "Defeat Karakuri", "spoiler": false },
+        { "id": "sb-boss-democrawler", "title": "Defeat Democrawler", "spoiler": false },
+        { "id": "sb-boss-unidentified-naytiba", "title": "Defeat the Unidentified Naytiba", "spoiler": true },
+        { "id": "sb-boss-raven", "title": "Defeat Raven", "spoiler": true },
+        {
+          "id": "sb-boss-elder-naytiba",
+          "title": "Defeat the Elder Naytiba",
+          "description": "Final boss of the Return to the Colony ending.",
+          "spoiler": true
+        },
+        {
+          "id": "sb-boss-providence",
+          "title": "Defeat Providence",
+          "description": "Final boss when you take Adam's hand.",
+          "spoiler": true
+        }
+      ]
+    },
+    {
+      "id": "endings",
+      "name": "Endings",
+      "items": [
+        { "id": "sb-ending-return-to-the-colony", "title": "See the Return to the Colony ending", "spoiler": true },
+        { "id": "sb-ending-cost-of-lost-memories", "title": "See the Cost of Lost Memories ending", "spoiler": true },
+        {
+          "id": "sb-ending-making-new-memories",
+          "title": "See the Making New Memories ending",
+          "description": "Needs Lily's progress bar filled before the end of the game.",
+          "spoiler": true
+        }
+      ]
+    },
+    {
+      "id": "side-content",
+      "name": "Side Stories and Requests",
+      "items": [
+        { "id": "sb-side-enya-and-su", "title": "Finish Enya and Su's story", "spoiler": false },
+        { "id": "sb-side-kaya", "title": "Finish Kaya's story", "spoiler": false },
+        { "id": "sb-side-d1g-g2r", "title": "Finish D1G-g2r's story", "spoiler": false },
+        { "id": "sb-side-all-side-quests", "title": "Complete every side quest", "spoiler": false },
+        { "id": "sb-side-all-bulletin-requests", "title": "Complete every Bulletin Board request", "spoiler": false },
+        { "id": "sb-side-lily-progress", "title": "Fill Lily's progress bar to 100%", "spoiler": false }
+      ]
+    },
+    {
+      "id": "collectibles",
+      "name": "Collectibles",
+      "items": [
+        { "id": "sb-collect-first-camp", "title": "Activate your first Camp", "spoiler": false },
+        { "id": "sb-collect-all-camps", "title": "Activate every Camp", "spoiler": false },
+        { "id": "sb-collect-all-cans", "title": "Collect all 49 cans", "spoiler": false },
+        { "id": "sb-collect-30-nano-suits", "title": "Own 30 Nano Suits", "spoiler": false },
+        {
+          "id": "sb-collect-200-data-bank",
+          "title": "Collect 200 Data Bank entries",
+          "description": "Memorysticks, Documents and Passcodes all count.",
+          "spoiler": false
+        },
+        { "id": "sb-collect-20-fish", "title": "Catch 20 different kinds of fish", "spoiler": false },
+        { "id": "sb-collect-200-boxes", "title": "Open 200 boxes", "spoiler": false },
+        {
+          "id": "sb-collect-all-naytiba-info",
+          "title": "Record information on every Naytiba",
+          "description": "The last few entries are only available on the Return to the Colony route.",
+          "spoiler": false
+        }
+      ]
+    },
+    {
+      "id": "costumes",
+      "name": "Costumes (Nano Suits)",
+      "items": [
+        { "id": "sb-suit-planet-diving-suit-7th-v2", "title": "Get the Planet Diving Suit (7th) V2", "description": "Box in Eidos 7.", "spoiler": false },
+        { "id": "sb-suit-wasteland-adventurer", "title": "Get the Wasteland Adventurer suit", "description": "Box in Eidos 7.", "spoiler": false },
+        { "id": "sb-suit-red-passion", "title": "Get the Red Passion suit", "description": "Box in Eidos 7.", "spoiler": false },
+        { "id": "sb-suit-prototype-planet-diving-suit", "title": "Get the Prototype Planet Diving Suit", "description": "Sold by Roxanne in Xion.", "spoiler": false },
+        { "id": "sb-suit-planet-diving-suit-2nd", "title": "Get the Planet Diving Suit (2nd)", "description": "Sold by Roxanne in Xion.", "spoiler": false },
+        { "id": "sb-suit-keyhole-dress", "title": "Get the Keyhole Dress", "description": "Sold by Roxanne in Xion.", "spoiler": false },
+        { "id": "sb-suit-moutan-peony", "title": "Get the Moutan Peony suit", "description": "Sold by Roxanne in Xion.", "spoiler": false },
+        { "id": "sb-suit-orca-exploration-suit", "title": "Get the Orca Exploration Suit", "description": "Sold by Roxanne in Xion.", "spoiler": false },
+        { "id": "sb-suit-cybernetic-dress", "title": "Get the Cybernetic Dress", "description": "Sold by Roxanne in Xion.", "spoiler": false },
+        { "id": "sb-suit-daily-biker", "title": "Get the Daily Biker suit", "description": "Sold by Lyle in Xion.", "spoiler": false },
+        { "id": "sb-suit-daily-denim", "title": "Get the Daily Denim suit", "description": "Sold by Lyle in Xion.", "spoiler": false },
+        { "id": "sb-suit-junk-mechanic", "title": "Get the Junk Mechanic suit", "description": "Sold by Lyle after the Stolen Treasure quest.", "spoiler": false },
+        { "id": "sb-suit-black-full-dress", "title": "Get the Black Full Dress", "description": "Sold by Lyle after the Stolen Treasure quest.", "spoiler": false },
+        { "id": "sb-suit-racers-high", "title": "Get the Racer's High suit", "description": "Box in the Wasteland.", "spoiler": false },
+        { "id": "sb-suit-holiday-rabbit", "title": "Get the Holiday Rabbit suit", "description": "Box in the Wasteland.", "spoiler": false },
+        { "id": "sb-suit-sporty-yellow", "title": "Get the Sporty Yellow suit", "description": "Box in the Wasteland.", "spoiler": false },
+        { "id": "sb-suit-cyber-magician", "title": "Get the Cyber Magician suit", "description": "Box in the Wasteland.", "spoiler": false },
+        { "id": "sb-suit-daily-mascot", "title": "Get the Daily Mascot suit", "description": "Box in Matrix 11.", "spoiler": false },
+        { "id": "sb-suit-daily-force", "title": "Get the Daily Force suit", "description": "Box in Matrix 11.", "spoiler": false },
+        { "id": "sb-suit-daily-knitted-dress", "title": "Get the Daily Knitted Dress", "description": "Box in Matrix 11.", "spoiler": false },
+        { "id": "sb-suit-daily-sailor", "title": "Get the Daily Sailor suit", "description": "Box in the northwest Great Desert.", "spoiler": false },
+        { "id": "sb-suit-black-wave", "title": "Get the Black Wave suit", "description": "Box in the east Great Desert.", "spoiler": false },
+        { "id": "sb-suit-cybernetic-bondage", "title": "Get the Cybernetic Bondage suit", "description": "Underwater box at the Great Desert oasis.", "spoiler": false },
+        { "id": "sb-suit-blue-monsoon", "title": "Get the Blue Monsoon suit", "description": "Picked up during the Precious Treasure request.", "spoiler": false },
+        { "id": "sb-suit-planet-diving-suit-3rd", "title": "Get the Planet Diving Suit (3rd)", "description": "Box in Abyss Levoire.", "spoiler": false },
+        { "id": "sb-suit-planet-diving-suit-6th", "title": "Get the Planet Diving Suit (6th)", "description": "Pre-order bonus, or found in Eidos 9.", "spoiler": false },
+        { "id": "sb-suit-punk-top", "title": "Get the Punk Top suit", "description": "Box in Eidos 9.", "spoiler": false },
+        { "id": "sb-suit-motivation", "title": "Get the Motivation suit", "description": "Rooftop box in Eidos 9.", "spoiler": false },
+        { "id": "sb-suit-photogenic", "title": "Get the Photogenic suit", "description": "Box in Spire 4.", "spoiler": false },
+        { "id": "sb-suit-orca-engineer", "title": "Get the Orca Engineer suit", "description": "Found at a camp in Spire 4.", "spoiler": false },
+        { "id": "sb-suit-black-rose", "title": "Get the Black Rose suit", "description": "Found in Spire 4.", "spoiler": false },
+        { "id": "sb-suit-fluffy-bear", "title": "Get the Fluffy Bear suit", "description": "Reward for the Memories in the Doll side quest.", "spoiler": false },
+        { "id": "sb-suit-sky-ace", "title": "Get the Sky Ace suit", "description": "Reward for the Encounter side quest.", "spoiler": false },
+        { "id": "sb-suit-la-vie-en-rose", "title": "Get the La Vie en Rose suit", "description": "In the wrecked ship, opened with six trial boxes.", "spoiler": false },
+        { "id": "sb-suit-ocean-maid", "title": "Get the Ocean Maid suit", "description": "Talk to Clyde after catching all 25 fish.", "spoiler": false },
+        { "id": "sb-collect-black-pearl-suit", "title": "Get the Black Pearl suit", "description": "The reward for finding every can.", "spoiler": false },
+        { "id": "sb-suit-raven-suit", "title": "Get the Raven Suit", "description": "Unlocked after finishing the game once.", "spoiler": false }
+      ]
+    },
+    {
+      "id": "upgrades",
+      "name": "Upgrades",
+      "items": [
+        { "id": "sb-upgrade-blood-edge-max", "title": "Fully upgrade the Blood Edge", "spoiler": false },
+        { "id": "sb-upgrade-tumbler-max", "title": "Fully upgrade the Rechargeable Tumbler", "spoiler": false },
+        { "id": "sb-upgrade-hp-max", "title": "Raise HP to its maximum", "spoiler": false },
+        { "id": "sb-upgrade-beta-energy-max", "title": "Raise Beta Energy to its maximum", "spoiler": false },
+        { "id": "sb-upgrade-all-skills", "title": "Learn every skill", "spoiler": false },
+        { "id": "sb-upgrade-10-exospines-max", "title": "Fully upgrade 10 Exospines", "spoiler": false }
+      ]
+    },
+    {
+      "id": "combat",
+      "name": "Combat Feats",
+      "items": [
+        { "id": "sb-combat-200-perfect-dodges", "title": "Land 200 Perfect Dodges", "spoiler": false },
+        { "id": "sb-combat-300-perfect-parries", "title": "Land 300 Perfect Parries", "spoiler": false },
+        { "id": "sb-combat-50-executions", "title": "Defeat 50 enemies with executions", "spoiler": false },
+        { "id": "sb-combat-100-beta-skill-kills", "title": "Defeat 100 enemies with Beta Skills", "spoiler": false },
+        { "id": "sb-combat-50-burst-skill-kills", "title": "Defeat 50 enemies with Burst Skills", "spoiler": false },
+        { "id": "sb-combat-50-tachy-mode-kills", "title": "Defeat 50 enemies in Tachy Mode", "spoiler": true },
+        { "id": "sb-combat-150-ranged-kills", "title": "Defeat 150 enemies with ranged attacks", "spoiler": false },
+        { "id": "sb-combat-1500-kills", "title": "Defeat 1,500 enemies in total", "spoiler": false }
+      ]
+    },
+    {
+      "id": "completion",
+      "name": "New Game Plus and Completion",
+      "items": [
+        { "id": "sb-ngplus-complete", "title": "Finish a New Game Plus run", "spoiler": false },
+        { "id": "sb-ngplus-all-skills", "title": "Learn every skill in New Game Plus", "spoiler": false },
+        { "id": "sb-platinum", "title": "Earn the platinum trophy", "spoiler": false }
+      ]
+    },
+    {
+      "id": "extra-bosses",
+      "name": "Extra Bosses (Updates and DLC)",
+      "items": [
+        { "id": "sb-extra-boss-mann", "title": "Defeat Mann", "spoiler": true },
+        {
+          "id": "sb-extra-boss-scarlet",
+          "title": "Defeat Scarlet",
+          "description": "Requires the Goddess of Victory: NIKKE DLC.",
+          "spoiler": false
+        }
+      ]
+    }
+  ]
+}

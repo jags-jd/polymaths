@@ -1,0 +1,420 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Final Fantasy VII Remake Intergrade checklist</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Rajdhani:wght@600;700&display=swap">
+<style>
+body{margin:0;background:#0B0F13}
+a{color:#E6EEF5}a:hover{color:#4FE0B0}
+button{cursor:pointer;font-family:inherit}
+input::placeholder{color:#93A4B5}
+</style>
+</helmet>
+<div style="background: #0B0F13; color: #E6EEF5; font-family: Inter, system-ui, sans-serif; font-size: 15px; line-height: 1.45; padding-bottom: 72px">
+
+<header style="background-color: #0F151B; background-image: repeating-linear-gradient(90deg, rgba(79,224,176,0.05) 0 1px, transparent 1px 40px), repeating-linear-gradient(0deg, rgba(79,224,176,0.04) 0 1px, transparent 1px 40px); border-bottom: 2px solid {{accent}}">
+<div style="max-width: 1120px; margin: 0 auto; padding: 14px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; min-height: 44px">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 28 28" fill="none" stroke="{{accent}}" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="22" height="22" rx="5"></rect><path d="M9 14.5l3.5 3.5L19.5 10.5"></path></svg>
+<span style="font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: 24px; letter-spacing: 0.04em; text-transform: uppercase">Polymaths</span>
+</a>
+<div style="flex: 1 1 240px; min-width: 0; display: flex; align-items: center; gap: 10px; background: #121A22; border: 1px solid #253242; border-radius: 6px; padding: 0 14px; min-height: 44px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#93A4B5" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<label for="game-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search games</label>
+<input id="game-search" type="search" placeholder="Search games" style="flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: #E6EEF5; font: inherit; height: 42px">
+</div>
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; min-height: 44px">
+<span aria-hidden="true" style="width: 36px; height: 36px; border-radius: 6px; background: #1B2632; border: 1px solid #2E3E50; display: flex; align-items: center; justify-content: center; font-weight: 700; font-size: 13px">IG</span>
+<span style="font-weight: 600">[YOUR IGN]</span>
+</a>
+</div>
+</header>
+
+<main id="top" style="max-width: 1120px; margin: 0 auto; padding: 0 24px">
+
+<section style="padding: 40px 0 32px; display: flex; flex-direction: column; gap: 24px">
+<div style="background: #121A22; border: 1px solid #253242; border-radius: 8px; padding: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 28px">
+<div style="position: relative; width: 148px; height: 148px; flex: none">
+<svg role="img" aria-label="Overall progress ring" width="148" height="148" viewBox="0 0 148 148">
+<circle cx="74" cy="74" r="62" fill="none" stroke="#1F2A36" stroke-width="12"></circle>
+<circle cx="74" cy="74" r="62" fill="none" stroke="{{accent}}" stroke-width="12" stroke-linecap="butt" transform="rotate(-90 74 74)" style="stroke-dasharray: {{ringDash}}"></circle>
+<circle cx="74" cy="74" r="50" fill="none" stroke="#1F2A36" stroke-width="1" stroke-dasharray="2 4"></circle>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: 38px; line-height: 1">{{percent}}%</span>
+<span style="font-size: 12px; color: #93A4B5">complete</span>
+</div>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.1em; text-transform: uppercase; color: #93A4B5">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" fill="{{accent}}" stroke="#0B0F13" stroke-width="1"></circle><ellipse cx="9" cy="8.5" rx="3" ry="2" fill="rgba(255,255,255,0.55)"></ellipse></svg>
+Game checklist
+</span>
+<h1 style="margin: 0; font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: clamp(2.2rem, 6vw, 3.4rem); line-height: 1; letter-spacing: 0.02em; text-transform: uppercase">Final Fantasy VII Remake Intergrade</h1>
+<span style="font-size: 17px; font-weight: 600">{{doneCount}} of {{totalCount}} done. {{leftCount}} to go.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px; padding-top: 4px">
+<sc-for list="{{stats}}" as="stat" hint-placeholder-count="6">
+<div style="flex: 1 1 110px; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 10px 12px; border-radius: 6px; background: #0F151B; border: 1px solid #253242">
+<span style="font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: 22px; line-height: 1.1; color: {{accent}}">{{stat.value}}</span>
+<span style="font-size: 12px; color: #93A4B5">{{stat.label}}</span>
+</div>
+</sc-for>
+</div>
+<span style="font-size: 13px; color: #93A4B5">Discs, weapons and summon materia light up as you collect them. Spoiler bosses stay hidden until you tap them.</span>
+</div>
+</div>
+<nav aria-label="Chapters" style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{sections}}" as="s" hint-placeholder-count="10">
+<a href="#{{s.anchor}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; box-sizing: border-box; padding: 0 12px; border-radius: 6px; background: #121A22; border: 1px solid {{s.chipBorder}}; text-decoration: none; font-size: 13px; font-weight: 600">
+<sc-if value="{{s.complete}}" hint-placeholder-val="{{ false }}">
+<svg role="img" aria-label="Complete" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</sc-if>
+<span>{{s.short}}</span>
+<span style="color: {{accent}}; font-weight: 700">{{s.pct}}%</span>
+</a>
+</sc-for>
+</nav>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 44px">
+<sc-for list="{{sections}}" as="s" hint-placeholder-count="3">
+<section id="{{s.anchor}}" style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-bottom: 10px; border-bottom: 1px solid #253242">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<span style="font-family: Rajdhani, Inter, sans-serif; font-size: 15px; font-weight: 700; letter-spacing: 0.08em; color: {{accent}}">{{s.label}}</span>
+<h2 style="margin: 0; font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: 26px; letter-spacing: 0.03em; text-transform: uppercase">{{s.title}}</h2>
+<sc-if value="{{s.complete}}" hint-placeholder-val="{{ false }}">
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 3px 10px; border-radius: 4px; background: {{accent}}; color: #06120E; font-size: 12px; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase">Complete</span>
+</sc-if>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div aria-hidden="true" style="width: 96px; height: 4px; background: #1F2A36; overflow: hidden">
+<div style="height: 100%; background: {{accent}}; width: {{s.pct}}%"></div>
+</div>
+<span style="font-size: 14px; font-weight: 600; color: #93A4B5">{{s.done}} / {{s.total}}</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 12px">
+<sc-for list="{{s.cards}}" as="c" hint-placeholder-count="3">
+<div style="grid-column: {{c.span}}; display: flex; flex-direction: column; background: {{c.bg}}; border: 1px solid {{c.border}}; border-radius: 8px; overflow: hidden">
+
+<sc-if value="{{c.masked}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{c.reveal}}" aria-label="Reveal spoiler" style="display: flex; align-items: center; gap: 14px; padding: 16px; margin: 0; border: 0; background: transparent; color: #E6EEF5; text-align: left; font-size: 15px; min-height: 108px">
+<span style="flex: none; width: 76px; height: 76px; border-radius: 6px; background: #0F151B; border: 1px dashed #2E3E50; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#93A4B5" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</span>
+<span style="display: flex; flex-direction: column; gap: 4px">
+<span aria-hidden="true" style="font-weight: 700; filter: blur(7px); user-select: none">{{c.name}}</span>
+<span style="font-size: 12px; font-weight: 600; color: #93A4B5">Spoiler, tap to reveal</span>
+</span>
+</button>
+</sc-if>
+
+<sc-if value="{{c.shown}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 16px">
+<div style="display: flex; align-items: flex-start; gap: 12px">
+<sc-if value="{{c.hasImage}}" hint-placeholder-val="{{ false }}">
+<span style="position: relative; flex: none; width: 76px; height: 76px; border-radius: 6px; background: {{c.tile}}; border: 1px solid #2E3E50; display: flex; align-items: center; justify-content: center">
+<span aria-hidden="true" style="font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: 30px; color: rgba(230,238,245,0.28)">{{c.mono}}</span>
+<span style="position: absolute; left: 6px; bottom: 4px; font-size: 9px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #B9C6D3">Image</span>
+</span>
+</sc-if>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #93A4B5">{{c.kindLabel}}</span>
+<h3 style="margin: 0; font-family: Rajdhani, Inter, sans-serif; font-weight: 700; font-size: 20px; line-height: 1.15; letter-spacing: 0.02em">{{c.name}}</h3>
+<span style="font-size: 13px; color: #93A4B5">{{c.done}} / {{c.total}}</span>
+</div>
+<sc-if value="{{c.complete}}" hint-placeholder-val="{{ false }}">
+<span style="flex: none; padding: 3px 8px; border-radius: 4px; background: {{accent}}; color: #06120E; font-size: 12px; font-weight: 800">100%</span>
+</sc-if>
+</div>
+
+<sc-for list="{{c.groups}}" as="g" hint-placeholder-count="2">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: {{g.pad}}; border-top: {{g.rule}}">
+<sc-if value="{{g.hasTitle}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; text-transform: uppercase; color: #93A4B5">{{g.title}}</span>
+<span style="font-size: 12px; font-weight: 700; color: #B9C6D3">{{g.count}}</span>
+</div>
+</sc-if>
+<sc-if value="{{g.hasNote}}" hint-placeholder-val="{{ false }}">
+<span style="font-size: 12px; color: #93A4B5">{{g.note}}</span>
+</sc-if>
+<div style="display: flex; flex-wrap: wrap; gap: 6px">
+<sc-for list="{{g.items}}" as="t" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{t.done}}" onClick="{{t.toggle}}" style="display: inline-flex; align-items: center; gap: 7px; min-height: 44px; padding: 0 12px 0 10px; margin: 0; border-radius: 6px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.color}}; font-size: 13px; font-weight: 600; text-align: left">
+<sc-if value="{{t.iTick}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{t.tickOpacity}}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</sc-if>
+<sc-if value="{{t.iDiscOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6E8092" stroke-width="1.4"><circle cx="12" cy="12" r="9.5"></circle><circle cx="12" cy="12" r="5.5" stroke-dasharray="1.6 2"></circle><circle cx="12" cy="12" r="1.8"></circle></svg>
+</sc-if>
+<sc-if value="{{t.iDiscOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9.5" fill="#151C24" stroke="#4FE0B0" stroke-width="1.4"></circle><circle cx="12" cy="12" r="7" fill="none" stroke="#2A3A48" stroke-width="0.8"></circle><circle cx="12" cy="12" r="4.4" fill="#4FE0B0"></circle><circle cx="12" cy="12" r="1.4" fill="#0B0F13"></circle><path d="M6.5 8.5a7 7 0 0 1 3-3" fill="none" stroke="rgba(255,255,255,0.45)" stroke-width="1.2" stroke-linecap="round"></path></svg>
+</sc-if>
+<sc-if value="{{t.iOrbOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6E8092" stroke-width="1.4"><circle cx="12" cy="12" r="8.5"></circle><ellipse cx="9.2" cy="8.6" rx="2.6" ry="1.7"></ellipse></svg>
+</sc-if>
+<sc-if value="{{t.iOrbOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" fill="#E0434F" stroke="#8C1A24" stroke-width="1.2"></circle><circle cx="13.5" cy="14" r="4.5" fill="#B82A36"></circle><ellipse cx="9.2" cy="8.6" rx="2.6" ry="1.7" fill="rgba(255,255,255,0.75)"></ellipse></svg>
+</sc-if>
+<sc-if value="{{t.iSwordOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6E8092" stroke-width="1.5" stroke-linejoin="round" stroke-linecap="round"><path d="M19.5 3.5l-1 4.5-9 9-3.5-3.5 9-9z"></path><path d="M5 15l4 4M4.5 19.5l2-2"></path></svg>
+</sc-if>
+<sc-if value="{{t.iSwordOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" stroke-linejoin="round" stroke-linecap="round"><path d="M19.5 3.5l-1 4.5-9 9-3.5-3.5 9-9z" fill="#C9D4E0" stroke="#7F8C99" stroke-width="1.2"></path><path d="M5 15l4 4" stroke="#4FE0B0" stroke-width="2.2"></path><path d="M4.5 19.5l2-2" stroke="#8C6A3E" stroke-width="2.2"></path></svg>
+</sc-if>
+<sc-if value="{{t.iDressOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#6E8092" stroke-width="1.4" stroke-linejoin="round"><path d="M9.5 3h5l-1 4 3.5 4.5L20 21H4l3-9.5L10.5 7z"></path></svg>
+</sc-if>
+<sc-if value="{{t.iDressOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" stroke-linejoin="round"><path d="M9.5 3h5l-1 4 3.5 4.5L20 21H4l3-9.5L10.5 7z" fill="#E58FB6" stroke="#9C4A72" stroke-width="1.2"></path><path d="M7.6 12h8.8" stroke="#9C4A72" stroke-width="1"></path></svg>
+</sc-if>
+<sc-if value="{{t.iCardOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6E8092" stroke-width="1.4"><rect x="4" y="3" width="16" height="18" rx="2"></rect><path d="M8 8h8M8 12h8M8 16h5"></path></svg>
+</sc-if>
+<sc-if value="{{t.iCardOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24"><rect x="4" y="3" width="16" height="18" rx="2" fill="#F2C14E" stroke="#9C7A1E" stroke-width="1.2"></rect><path d="M8 8h8M8 12h8M8 16h5" stroke="#5E4810" stroke-width="1.4" stroke-linecap="round"></path></svg>
+</sc-if>
+{{t.label}}
+</button>
+</sc-for>
+</div>
+</div>
+</sc-for>
+</div>
+</sc-if>
+
+</div>
+</sc-for>
+</div>
+</section>
+</sc-for>
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#4FE0B0","options":["#4FE0B0","#7FB2FF","#F2C14E","#F07A84"]},"$preview":{"width":1280,"height":9000}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+var self = this;
+var done = {};
+var secs = this.sections();
+var tickCard = function (c) { self.cardIds(c).forEach(function (id) { done[id] = true; }); };
+[0, 1, 2].forEach(function (i) { secs[i].cards.forEach(tickCard); });
+['ff7r-ch4-clear', 'ff7r-ch4-boss-roche', 'ff7r-ch5-clear', 'ff7r-ch5-disc-28', 'ff7r-ch5-weapon-metal-knuckles', 'ff7r-intel-1', 'ff7r-intel-2', 'ff7r-intel-3', 'ff7r-feat-darts', 'ff7r-feat-squats', 'ff7r-summon-ifrit'].forEach(function (id) { done[id] = true; });
+this.state = { done: done, revealed: {} };
+}
+slug(s) {
+return s.toLowerCase().replace(/['’&]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+discNames() {
+return { 1: 'The Prelude', 2: 'Bombing Mission', 3: "Tifa's Theme", 4: "Barret's Theme", 5: 'Lurking in the Darkness', 6: 'Let the Battles Begin!', 7: "Turks' Theme", 8: 'Under the Rotting Pizza', 9: 'The Oppressed', 10: 'Honeybee Inn', 11: 'Don of the Slums', 12: 'Fight On!', 13: 'The Chase', 14: 'Main Theme of FFVII', 15: 'On Our Way', 16: 'Good Night, Until Tomorrow', 17: 'Farm Boy', 18: 'Electric de Chocobo', 19: 'Costa del Sol', 20: 'Gold Saucer', 21: "Cait Sith's Theme", 22: 'Cosmo Canyon', 23: 'Descendant of Shinobi', 24: 'Wutai', 25: 'Tango of Tears', 26: 'Let the Battles Begin! -REMAKE-', 27: 'Hip Hop de Chocobo', 28: 'Stamp', 29: 'The Midgar Blues', 30: 'Stand Up', 31: "Scarlet's Theme" };
+}
+chapters() {
+// [n, quests, discs, weapons [[char, name]], summons, bosses [[name, spoiler]], extra]
+return [
+[1, [], [], [['Cloud', 'Buster Sword'], ['Barret', 'Gatling Gun']], [], [['Scorpion Sentinel', false]]],
+[2, [], [], [], [], []],
+[3, ["Chadley's Report", 'Rat Problem', 'Nuisance in the Factory', 'Lost Friends', 'On the Prowl', 'Just Flew in from the Graveyard'], [1, 3, 4, 27], [['Cloud', 'Iron Blade'], ['Tifa', 'Leather Gloves']], [], []],
+[4, [], [], [], [], [['Roche', false]]],
+[5, [], [28], [['Tifa', 'Metal Knuckles']], [], [['Crab Warden', false]]],
+[6, [], [18], [['Barret', 'Light Machine Gun']], ['Chocobo & Moogle'], []],
+[7, [], [2], [['Tifa', 'Sonic Strikers']], [], [['Airbuster', false]]],
+[8, ['The Mysterious Moogle Merchant', 'Kids on Patrol', 'Weapons on a Rampage', 'A Verified Hero', 'The Angel of the Slums', 'Paying Respects'], [19, 20, 21, 25], [['Cloud', 'Nail Bat'], ['Aerith', 'Guard Stick'], ['Aerith', 'Silver Staff']], ['Shiva'], [['Reno', false], ['Rude', false]]],
+[9, ['Burning Thighs', 'The Party Never Stops', 'A Dynamite Body', 'The Price of Thievery', "Shears' Counterattack"], [8, 10, 11, 17, 22, 26, 29], [['Cloud', 'Hardedge'], ['Aerith', 'Arcane Scepter']], ['Fat Chocobo'], [['Hell House', false]], 'dresses'],
+[10, [], [9], [['Tifa', 'Feathered Gloves']], [], [['Abzu', false]]],
+[11, [], [6], [['Aerith', 'Mythril Rod'], ['Aerith', 'Bladed Staff']], [], [['Ghoul', false], ['Eligor', false]]],
+[12, [], [], [], [], [['Reno and Rude', false]]],
+[13, [], [], [['Barret', 'Big Bertha'], ['Tifa', 'Mythril Claws']], [], [['Failed Experiment', false]]],
+[14, ['Chocobo Search', 'Missing Children', 'Malicious Goons', 'Wavering Heart', 'The Power of Music', 'Secret Medicine', 'Tomboy Bandit', 'Subterranean Menace', "Corneo's Secret Stash"], [7, 12, 13, 14, 15, 16, 23, 24, 30], [['Cloud', 'Mythril Saber'], ['Barret', 'Steel Pincers'], ['Barret', 'Wrecking Ball']], ['Leviathan', 'Bahamut'], []],
+[15, [], [5], [], [], [['Valkyrie', false]]],
+[16, [], [31], [['Barret', 'EKG Cannon'], ['Tifa', 'Purple Pain']], [], [['Specimen H0512', false]]],
+[17, [], [], [['Aerith', 'Reinforced Staff'], ['Cloud', 'Twin Stinger']], [], [['Jenova Dreamweaver', true], ['Rufus and Darkstar', true], ['The Arsenal', true]]],
+[18, [], [], [], [], [['Sephiroth', true]]]
+];
+}
+sections() {
+var self = this;
+var discs = this.discNames();
+var out = this.chapters().map(function (ch) {
+var n = ch[0], p = 'ff7r-ch' + n;
+var groups = [{ title: 'Progress', icon: 'tick', items: [[p + '-clear', 'Cleared'], [p + '-hard', 'Cleared on Hard']] }];
+if (ch[1].length) groups.push({ title: 'Side quests', icon: 'tick', note: n === 9 ? "Sam's pair and Madam M's pair are on different routes, so all five need a second run or Chapter Select." : '', items: ch[1].map(function (q) { return [p + '-quest-' + self.slug(q), q]; }) });
+if (ch[2].length) groups.push({ title: 'Music discs', icon: 'disc', items: ch[2].map(function (d) { return [p + '-disc-' + d, '#' + d + ' ' + discs[d]]; }) });
+if (ch[3].length) groups.push({ title: 'Weapons', icon: 'sword', items: ch[3].map(function (w) { return [p + '-weapon-' + self.slug(w[1]), w[0] + ': ' + w[1]]; }) });
+if (ch[4].length) groups.push({ title: 'Summon materia', icon: 'orb', items: ch[4].map(function (s) { return [p + '-summon-' + self.slug(s), s]; }) });
+if (ch[6] === 'dresses') groups.push({ title: 'Bridal candidates', icon: 'dress', note: "Set by choices in Chapters 3, 8 and 9, so all nine need several runs or Chapter Select.", items: [
+[p + '-dress-tifa-exotic', 'Tifa: exotic'], [p + '-dress-tifa-sporty', 'Tifa: sporty'], [p + '-dress-tifa-refined', 'Tifa: refined'],
+[p + '-dress-aerith-simple', 'Aerith: simple'], [p + '-dress-aerith-longer', 'Aerith: longer'], [p + '-dress-aerith-elaborate', 'Aerith: elaborate'],
+[p + '-dress-cloud-sam', "Cloud: Sam's pick"], [p + '-dress-cloud-madam-m', "Cloud: Madam M's pick"], [p + '-dress-cloud-plain', 'Cloud: plain']] });
+var cards = [{ id: p, name: 'Chapter ' + n, kindLabel: 'Chapter', span: '1 / -1', groups: groups }];
+ch[5].forEach(function (b) { cards.push({ id: p + '-boss-' + self.slug(b[0]), name: b[0], kindLabel: 'Boss', image: true, spoiler: b[1], groups: [{ icon: 'tick', items: [[p + '-boss-' + self.slug(b[0]), 'Defeated']] }] }); });
+return { id: 'ch' + n, label: 'CH ' + (n < 10 ? '0' + n : n), short: 'Ch ' + n, title: 'Chapter ' + n, cards: cards };
+});
+out.push({ id: 'intermission', label: 'DLC', short: 'INTERmission', title: 'Episode INTERmission', cards: [
+{ id: 'ff7r-int-ch1', name: "Wutai's Finest", kindLabel: 'Chapter 1', groups: [{ title: 'Progress', icon: 'tick', items: [['ff7r-int-ch1-clear', 'Cleared'], ['ff7r-int-ch1-hard', 'Cleared on Hard']] }, { title: 'Weapons', icon: 'sword', items: [['ff7r-int-weapon-boomerang', 'Yuffie: Boomerang'], ['ff7r-int-weapon-steel-reaper', 'Yuffie: Steel Reaper']] }] },
+{ id: 'ff7r-int-ch2', name: 'Covert Ops', kindLabel: 'Chapter 2', groups: [{ title: 'Progress', icon: 'tick', items: [['ff7r-int-ch2-clear', 'Cleared'], ['ff7r-int-ch2-hard', 'Cleared on Hard']] }] },
+{ id: 'ff7r-int-extras', name: 'Side activities', kindLabel: 'Extras', span: '1 / -1', groups: [
+{ title: 'Fort Condor opponents', icon: 'card', items: [1, 2, 3, 4, 5, 6, 7].map(function (i) { return ['ff7r-int-condor-' + i, 'Opponent ' + i]; }) },
+{ title: 'Fort Condor', icon: 'tick', items: [['ff7r-int-condor-grandmaster', 'Become grandmaster'], ['ff7r-int-condor-hard', 'Grandmaster on Hard']] },
+{ title: 'Happy Turtle flyers', icon: 'card', items: [1, 2, 3, 4, 5, 6].map(function (i) { return ['ff7r-int-flyer-' + i, 'Flyer ' + i]; }) },
+{ title: 'Other', icon: 'tick', items: [['ff7r-int-box-buster', 'All Shinra Box Buster materia']] },
+{ title: 'Summon materia', icon: 'orb', items: [['ff7r-int-summon-ramuh', 'Ramuh']] }] },
+{ id: 'ff7r-int-boss-gigantipede', name: 'Gigantipede', kindLabel: 'Boss', image: true, groups: [{ icon: 'tick', items: [['ff7r-int-boss-gigantipede', 'Defeated']] }] },
+{ id: 'ff7r-int-boss-scarlet', name: 'Scarlet and the Crimson Mare', kindLabel: 'Boss', image: true, groups: [{ icon: 'tick', items: [['ff7r-int-boss-scarlet', 'Defeated']] }] },
+{ id: 'ff7r-int-boss-nero', name: 'Nero', kindLabel: 'Boss', image: true, spoiler: true, groups: [{ icon: 'tick', items: [['ff7r-int-boss-nero', 'Defeated']] }] },
+{ id: 'ff7r-int-boss-pride-and-joy', name: 'Pride and Joy Mk 0.5', kindLabel: 'Optional boss', image: true, groups: [{ icon: 'tick', items: [['ff7r-int-boss-pride-and-joy', 'Defeated']] }] },
+{ id: 'ff7r-int-boss-weiss', name: 'Weiss the Immaculate', kindLabel: 'Optional boss', image: true, spoiler: true, groups: [{ icon: 'tick', items: [['ff7r-int-boss-weiss', 'Defeated']] }] }
+] });
+var intel = [];
+for (var i = 1; i <= 20; i++) intel.push(['ff7r-intel-' + i, 'Report ' + i]);
+out.push({ id: 'whole-game', label: 'ALL', short: 'Whole game', title: 'Whole Game', cards: [
+{ id: 'ff7r-chadley', name: "Chadley's Battle Intel", kindLabel: 'Reports', span: '1 / -1', groups: [{ title: 'Battle Intel reports', icon: 'card', items: intel }, { title: 'Other summon materia', icon: 'orb', items: [['ff7r-summon-ifrit', 'Ifrit'], ['ff7r-summon-chocobo-chick', 'Chocobo Chick'], ['ff7r-summon-cactuar', 'Cactuar'], ['ff7r-summon-carbuncle', 'Carbuncle']] }] },
+{ id: 'ff7r-feats', name: 'Mini-games and feats', kindLabel: 'Side activities', span: '1 / -1', groups: [
+{ title: 'Mini-games', icon: 'tick', items: [['ff7r-feat-bike', 'Get praised by Jessie on the bike'], ['ff7r-feat-darts', 'Top the Seventh Heaven darts board'], ['ff7r-feat-squats', 'Win every squat challenge'], ['ff7r-feat-pullups', 'Win every pull-up challenge'], ['ff7r-feat-whack-normal', 'Every Normal Whack-a-Box challenge'], ['ff7r-feat-whack-hard', 'Every Hard Whack-a-Box challenge'], ['ff7r-feat-colosseum', 'Win a colosseum sparring match'], ['ff7r-feat-andrea', "Earn Andrea's gift"]] },
+{ title: 'Story extras', icon: 'tick', items: [['ff7r-feat-flowers', 'Decorate the Leaf House with flowers'], ['ff7r-feat-angel', 'Get a letter from an angel'], ['ff7r-feat-johnny', 'See every Johnny incident']] },
+{ title: 'Mastery', icon: 'tick', items: [['ff7r-feat-level-50', 'Reach level 50 with a character'], ['ff7r-feat-all-abilities', 'Learn every weapon ability'], ['ff7r-feat-enemy-skills', 'Learn every enemy skill'], ['ff7r-feat-malboro', 'Defeat a malboro'], ['ff7r-feat-pride-and-joy', 'Defeat the Pride and Joy prototype'], ['ff7r-feat-platinum', 'Earn every trophy']] }] }
+] });
+return out;
+}
+cardIds(c) {
+var ids = [];
+c.groups.forEach(function (g) { g.items.forEach(function (t) { ids.push(t[0]); }); });
+return ids;
+}
+renderVals() {
+var self = this;
+var st = this.state || { done: {}, revealed: {} };
+var accent = this.props.accent ?? '#4FE0B0';
+var tiles = ['#1D2A24', '#1D2433', '#2B2030', '#2D2620', '#1F2C30', '#28232E'];
+var toggleFn = function (id) {
+return function () {
+var d = Object.assign({}, self.state.done);
+if (d[id]) { delete d[id]; } else { d[id] = true; }
+self.setState({ done: d });
+};
+};
+var item = function (t, icon) {
+var isDone = !!st.done[t[0]];
+var tick = icon === 'tick';
+return {
+id: t[0],
+label: t[1],
+done: isDone,
+iTick: tick,
+iDiscOn: icon === 'disc' && isDone, iDiscOff: icon === 'disc' && !isDone,
+iOrbOn: icon === 'orb' && isDone, iOrbOff: icon === 'orb' && !isDone,
+iSwordOn: icon === 'sword' && isDone, iSwordOff: icon === 'sword' && !isDone,
+iDressOn: icon === 'dress' && isDone, iDressOff: icon === 'dress' && !isDone,
+iCardOn: icon === 'card' && isDone, iCardOff: icon === 'card' && !isDone,
+bg: isDone ? (tick ? accent : '#15241F') : '#0F151B',
+color: isDone && tick ? '#06120E' : '#E6EEF5',
+border: isDone ? accent : '#2A3848',
+tickOpacity: isDone ? 1 : 0.3,
+toggle: toggleFn(t[0])
+};
+};
+var mono = function (n) {
+return n.replace(/[^A-Za-z0-9 ]/g, ' ').split(/\s+/).filter(function (x) { return x && !/^(the|and|of|mk|\d.*)$/i.test(x); }).slice(0, 2).map(function (x) { return x.charAt(0); }).join('').toUpperCase();
+};
+var count = function (re) {
+var all = 0, d = 0;
+Object.keys(allIds).forEach(function (id) { if (re.test(id)) { all++; if (st.done[id]) d++; } });
+return d + ' / ' + all;
+};
+var allIds = {};
+var total = 0, doneAll = 0;
+var sections = this.sections().map(function (s, si) {
+var sDone = 0, sTotal = 0;
+var cards = s.cards.map(function (c, ci) {
+var groups = c.groups.map(function (g, gi) {
+var items = g.items.map(function (t) { allIds[t[0]] = true; return item(t, g.icon); });
+var gd = items.filter(function (t) { return t.done; }).length;
+return {
+title: g.title || '',
+hasTitle: !!g.title,
+note: g.note || '',
+hasNote: !!g.note,
+count: gd + ' / ' + items.length,
+pad: gi === 0 ? '0' : '12px',
+rule: gi === 0 ? '0' : '1px solid #1F2A36',
+items: items,
+d: gd,
+n: items.length
+};
+});
+var d = groups.reduce(function (a, g) { return a + g.d; }, 0);
+var n = groups.reduce(function (a, g) { return a + g.n; }, 0);
+sDone += d; sTotal += n;
+var complete = d === n;
+var masked = !!c.spoiler && !st.revealed[c.id] && d === 0;
+return {
+name: c.name,
+kindLabel: c.kindLabel,
+span: c.span || 'auto',
+hasImage: !!c.image,
+mono: mono(c.name),
+tile: tiles[(si + ci) % tiles.length],
+groups: groups,
+done: d,
+total: n,
+complete: complete,
+masked: masked,
+shown: !masked,
+bg: complete ? '#11201B' : '#121A22',
+border: complete ? accent : '#253242',
+reveal: function () {
+var r = Object.assign({}, self.state.revealed);
+r[c.id] = true;
+self.setState({ revealed: r });
+}
+};
+});
+total += sTotal; doneAll += sDone;
+var complete = sDone === sTotal;
+return {
+anchor: 'sec-' + s.id,
+label: s.label,
+short: s.short,
+title: s.title,
+cards: cards,
+done: sDone,
+total: sTotal,
+pct: Math.round((sDone / sTotal) * 100),
+complete: complete,
+chipBorder: complete ? accent : '#253242'
+};
+});
+var circ = 2 * Math.PI * 62;
+return {
+accent: accent,
+sections: sections,
+totalCount: total,
+doneCount: doneAll,
+leftCount: total - doneAll,
+percent: Math.round((doneAll / total) * 100),
+ringDash: ((doneAll / total) * circ).toFixed(1) + ' ' + circ.toFixed(1),
+stats: [
+{ value: count(/^ff7r-ch\d+-clear$/), label: 'chapters cleared' },
+{ value: count(/-quest-/), label: 'side quests' },
+{ value: count(/-disc-/), label: 'music discs' },
+{ value: count(/-weapon-/), label: 'weapons' },
+{ value: count(/-summon-/), label: 'summons' },
+{ value: count(/^ff7r-intel-/), label: 'Battle Intel' }
+]
+};
+}
+}
+</script>
+</body>
+</html>

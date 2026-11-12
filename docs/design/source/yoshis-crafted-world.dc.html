@@ -1,0 +1,705 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Yoshi's Crafted World checklist</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&display=swap">
+<style>
+body{margin:0;background:#F2F6EC}
+a{color:#1C2619}a:hover{color:#1F7F2D}
+button{cursor:pointer;font-family:inherit}
+input::placeholder{color:#4D5A47}
+</style>
+</helmet>
+<div style="background: #F2F6EC; color: #1C2619; font-family: Nunito, system-ui, sans-serif; font-size: 15px; line-height: 1.45; padding-bottom: 72px">
+
+<header style="background-color: #1F7F2D; background-image: radial-gradient(circle at 22px 18px, rgba(255,255,255,0.12) 9px, transparent 10px), radial-gradient(circle at 62px 44px, rgba(255,255,255,0.08) 6px, transparent 7px); background-size: 84px 60px; border-bottom: 6px solid #E5202E; color: #FFFFFF">
+<div style="max-width: 1120px; margin: 0 auto; padding: 12px 24px; display: flex; flex-wrap: wrap; align-items: center; gap: 16px">
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; min-height: 44px; color: #FFFFFF">
+<svg aria-hidden="true" width="30" height="30" viewBox="0 0 28 28" fill="none" stroke="#FFFFFF" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="22" height="22" rx="7"></rect><path d="M9 14.5l3.5 3.5L19.5 10.5"></path></svg>
+<span style="font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 22px; letter-spacing: -0.01em; color: #FFFFFF">Polymaths</span>
+</a>
+<div style="flex: 1 1 240px; min-width: 0; display: flex; align-items: center; gap: 10px; background: #FFFFFF; border-radius: 999px; padding: 0 18px; min-height: 44px">
+<svg aria-hidden="true" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#4D5A47" stroke-width="2.4" stroke-linecap="round"><circle cx="11" cy="11" r="7"></circle><path d="M20 20l-3.5-3.5"></path></svg>
+<label for="game-search" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0)">Search games</label>
+<input id="game-search" type="search" placeholder="Search games" style="flex: 1; min-width: 0; background: transparent; border: 0; outline: 0; color: #1C2619; font: inherit; font-weight: 600; height: 42px">
+</div>
+<a href="#top" style="display: flex; align-items: center; gap: 10px; text-decoration: none; min-height: 44px; color: #FFFFFF">
+<span aria-hidden="true" style="width: 38px; height: 38px; border-radius: 50%; background: #FFFFFF; color: #1F7F2D; display: flex; align-items: center; justify-content: center; font-weight: 900; font-size: 14px">IG</span>
+<span style="font-weight: 800; color: #FFFFFF">[YOUR IGN]</span>
+</a>
+</div>
+</header>
+
+<main id="top" style="max-width: 1120px; margin: 0 auto; padding: 0 24px">
+
+<section style="padding: 40px 0 32px; display: flex; flex-direction: column; gap: 24px">
+<div style="background: #FFFFFF; border: 1px solid #DCE6D2; border-radius: 24px; padding: 28px; box-shadow: 0 3px 0 #DCE6D2; display: flex; flex-wrap: wrap; align-items: center; gap: 28px">
+<div style="position: relative; width: 148px; height: 148px; flex: none">
+<svg role="img" aria-label="Overall progress ring" width="148" height="148" viewBox="0 0 148 148">
+<circle cx="74" cy="74" r="62" fill="none" stroke="#DCE6D2" stroke-width="14"></circle>
+<circle cx="74" cy="74" r="62" fill="none" stroke="{{accent}}" stroke-width="14" stroke-linecap="round" transform="rotate(-90 74 74)" style="stroke-dasharray: {{ringDash}}"></circle>
+</svg>
+<div style="position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center">
+<span style="font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 34px; line-height: 1">{{percent}}%</span>
+<span style="font-size: 12px; color: #4D5A47">complete</span>
+</div>
+</div>
+<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 10px">
+<span style="display: inline-flex; align-items: center; gap: 8px; font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: #4D5A47">
+<svg aria-hidden="true" width="22" height="26" viewBox="0 0 22 26"><path d="M11 1.5C5.8 1.5 2 9.4 2 15.2 2 20.7 6 24.5 11 24.5s9-3.8 9-9.3C20 9.4 16.2 1.5 11 1.5z" fill="#FFFFFF" stroke="#1F7F2D" stroke-width="1.6"></path><circle cx="8" cy="10" r="2.3" fill="#3DAA45"></circle><circle cx="14.5" cy="15" r="2.8" fill="#3DAA45"></circle><circle cx="8.5" cy="19.5" r="1.8" fill="#3DAA45"></circle><circle cx="13.5" cy="6.5" r="1.4" fill="#3DAA45"></circle></svg>
+Game checklist
+</span>
+<h1 style="margin: 0; font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: clamp(2.2rem, 6vw, 3.6rem); line-height: 1.02; letter-spacing: -0.02em">Yoshi's Crafted World</h1>
+<span style="font-size: 17px; font-weight: 500">{{doneCount}} of {{totalCount}} done. {{leftCount}} to go.</span>
+<div style="display: flex; flex-wrap: wrap; gap: 10px; padding-top: 4px">
+<sc-for list="{{stats}}" as="stat" hint-placeholder-count="3">
+<div style="flex: 1 1 130px; min-width: 0; display: flex; flex-direction: column; gap: 2px; padding: 10px 14px; border-radius: 12px; background: #FFFFFF; border: 1px solid #DCE6D2">
+<span style="font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 22px; line-height: 1.1; color: {{accent}}">{{stat.value}}</span>
+<span style="font-size: 12px; color: #4D5A47">{{stat.label}}</span>
+</div>
+</sc-for>
+</div>
+<span style="font-size: 13px; color: #4D5A47">Tap each flower and costume as you find it. For Red Coins and hearts, tap the number you reached, like a health bar. Fill every course, craft and costume in a world to complete it.</span>
+</div>
+</div>
+<nav aria-label="Worlds" style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{worlds}}" as="w" hint-placeholder-count="6">
+<a href="#{{w.anchor}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 44px; box-sizing: border-box; padding: 0 14px; border-radius: 999px; background: #FFFFFF; border: 1px solid {{w.chipBorder}}; text-decoration: none; font-size: 14px; font-weight: 500">
+<sc-if value="{{w.complete}}" hint-placeholder-val="{{ false }}">
+<svg role="img" aria-label="Complete" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="{{accent}}" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</sc-if>
+<span>{{w.navName}}</span>
+<span style="color: {{accent}}; font-weight: 600">{{w.pct}}%</span>
+</a>
+</sc-for>
+</nav>
+</section>
+
+<div style="display: flex; flex-direction: column; gap: 48px">
+<sc-for list="{{worlds}}" as="w" hint-placeholder-count="3">
+<section id="{{w.anchor}}" style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-bottom: 12px; border-bottom: 1px solid #DCE6D2">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 12px">
+<span style="font-size: 13px; font-weight: 600; color: #4D5A47">World {{w.num}}</span>
+<h2 style="margin: 0; font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -0.01em">{{w.title}}</h2>
+<sc-if value="{{w.complete}}" hint-placeholder-val="{{ false }}">
+<span style="display: inline-flex; align-items: center; gap: 6px; padding: 4px 12px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 12px; font-weight: 600; letter-spacing: 0.04em; text-transform: uppercase">
+<svg aria-hidden="true" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+World complete
+</span>
+</sc-if>
+</div>
+<div style="display: flex; align-items: center; gap: 12px">
+<div aria-hidden="true" style="width: 96px; height: 6px; border-radius: 999px; background: #DCE6D2; overflow: hidden">
+<div style="height: 100%; background: {{accent}}; width: {{w.pct}}%"></div>
+</div>
+<span style="font-size: 14px; font-weight: 500; color: #4D5A47">{{w.done}} / {{w.total}}</span>
+</div>
+</div>
+
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 12px">
+<sc-for list="{{w.courses}}" as="c" hint-placeholder-count="3">
+<div style="display: flex; flex-direction: column; background: {{c.bg}}; border: 2px solid {{c.border}}; border-radius: 20px; overflow: hidden; box-shadow: 0 2px 0 #DCE6D2">
+
+<sc-if value="{{c.masked}}" hint-placeholder-val="{{ false }}">
+<button type="button" onClick="{{c.reveal}}" aria-label="Reveal spoiler" style="display: flex; flex-direction: column; align-items: flex-start; gap: 8px; padding: 18px; margin: 0; border: 0; background: transparent; color: #1C2619; text-align: left; font-size: 15px; min-height: 120px">
+<span aria-hidden="true" style="font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 18px; filter: blur(7px); user-select: none">{{c.name}}</span>
+<span style="display: inline-flex; align-items: center; gap: 6px; font-size: 12px; font-weight: 600; background: #DCE6D2; border-radius: 999px; padding: 4px 10px">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+Spoiler, tap to reveal
+</span>
+</button>
+</sc-if>
+
+<sc-if value="{{c.shown}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px; padding: 16px">
+<div style="display: flex; align-items: flex-start; gap: 12px">
+<sc-if value="{{c.isBoss}}" hint-placeholder-val="{{ false }}">
+<span style="position: relative; flex: none; width: 76px; height: 76px; border-radius: 12px; background: {{c.tile}}; display: flex; align-items: center; justify-content: center">
+<span aria-hidden="true" style="font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 28px; color: rgba(0,0,0,0.2)">{{c.mono}}</span>
+<span style="position: absolute; left: 6px; bottom: 4px; font-size: 9px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #3A3F4A">Image</span>
+</span>
+</sc-if>
+<div style="flex: 1; min-width: 0; display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">{{c.kindLabel}}</span>
+<h3 style="margin: 0; font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 18px; line-height: 1.25">{{c.name}}</h3>
+<span style="font-size: 13px; color: #4D5A47">{{c.done}} / {{c.total}} found</span>
+</div>
+<sc-if value="{{c.complete}}" hint-placeholder-val="{{ false }}">
+<span style="flex: none; padding: 4px 10px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 12px; font-weight: 700">100%</span>
+</sc-if>
+</div>
+
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{c.front}}" as="t" hint-placeholder-count="5">
+<button type="button" aria-pressed="{{t.done}}" onClick="{{t.toggle}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; margin: 0; border-radius: 999px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.color}}; font-size: 13px; font-weight: 600">
+<sc-if value="{{t.tickIcon}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{t.tickOpacity}}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</sc-if>
+<sc-if value="{{t.flowerOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A8F9A" stroke-width="1.2"><g><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(0 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(45 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(90 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(135 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(180 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(225 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(270 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(315 12 12)"></ellipse></g><circle cx="12" cy="12" r="3" fill="#FFFFFF"></circle></svg>
+</sc-if>
+<sc-if value="{{t.flowerOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><g fill="#FFFFFF" stroke="#D29A00" stroke-width="1"><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(0 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(45 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(90 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(135 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(180 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(225 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(270 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(315 12 12)"></ellipse></g><circle cx="12" cy="12" r="3.4" fill="#FFC21A" stroke="#C98600" stroke-width="1"></circle><circle cx="11" cy="11" r="1" fill="#FFE58A"></circle></svg>
+</sc-if>
+<sc-if value="{{t.coinOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A8F9A" stroke-width="1.4"><ellipse cx="12" cy="12" rx="7.5" ry="9"></ellipse><ellipse cx="12" cy="12" rx="4.2" ry="5.8" stroke-dasharray="2 2"></ellipse></svg>
+</sc-if>
+<sc-if value="{{t.coinOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7.5" ry="9" fill="#E31B23" stroke="#8E0A10" stroke-width="1.2"></ellipse><ellipse cx="12" cy="12" rx="4.4" ry="6" fill="none" stroke="#FF8C8C" stroke-width="1.4"></ellipse><path d="M9.2 7.6c.6-1 1.5-1.6 2.4-1.8" fill="none" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"></path></svg>
+</sc-if>
+<sc-if value="{{t.heartOff}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#8A8F9A" stroke-width="1.6" stroke-linejoin="round"><path d="M12 20.3s-7.4-4.5-9.2-9C1.6 8 3.5 4.6 6.9 4.6c2 0 3.6 1.1 5.1 3 1.5-1.9 3.1-3 5.1-3 3.4 0 5.3 3.4 4.1 6.7-1.8 4.5-9.2 9-9.2 9z"></path></svg>
+</sc-if>
+<sc-if value="{{t.heartOn}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="24" height="24" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.2-9C1.6 8 3.5 4.6 6.9 4.6c2 0 3.6 1.1 5.1 3 1.5-1.9 3.1-3 5.1-3 3.4 0 5.3 3.4 4.1 6.7-1.8 4.5-9.2 9-9.2 9z" fill="#F03A4F" stroke="#A3122A" stroke-width="1.2" stroke-linejoin="round"></path><path d="M6.4 7.4c.9-.6 2-.6 2.8 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</sc-if>
+{{t.label}}
+</button>
+</sc-for>
+</div>
+
+<sc-if value="{{c.hasMeters}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 12px; padding-top: 10px; border-top: 1px dashed #DCE6D2">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">Smiley Flowers</span>
+<span style="font-size: 13px; font-weight: 800; color: #1C2619">{{c.flowerCount}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0">
+<sc-for list="{{c.flowers}}" as="p" hint-placeholder-count="6">
+<button type="button" aria-pressed="{{p.done}}" aria-label="{{p.label}}" onClick="{{p.toggle}}" style="width: 42px; height: 44px; padding: 0; margin: 0; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="#9AA0AB" stroke-width="1.1"><g><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(0 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(45 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(90 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(135 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(180 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(225 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(270 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(315 12 12)"></ellipse></g><circle cx="12" cy="12" r="3" fill="#FFFFFF"></circle></svg>
+</sc-if>
+<sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="28" height="28" viewBox="0 0 24 24"><g fill="#FFFFFF" stroke="#D29A00" stroke-width="1"><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(0 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(45 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(90 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(135 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(180 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(225 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(270 12 12)"></ellipse><ellipse cx="12" cy="6.2" rx="2.5" ry="4" transform="rotate(315 12 12)"></ellipse></g><circle cx="12" cy="12" r="3.4" fill="#FFC21A" stroke="#C98600" stroke-width="1"></circle><circle cx="11" cy="11" r="1" fill="#FFE58A"></circle></svg>
+</sc-if>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">Red Coins</span>
+<span style="font-size: 13px; font-weight: 800; color: #1C2619">{{c.coinCount}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0">
+<sc-for list="{{c.coins}}" as="p" hint-placeholder-count="20">
+<button type="button" aria-pressed="{{p.done}}" aria-label="{{p.label}}" onClick="{{p.toggle}}" style="width: 42px; height: 44px; padding: 0; margin: 0; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9AA0AB" stroke-width="1.4"><ellipse cx="12" cy="12" rx="7.5" ry="9"></ellipse><ellipse cx="12" cy="12" rx="4.2" ry="5.8" stroke-dasharray="2 2"></ellipse></svg>
+</sc-if>
+<sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><ellipse cx="12" cy="12" rx="7.5" ry="9" fill="#E31B23" stroke="#8E0A10" stroke-width="1.2"></ellipse><ellipse cx="12" cy="12" rx="4.4" ry="6" fill="none" stroke="#FF8C8C" stroke-width="1.4"></ellipse><path d="M9.2 7.6c.6-1 1.5-1.6 2.4-1.8" fill="none" stroke="#FFFFFF" stroke-width="1.4" stroke-linecap="round"></path></svg>
+</sc-if>
+</button>
+</sc-for>
+</div>
+</div>
+<div style="display: flex; flex-direction: column; gap: 4px">
+<div style="display: flex; align-items: baseline; justify-content: space-between; gap: 8px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">Hearts at the goal</span>
+<span style="font-size: 13px; font-weight: 800; color: #1C2619">{{c.heartCount}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 0">
+<sc-for list="{{c.hearts}}" as="p" hint-placeholder-count="20">
+<button type="button" aria-pressed="{{p.done}}" aria-label="{{p.label}}" onClick="{{p.toggle}}" style="width: 42px; height: 44px; padding: 0; margin: 0; border: 0; border-radius: 10px; background: transparent; display: flex; align-items: center; justify-content: center">
+<sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#9AA0AB" stroke-width="1.6" stroke-linejoin="round"><path d="M12 20.3s-7.4-4.5-9.2-9C1.6 8 3.5 4.6 6.9 4.6c2 0 3.6 1.1 5.1 3 1.5-1.9 3.1-3 5.1-3 3.4 0 5.3 3.4 4.1 6.7-1.8 4.5-9.2 9-9.2 9z"></path></svg>
+</sc-if>
+<sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="26" height="26" viewBox="0 0 24 24"><path d="M12 20.3s-7.4-4.5-9.2-9C1.6 8 3.5 4.6 6.9 4.6c2 0 3.6 1.1 5.1 3 1.5-1.9 3.1-3 5.1-3 3.4 0 5.3 3.4 4.1 6.7-1.8 4.5-9.2 9-9.2 9z" fill="#F03A4F" stroke="#A3122A" stroke-width="1.2" stroke-linejoin="round"></path><path d="M6.4 7.4c.9-.6 2-.6 2.8 0" fill="none" stroke="#FFFFFF" stroke-width="1.5" stroke-linecap="round"></path></svg>
+</sc-if>
+</button>
+</sc-for>
+</div>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{c.hasCrafts}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 10px; border-top: 1px dashed #DCE6D2">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">Craft requests</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{c.crafts}}" as="t" hint-placeholder-count="3">
+<button type="button" aria-pressed="{{t.done}}" onClick="{{t.toggle}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; margin: 0; border-radius: 999px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.color}}; font-size: 13px; font-weight: 600">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{t.tickOpacity}}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+{{t.label}}
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+
+<sc-if value="{{c.hasFlip}}" hint-placeholder-val="{{ true }}">
+<div style="display: flex; flex-direction: column; gap: 8px; padding-top: 10px; border-top: 1px dashed #DCE6D2">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">Flip Side</span>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{c.flip}}" as="t" hint-placeholder-count="2">
+<button type="button" aria-pressed="{{t.done}}" onClick="{{t.toggle}}" style="display: inline-flex; align-items: center; gap: 6px; min-height: 44px; padding: 0 12px; margin: 0; border-radius: 999px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.color}}; font-size: 13px; font-weight: 600">
+<svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{t.tickOpacity}}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+{{t.label}}
+</button>
+</sc-for>
+</div>
+</div>
+</sc-if>
+</div>
+</sc-if>
+
+</div>
+</sc-for>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px; padding: 18px; border-radius: 20px; background: #FFFFFF; border: 2px solid {{w.costBorder}}; box-shadow: 0 2px 0 #DCE6D2">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 12px">
+<div style="display: flex; flex-direction: column; gap: 2px">
+<span style="font-size: 12px; font-weight: 600; letter-spacing: 0.06em; text-transform: uppercase; color: #4D5A47">Capsule machine</span>
+<h3 style="margin: 0; font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 18px">Costumes</h3>
+</div>
+<div style="display: flex; align-items: center; gap: 10px">
+<sc-if value="{{w.costComplete}}" hint-placeholder-val="{{ false }}">
+<span style="padding: 4px 10px; border-radius: 999px; background: {{accent}}; color: #FFFFFF; font-size: 12px; font-weight: 700">All collected</span>
+</sc-if>
+<span style="font-size: 14px; font-weight: 700; color: #4D5A47">{{w.costDone}} / {{w.costTotal}}</span>
+</div>
+</div>
+<div style="display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 10px">
+<sc-for list="{{w.costumes}}" as="k" hint-placeholder-count="10">
+<button type="button" aria-pressed="{{k.done}}" aria-label="{{k.aria}}" onClick="{{k.act}}" style="display: flex; flex-direction: column; padding: 0; margin: 0; text-align: left; background: {{k.bg}}; border: 2px solid {{k.border}}; border-radius: 14px; overflow: hidden; color: #1C2619; font-size: 12px">
+<span style="position: relative; display: flex; align-items: center; justify-content: center; width: 100%; aspect-ratio: 1 / 1; background: {{k.tile}}">
+<sc-if value="{{k.shown}}" hint-placeholder-val="{{ true }}">
+<span aria-hidden="true" style="font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 26px; color: rgba(0,0,0,0.2)">{{k.mono}}</span>
+</sc-if>
+<sc-if value="{{k.masked}}" hint-placeholder-val="{{ false }}">
+<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3A3F4A" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12s3.6-7 10-7 10 7 10 7-3.6 7-10 7S2 12 2 12z"></path><circle cx="12" cy="12" r="3"></circle></svg>
+</sc-if>
+<sc-if value="{{k.done}}" hint-placeholder-val="{{ false }}">
+<span style="position: absolute; top: 6px; right: 6px; width: 22px; height: 22px; border-radius: 50%; background: {{accent}}; display: flex; align-items: center; justify-content: center">
+<svg aria-hidden="true" width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="3.6" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+</span>
+</sc-if>
+</span>
+<span style="display: flex; align-items: flex-start; padding: 7px 8px 8px; min-height: 40px; box-sizing: border-box; font-weight: 700; line-height: 1.25">
+<sc-if value="{{k.shown}}" hint-placeholder-val="{{ true }}">
+<span>{{k.name}}</span>
+</sc-if>
+<sc-if value="{{k.masked}}" hint-placeholder-val="{{ false }}">
+<span>Spoiler, tap to reveal</span>
+</sc-if>
+</span>
+</button>
+</sc-for>
+</div>
+</div>
+</section>
+</sc-for>
+
+<section id="goals" style="display: flex; flex-direction: column; gap: 16px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 8px 16px; padding-bottom: 12px; border-bottom: 1px solid #DCE6D2">
+<h2 style="margin: 0; font-family: Nunito, system-ui, sans-serif; font-weight: 900; font-size: 24px; letter-spacing: -0.01em">Extra Crafts and Special Costumes</h2>
+<span style="font-size: 14px; font-weight: 500; color: #4D5A47">{{goalsDone}} / {{goalsTotal}}</span>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
+<sc-for list="{{goals}}" as="t" hint-placeholder-count="4">
+<button type="button" aria-pressed="{{t.done}}" onClick="{{t.toggle}}" style="display: inline-flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 16px; margin: 0; border-radius: 14px; border: 1px solid {{t.border}}; background: {{t.bg}}; color: {{t.color}}; font-size: 14px; font-weight: 600; text-align: left">
+<svg aria-hidden="true" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" style="opacity: {{t.tickOpacity}}"><path d="M5 12.5l4.5 4.5L19 7.5"></path></svg>
+{{t.label}}
+</button>
+</sc-for>
+</div>
+</section>
+</div>
+
+</main>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"accent":{"editor":"color","default":"#1F7F2D","options":["#1F7F2D","#C42B4B","#1F6FD1","#B8560B"]},"$preview":{"width":1280,"height":24000}}'>
+class Component extends DCLogic {
+constructor(props) {
+super(props);
+var self = this;
+var done = {};
+var hp = {};
+var rc = {};
+var tickCourse = function (c) {
+self.chipsFor(c).all.forEach(function (t) { done[t[0]] = true; });
+hp[c[0]] = 20;
+rc[c[0]] = 20;
+};
+var tickWorld = function (w) {
+w[2].forEach(tickCourse);
+(self.costumeData()[w[0]] || []).forEach(function (n) { done[self.costumeId(n)] = true; });
+};
+var worlds = this.data();
+tickWorld(worlds[0]);
+tickCourse(worlds[1][2][0]);
+var range = function (prefix, n) { for (var i = 1; i <= n; i++) done[prefix + i] = true; };
+range('ycw-pirate-pier-flower-', 4);
+range('ycw-poochys-tape-trail-flower-', 2);
+range('ycw-mine-cart-cave-flower-', 6);
+hp['pirate-pier'] = 16;
+hp['poochys-tape-trail'] = 11;
+hp['mine-cart-cave'] = 20;
+rc['pirate-pier'] = 14;
+rc['poochys-tape-trail'] = 9;
+rc['mine-cart-cave'] = 20;
+['ycw-pirate-pier-clear', 'ycw-pirate-pier-coins', 'ycw-pirate-pier-craft-pirate-ship', 'ycw-boss-yarrctopus-beaten', 'ycw-poochys-tape-trail-clear', 'ycw-poochys-tape-trail-craft-crown', 'ycw-go-go-yoshi-clear', 'ycw-go-go-yoshi-pups', 'ycw-mine-cart-cave-clear'].forEach(function (id) { done[id] = true; });
+['Waterwheel', 'Pirate Ship', 'Clown Fish', 'Blowfish', 'Lighthouse', 'Go-Go Yoshi', 'White Sheep', 'Tin-Can Condor'].forEach(function (n) { done[self.costumeId(n)] = true; });
+this.state = { done: done, revealed: {}, hp: hp, rc: rc };
+}
+flowerCounts() {
+// Hidden Smiley Flowers per course (not counting the bonus flowers)
+return {
+'rail-yard-run': 5, 'many-fish-in-the-sea': 5, 'pirate-pier': 6, 'poochys-tape-trail': 7, 'go-go-yoshi': 3,
+'mine-cart-cave': 8, 'whistlestop-rails': 6, 'mousers-and-magnets': 7, 'spring-sprung-trail': 7, 'monty-mole-b-gone': 4,
+'dino-smash': 6, 'skelesaurus-wrecks': 6, 'stitched-together': 6, 'poochys-sweet-run': 7, 'yoshi-pulls-some-strings': 6,
+'altitude-adjustment': 2, 'poochys-magma-run': 5, 'windward-way': 8, 'spinwheel-shuffle': 6, 'haunted-maker-mansion': 8,
+'hoop-jump-hop': 2, 'weighing-acorns': 6, 'jumping-to-victory': 8, 'bombs-away': 7, 'slip-slide-isle': 5,
+'deceptive-doors': 6, 'behind-the-shoji': 6, 'the-shoguns-castle': 5, 'exploring-the-animal-kingdom': 6, 'hoppin-higher': 7,
+'jungle-tour-challenge': 3, 'the-countdown-begins': 6, 'ride-the-stars': 7, 'space-hub-hubbub': 6, 'ride-the-river': 8,
+'open-shut': 5, 'solar-zoom': 2, 'be-afraid-of-the-dark': 7, 'skulking-around': 5, 'mr-gearys-factory': 5,
+'rough-rolling': 5, 'under-siege': 6, 'floppin-and-poppin': 5
+};
+}
+slug(s) {
+return s.toLowerCase().replace(/['’]/g, '').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+}
+costumeId(name) {
+return 'ycw-costume-' + this.slug(name);
+}
+chipsFor(c) {
+var base = 'ycw-' + c[0];
+var kind = c[2];
+var isBoss = kind === 'm' || kind === 'b' || kind === 'x';
+var front = [], flip = [], crafts = [], flowers = [], coins = [];
+if (isBoss) {
+front.push([base + '-beaten', 'Beaten']);
+if (kind === 'b') front.push([base + '-dream-gem', c[4] + ' Dream Gem']);
+} else {
+front = [[base + '-clear', 'Cleared'], [base + '-coins', '100 Coins']];
+var nf = this.flowerCounts()[c[0]] || 0;
+for (var i = 1; i <= nf; i++) flowers.push([base + '-flower-' + i, 'Smiley Flower ' + i]);
+if (kind === 'c') flip = [[base + '-pups', '3 Poochy Pups'], [base + '-pups-timed', 'Pups within the time limit']];
+}
+var self = this;
+crafts = (this.craftData()[c[0]] || []).map(function (n) { return [base + '-craft-' + self.slug(n), n]; });
+return { isBoss: isBoss, front: front, flowers: flowers, coins: coins, crafts: crafts, flip: flip, all: front.concat(flowers, coins, crafts, flip) };
+}
+data() {
+// [course id, name, kind, spoiler, gem]  kind: c = course, f = course without a Flip Side, m = mini-boss, b = Dream Gem boss, x = secret boss
+return [
+['sunshine-station', 'Sunshine Station', [['rail-yard-run', 'Rail-Yard Run', 'c']]],
+['yarrctopus-docks', 'Yarrctopus Docks', [['many-fish-in-the-sea', 'Many Fish in the Sea', 'c'], ['pirate-pier', 'Pirate Pier', 'c'], ['boss-yarrctopus', 'Yarrctopus', 'm']]],
+['go-go-land', 'Go-Go Land', [['poochys-tape-trail', "Poochy's Tape Trail", 'c'], ['go-go-yoshi', 'Go-Go Yoshi', 'c']]],
+['big-paper-peak', 'Big Paper Peak', [['mine-cart-cave', 'Mine-Cart Cave', 'c'], ['whistlestop-rails', 'Whistlestop Rails', 'c'], ['mousers-and-magnets', 'Mousers and Magnets', 'c'], ['boss-tin-can-condor', 'Tin-Can Condor', 'b', false, 'Blue']]],
+['origami-gardens', 'Origami Gardens', [['spring-sprung-trail', 'Spring Sprung Trail', 'c'], ['monty-mole-b-gone', 'Monty-Mole-B-Gone', 'c']]],
+['dino-desert', 'Dino Desert', [['dino-smash', 'Dino Smash', 'c'], ['skelesaurus-wrecks', 'Skelesaurus Wrecks', 'c']]],
+['pastel-pathway', 'Pastel Pathway', [['stitched-together', 'Stitched Together', 'c'], ['poochys-sweet-run', "Poochy's Sweet Run", 'c'], ['yoshi-pulls-some-strings', 'Yoshi Pulls Some Strings', 'c']]],
+['sky-high-heights', 'Sky-High Heights', [['altitude-adjustment', 'Altitude Adjustment', 'c'], ['poochys-magma-run', "Poochy's Magma Run", 'c'], ['windward-way', 'Windward Way', 'c']]],
+['cardstock-carnival', 'Cardstock Carnival', [['spinwheel-shuffle', 'Spinwheel Shuffle', 'c'], ['haunted-maker-mansion', 'Haunted Maker Mansion', 'c'], ['hoop-jump-hop', 'Hoop-Jump Hop', 'c']]],
+['acorn-forest', 'Acorn Forest', [['weighing-acorns', 'Weighing Acorns', 'c'], ['jumping-to-victory', 'Jumping to Victory', 'c'], ['boss-spike-the-piranha', 'Spike the Piranha', 'b', false, 'Red']]],
+['chilly-hot-isles', 'Chilly-Hot Isles', [['bombs-away', 'Bombs Away on Pirate Island', 'c'], ['slip-slide-isle', 'Slip-Slide Isle', 'c'], ['boss-burt-the-ball', 'Burt the Ball', 'b', false, 'Yellow']]],
+['ninjarama', 'Ninjarama', [['deceptive-doors', 'Deceptive Doors', 'c'], ['behind-the-shoji', 'Behind the Shoji', 'c'], ['the-shoguns-castle', "The Shogun's Castle", 'c'], ['boss-shogun-of-skewers', 'Shogun of Skewers', 'm']]],
+['rumble-jungle', 'Rumble Jungle', [['exploring-the-animal-kingdom', 'Exploring the Animal Kingdom', 'c'], ['hoppin-higher', "Hoppin' Higher", 'c'], ['jungle-tour-challenge', 'Jungle Tour Challenge', 'c'], ['boss-gator-train', 'Gator Train', 'b', false, 'Magenta']]],
+['outer-orbit', 'Outer Orbit', [['the-countdown-begins', 'The Countdown Begins', 'c'], ['ride-the-stars', 'Ride the Stars', 'c'], ['space-hub-hubbub', 'Space-Hub Hubbub', 'c']]],
+['cheery-valley', 'Cheery Valley', [['ride-the-river', 'Ride the River', 'c'], ['open-shut', 'Open, Shut!', 'c'], ['solar-zoom', 'Solar Zoom', 'c']]],
+['shadowville', 'Shadowville', [['be-afraid-of-the-dark', 'Be Afraid of the Dark', 'c'], ['skulking-around', 'Skulking Around', 'c'], ['mr-gearys-factory', "Mr. Geary's Factory", 'c'], ['boss-mr-geary', 'Mr. Geary', 'm'], ['boss-baby-bowser', 'Baby Bowser', 'b', true, 'Green']]],
+['hidden-hills', 'Hidden Hills (post-game)', [['rough-rolling', 'Rough Rolling', 'f', true], ['under-siege', 'Under Siege', 'f', true], ['floppin-and-poppin', "Floppin' and Poppin'", 'f', true], ['boss-kamek', 'Kamek', 'x', true]]]
+];
+}
+craftData() {
+return {
+'rail-yard-run': ['Cow'],
+'many-fish-in-the-sea': ['Flatfish', 'Crab', 'Squid', 'Small Stripy Fish'],
+'pirate-pier': ['Flightless Goonie', 'Pirate Ship', 'Steamboat'],
+'poochys-tape-trail': ['Crown'],
+'mine-cart-cave': ['Mine Cart with a Flag', 'Crystal Cluster', 'Bat Family', 'Caramel Billboard'],
+'whistlestop-rails': ['Curious Rock', 'Buffalo', 'Cactus Cart', 'Caramel Billboard'],
+'mousers-and-magnets': ['Ax', 'Tent', 'Crystal Block', 'Caramel Billboard'],
+'spring-sprung-trail': ['Flutter Sign', 'Bottle House', 'Butterfly'],
+'monty-mole-b-gone': ['Cabbage', 'Turnip', 'Radish'],
+'dino-smash': ['Beach Umbrella', 'Bejeweled Monument', 'Cactus Rock'],
+'skelesaurus-wrecks': ['Camel', 'Cheerful Pyramid', 'Yoshi Statue'],
+'stitched-together': ['Stopped Windmill', 'Lightning Bolt', 'Apple Tree'],
+'poochys-sweet-run': ['Cheerful Cupcake', 'Yoshi Cookie', 'King of Donuts'],
+'yoshi-pulls-some-strings': ['Hot-Air Balloon', 'Squirrella', 'Mushroom Stump'],
+'altitude-adjustment': ['Golden UFO'],
+'poochys-magma-run': ['Blargg Rock', 'Tyrannosaurus', 'Pteranodon'],
+'windward-way': ['Egg Carton', 'Egg Carton Flower', 'Smiling Star'],
+'spinwheel-shuffle': ['Raven Blimp', 'Roller Coaster', 'Merry-Go-Round'],
+'haunted-maker-mansion': ['Poochy Picture', 'Grandfather Clock', 'Night-Sky Ghost'],
+'hoop-jump-hop': ['Sneaky Shy Guy', 'Wagon'],
+'weighing-acorns': ['Organic Mouse', 'Shy Guy Acorn', 'Wooden Lion'],
+'jumping-to-victory': ['Rabbit Rock', 'Bear Rock', 'Blue Mushroom'],
+'bombs-away': ['Tray Boat', "Octopus Cap'n", 'Cheep Cheep'],
+'slip-slide-isle': ['Bearcup', 'Snowman', 'Palm Island'],
+'deceptive-doors': ['Paper-Lantern Ghost', 'Gold Shuriken', 'Potted Snake'],
+'behind-the-shoji': ['Bonsai Tree', 'Shy Guy Kite', 'Japanese Lantern'],
+'the-shoguns-castle': ['Helmet', 'Cherry-Blossom Folding Screen', 'Shogun of Skewers Banner'],
+'exploring-the-animal-kingdom': ['Orange Gator', 'Roosting Tree', 'Twisty Red Tree', 'Zebra'],
+'hoppin-higher': ['Snail', 'Flamingo', 'Tiger', 'Zebra'],
+'jungle-tour-challenge': ['Orange Papier-Mâché', 'Mystery Animal', 'Second Mystery Animal', 'Zebra'],
+'the-countdown-begins': ['Command Module', 'Lunar Lander', 'Unidentified Object'],
+'ride-the-stars': ['Alien Friends', 'Spirited Star', 'Stylish UFO'],
+'space-hub-hubbub': ['Red Sun', 'Shy Guy Cruiser', 'Saturn'],
+'ride-the-river': ['Bottle Hut', 'Dried Fish', 'Tin Boat'],
+'open-shut': ['Dragonfly', 'Wooden House', 'Helicopter'],
+'solar-zoom': ['Car Sign'],
+'be-afraid-of-the-dark': ['Trash Can', 'Nighttime Vehicle', 'Dog House', 'Can Robot'],
+'skulking-around': ['Whale', 'Vase', 'Cheep Cheep Picture', 'Can Robot'],
+'mr-gearys-factory': ['Little Mouser', 'Forklift', 'Happy Gear', 'Can Robot'],
+'rough-rolling': ['Shrunk Plastic: Baby Bowser'],
+'under-siege': ['Shrunk Plastic: Yoshi'],
+'floppin-and-poppin': ['Shrunk Plastic: Kamek']
+};
+}
+costumeData() {
+return {
+'sunshine-station': ['Steam Train', 'Cow', 'Milk Bottle', 'Gift Box', 'Mountain', 'Red-Roofed House', 'Orange-Juice Box', 'Trash Bin', 'Yellow Car', 'Caramel Box'],
+'yarrctopus-docks': ['Waterwheel', 'Pirate Ship', 'Clown Fish', 'Blowfish', 'Lighthouse', 'Light-Blue Fish', 'Violet Fish', 'Bottle Cap', 'Chilly Bath', 'Blue Coffee Creamer'],
+'go-go-land': ['Go-Go Yoshi', 'Swirly Snail', 'White Sheep', 'Derby Sheep', 'Yellow Truck', 'Purple Truck', 'Wooden Box', 'Grass', 'Blue Trash Bin', 'Blue-Roofed House'],
+'big-paper-peak': ['Tin-Can Condor', 'Little Mouser', 'Crafty Cat', 'Buffalo', 'Pink Train Car', 'Purple Train Car', 'Bon-Bom Box', 'Mine Cart', 'Silver Pushcart', 'Condor Box'],
+'origami-gardens': ['Monty Mole', 'Pink Flower Bed', 'Purple Flower Bed', 'Green Squash', 'Bursting Yellow Flower', 'Bursting Purple Flower', 'Green Coffee Creamer', 'Green Flower Pot', 'Pink Flower Pot', 'Blue Bucket'],
+'dino-desert': ['Skelesaurus', "Li'l Skelesaurus Skull", 'Camel', 'Bulldozer', 'Brick', 'Ancient Stone Sculpture', 'Red Bucket', 'Green Pushcart', 'Hot Sauce', 'Cactus'],
+'pastel-pathway': ['Cupcake', 'Bobber', 'Pink Macaron', 'Mint Macaron', 'Red Yarn', 'Blue Yarn', 'Squirrel Log', 'Striped Windmill', 'Checkered Windmill', 'Pink Coffee Creamer'],
+'sky-high-heights': ['Lava Bath', 'Flightless Goonie', 'Plane', 'Golden UFO', 'Flightless Goonie Nest', 'Gargantua Blargg', 'Nep-Enut', 'UFO', 'Soda Cap', 'Apple-Juice Box'],
+'cardstock-carnival': ['Raven', 'Bullet Bill', 'Circus Stage', 'Chompagobbler', 'Circus Tent', 'Casket', 'Popcorn Stand', 'Pink Peach Cap', 'Mint Car', 'Circus Prop'],
+'acorn-forest': ['Spike the Piranha', 'Acorn Owl', 'Bus', 'Blue Party Ball', 'Tree Stump', 'Red Apple', 'Yellow Apple', 'Red Pushcart', 'Silver Bucket', 'Blueberry Jam'],
+'chilly-hot-isles': ['Beach Burt', 'Tiny Boat', 'Whale', 'Fun Pirate Ship', 'Palm Tree', 'Octopus', 'Aurora Curtain', 'Tropical Cap', 'Penguin', 'Foam Box'],
+'ninjarama': ['Bushydo', 'Furnace Set', 'Japanese Lantern', 'Castle', 'Japanese Box', 'Paper Box', 'Bamboo Cylinder', 'Warm Kotatsu', 'Hot Kotatsu', 'Wagashi Box'],
+'rumble-jungle': ['Gator Train Car', 'Giraffe', 'Snakey', 'Point Card', 'Rhinono', 'Baby Rhinono', 'Jungle Truck', 'Frog with Pink Flowers', 'Frog with Blue Flowers', 'Dried Grass'],
+'outer-orbit': ['Launch Rocket', 'Magnet Box', 'Space Rocket', 'Cybo', 'Happy Planet', 'Mint Shooting Star', 'Purple Shooting Star', 'Blue Shooting Star', 'Star Cap', 'Painting Set'],
+'cheery-valley': ['Sky-Blue Solar Car', 'Yellow Solar Car', 'Red Solar Car', 'Lunge Fish', 'Lily Pad', 'Mountain Clouds', 'Blue Floppy Block', 'Green Floppy Block', 'Red Car', 'Yellow Bucket'],
+'shadowville': ['Gears', 'Electric Lift', "Li'l Marcher", 'Lightbulb', 'Barrier', 'Painted Wall', 'Train Car', 'Red Trash Bin', 'Green Apple', 'Black Coffee Creamer'],
+'hidden-hills': ['The Great King Bowser', 'Toy-Con RC Car', 'Toy-Con Piano', 'Toy-Con Robot', 'Torque Gear', 'Crumples Clothing', 'Poochy', 'Light-Blue Poochy Pup', 'Black Poochy Pup', 'Pink Poochy Pup']
+};
+}
+spoilerCostumes() {
+return ['The Great King Bowser'];
+}
+goalData() {
+return [
+['ycw-craft-clothesline', 'Craft: Clothesline'],
+['ycw-craft-paper-airplane', 'Craft: Paper Airplane'],
+['ycw-craft-milk-bottle', 'Craft: Milk Bottle'],
+['ycw-craft-derby-sheep', 'Craft: Derby Sheep'],
+['ycw-craft-pumpkin', 'Craft: Pumpkin'],
+['ycw-craft-tulip', 'Craft: Tulip'],
+['ycw-costume-kamek', 'Costume: Kamek (clear every course)'],
+['ycw-costume-blockafeller', 'Costume: Blockafeller (find Sprout in every course)'],
+['ycw-costume-sundream-stone', 'Costume: Sundream Stone (give all 317 Smiley Flowers)']
+];
+}
+renderVals() {
+var self = this;
+var st = this.state || { done: {}, revealed: {}, hp: {}, rc: {} };
+var accent = this.props.accent ?? '#1F7F2D';
+var tiles = ['#DFF3D6', '#FFE3E3', '#FFF2CC', '#E1EFFF', '#FFE7D6', '#E9F7E4'];
+var toggleFn = function (id) {
+return function () {
+var d = Object.assign({}, self.state.done);
+if (d[id]) { delete d[id]; } else { d[id] = true; }
+self.setState({ done: d });
+};
+};
+var revealFn = function (key) {
+return function () {
+var r = Object.assign({}, self.state.revealed);
+r[key] = true;
+self.setState({ revealed: r });
+};
+};
+var chip = function (pair) {
+var id = pair[0];
+var icon = pair[2] || '';
+var isDone = !!st.done[id];
+return {
+id: id,
+label: pair[1],
+done: isDone,
+tickIcon: !icon,
+flowerOn: icon === 'flower' && isDone,
+flowerOff: icon === 'flower' && !isDone,
+coinOn: icon === 'coin' && isDone,
+coinOff: icon === 'coin' && !isDone,
+heartOn: icon === 'heart' && isDone,
+heartOff: icon === 'heart' && !isDone,
+bg: isDone ? (icon ? '#F2F9EE' : accent) : '#FFFFFF',
+color: isDone && !icon ? '#FFFFFF' : '#1C2619',
+border: isDone ? accent : '#C3D2B8',
+tickOpacity: isDone ? 1 : 0.25,
+toggle: toggleFn(id)
+};
+};
+var mono = function (n) {
+return n.replace(/[^A-Za-z0-9 ]/g, ' ').split(/\s+/).filter(Boolean).slice(0, 2).map(function (x) { return x.charAt(0); }).join('').toUpperCase();
+};
+var costumeMap = this.costumeData();
+var spoilerCost = this.spoilerCostumes();
+var total = 0, doneAll = 0, coursesTotal = 0, coursesDone = 0, worldsDone = 0, gems = 0;
+var craftsTotal = 0, craftsDone = 0, costTotal = 0, costDone = 0;
+var worlds = this.data().map(function (w, wi) {
+var wDone = 0, wTotal = 0;
+var courses = w[2].map(function (c, ci) {
+var spec = self.chipsFor(c);
+var front = spec.front.map(chip);
+var crafts = spec.crafts.map(chip);
+var flip = spec.flip.map(chip);
+var pip = function (pair) {
+var isDone = !!st.done[pair[0]];
+return { label: pair[1], done: isDone, on: isDone, off: !isDone, toggle: toggleFn(pair[0]) };
+};
+var flowers = spec.flowers.map(pip);
+var meter = function (key, labelFn) {
+var now = (st[key] && st[key][c[0]]) || 0;
+var out = [];
+if (spec.isBoss) return { now: now, pips: out };
+for (var i = 1; i <= 20; i++) {
+(function (k) {
+out.push({
+label: labelFn(k),
+done: k <= now,
+on: k <= now,
+off: k > now,
+toggle: function () {
+var cur = (self.state[key] && self.state[key][c[0]]) || 0;
+var next = Object.assign({}, self.state[key]);
+next[c[0]] = cur === k ? k - 1 : k;
+var patch = {};
+patch[key] = next;
+self.setState(patch);
+}
+});
+})(i);
+}
+return { now: now, pips: out };
+};
+var coinMeter = meter('rc', function (k) { return k + ' Red Coins found'; });
+var heartMeter = meter('hp', function (k) { return 'Finished with ' + k + ' hearts'; });
+var coins = coinMeter.pips;
+var hearts = heartMeter.pips;
+var hpNow = heartMeter.now;
+var rcNow = coinMeter.now;
+var fullHealth = !spec.isBoss && hpNow === 20;
+var allCoins = !spec.isBoss && rcNow === 20;
+var fDone = flowers.filter(function (t) { return t.done; }).length;
+var all = front.concat(crafts, flip);
+var d = all.filter(function (t) { return t.done; }).length + fDone + (allCoins ? 1 : 0) + (fullHealth ? 1 : 0);
+var n = all.length + flowers.length + (spec.isBoss ? 0 : 2);
+var complete = d === n;
+var key = 'ycw-' + c[0];
+var masked = !!c[3] && !st.revealed[key] && d === 0;
+wDone += d; wTotal += n;
+craftsTotal += crafts.length;
+craftsDone += crafts.filter(function (t) { return t.done; }).length;
+if (!spec.isBoss) { coursesTotal++; if (front[0].done) coursesDone++; }
+if (c[2] === 'b' && front[1].done) gems++;
+var kind = c[2];
+return {
+name: c[1],
+kindLabel: kind === 'm' ? 'Mini-boss' : kind === 'b' ? 'Boss' : kind === 'x' ? 'Secret boss' : 'Course',
+isBoss: spec.isBoss,
+mono: mono(c[1]),
+tile: tiles[(wi + ci) % tiles.length],
+front: front,
+hasMeters: !spec.isBoss,
+flowers: flowers,
+flowerCount: fDone + ' / ' + flowers.length,
+coins: coins,
+coinCount: rcNow + ' / 20',
+hearts: hearts,
+heartCount: hpNow + ' / 20',
+crafts: crafts,
+hasCrafts: crafts.length > 0,
+flip: flip,
+hasFlip: flip.length > 0,
+done: d,
+total: n,
+complete: complete,
+masked: masked,
+shown: !masked,
+bg: complete ? '#EEF7E9' : '#FFFFFF',
+border: complete ? accent : '#DCE6D2',
+reveal: revealFn(key)
+};
+});
+var costumes = (costumeMap[w[0]] || []).map(function (n, ki) {
+var id = self.costumeId(n);
+var isDone = !!st.done[id];
+var masked = spoilerCost.indexOf(n) !== -1 && !st.revealed[id] && !isDone;
+var toggle = toggleFn(id);
+var reveal = revealFn(id);
+return {
+name: n,
+mono: mono(n),
+done: isDone,
+masked: masked,
+shown: !masked,
+aria: masked ? 'Reveal spoiler costume' : n,
+tile: masked ? '#DCE6D2' : tiles[(wi + ki) % tiles.length],
+bg: isDone ? '#EEF7E9' : '#FFFFFF',
+border: isDone ? accent : '#DCE6D2',
+act: masked ? reveal : toggle
+};
+});
+var cDone = costumes.filter(function (k) { return k.done; }).length;
+costTotal += costumes.length; costDone += cDone;
+wDone += cDone; wTotal += costumes.length;
+total += wTotal; doneAll += wDone;
+var complete = wDone === wTotal;
+if (complete) worldsDone++;
+var costComplete = cDone === costumes.length;
+return {
+anchor: 'world-' + w[0],
+num: wi + 1,
+title: w[1],
+navName: w[1].replace(' (post-game)', ''),
+courses: courses,
+costumes: costumes,
+costDone: cDone,
+costTotal: costumes.length,
+costComplete: costComplete,
+costBorder: costComplete ? accent : '#DCE6D2',
+done: wDone,
+total: wTotal,
+pct: Math.round((wDone / wTotal) * 100),
+complete: complete,
+chipBorder: complete ? accent : '#DCE6D2'
+};
+});
+var goals = this.goalData().map(chip);
+var goalsDone = goals.filter(function (t) { return t.done; }).length;
+total += goals.length; doneAll += goalsDone;
+var circ = 2 * Math.PI * 62;
+return {
+accent: accent,
+worlds: worlds,
+goals: goals,
+goalsDone: goalsDone,
+goalsTotal: goals.length,
+totalCount: total,
+doneCount: doneAll,
+leftCount: total - doneAll,
+percent: Math.round((doneAll / total) * 100),
+ringDash: ((doneAll / total) * circ).toFixed(1) + ' ' + circ.toFixed(1),
+stats: [
+{ value: coursesDone + ' / ' + coursesTotal, label: 'courses cleared' },
+{ value: gems + ' / 5', label: 'Dream Gems' },
+{ value: craftsDone + ' / ' + craftsTotal, label: 'craft requests' },
+{ value: costDone + ' / ' + costTotal, label: 'costumes' },
+{ value: worldsDone + ' / ' + worlds.length, label: 'worlds complete' }
+]
+};
+}
+}
+</script>
+</body>
+</html>
