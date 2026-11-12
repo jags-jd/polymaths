@@ -14,9 +14,9 @@ Before anything else:
 
 ## Pre-flight (before writing any code)
 
-- [ ] Install **Node.js** (current LTS) and enable **pnpm**: `corepack enable`
+- [ ] Install **Node.js** (current LTS; at least 22.22.2) and enable **pnpm**: `corepack enable`
 - [ ] Install **Docker Desktop** (or OrbStack on Mac) — needed for local Supabase
-- [ ] Install the **Supabase CLI** (follow the current install guide for your OS)
+- [ ] Supabase CLI: nothing to install — it is a dev dependency (`pnpm exec supabase ...`)
 - [ ] Install **Claude Code** and sign in
 - [ ] Create a new GitHub repo: `polymaths` (private)
 - [ ] Clone it locally
@@ -43,7 +43,7 @@ All free. You'll need:
 - [ ] **Discord Developer Portal** — an application with OAuth2 for Discord sign-in
 - [ ] **Sentry** — not yet; added in phase 1.0
 
-Some of these can wait. Phase 0.1 only needs GitHub, Docker and the Supabase CLI. OAuth is needed for phase 0.2.
+Some of these can wait. Phase 0.1 only needs GitHub and Docker. OAuth is needed for phase 0.2.
 
 ### OAuth redirect addresses
 

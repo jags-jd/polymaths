@@ -56,7 +56,7 @@
 - **Public read, owner write** is the default pattern (see `docs/data-model.md`).
 - **Use `auth.uid()`**, not `current_user`.
 - **Test policies as you write them.** A test that tries to write another user's row must fail.
-- **Service-role key bypasses RLS.** Server-only, and only where RLS genuinely can't express the rule. Never in client code.
+- **The secret key (`SUPABASE_SECRET_KEY`, formerly "service-role") bypasses RLS.** Server-only, and only where RLS genuinely can't express the rule. Never in client code.
 
 ## Testing
 
