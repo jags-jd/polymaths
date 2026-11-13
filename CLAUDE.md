@@ -295,6 +295,7 @@ _Add to this list as we discover them._
 - **Supabase CLI v3 targets the local db by default.** Hosted projects need `--remote=<ref>`; there is no `--local` flag.
 - **Port clashes with Jan's other projects.** Another local Supabase stack (`21six-hosting-dashboard`) uses the same default ports — only one can run at a time (`pnpm exec supabase stop --project-id 21six-hosting-dashboard`). Its dev server may also be on :3000, which is why E2E uses :3100. If `pnpm dev` lands on :3001, local OAuth redirects (set for :3000) won't match.
 - **Local analytics is disabled** in `supabase/config.toml`: its `vector` container restart-loops on Windows Docker.
+- **Hosted Supabase's direct DB host is IPv6-only.** Jan's network is IPv4-only, so `db:push:*` connects through the **session pooler** (port 5432, not the transaction pooler on 6543) using `SUPABASE_*_DB_URL` in `.env.local`. Passwords with URL-special characters (`@ : / # ? % &`) break the connection string; use letters and numbers.
 - **Cache Components:** reading cookies (Supabase session) outside a `<Suspense>` boundary fails the build. Keep session reads inside Suspense or in dynamic routes.
 - **Spoilers:** a spoiler entry must stay blurred in every view — checklist, search results, profile showcase, activity feed — until the viewer reveals it or has completed it.
 
