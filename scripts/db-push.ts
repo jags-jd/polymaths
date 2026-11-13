@@ -4,14 +4,18 @@
  *   pnpm db:push:staging   → polymaths-staging
  *   pnpm db:push:prod      → polymaths-prod (only after staging is verified)
  *
- * Reads the project refs from .env.local:
- *   SUPABASE_STAGING_PROJECT_REF, SUPABASE_PROD_PROJECT_REF
- * The database password is asked for by the Supabase CLI (or read from
- * SUPABASE_DB_PASSWORD in your shell). Never put it in a committed file.
+ * Reads from .env.local (gitignored):
+ *   SUPABASE_STAGING_DB_URL / SUPABASE_PROD_DB_URL
+ *     Session pooler connection string, password included. Needed on IPv4-only
+ *     networks, because the direct database host is IPv6-only.
+ *   SUPABASE_STAGING_PROJECT_REF / SUPABASE_PROD_PROJECT_REF
+ *     Used when no DB URL is set (direct connection; needs IPv6).
  *
- * Always shows a dry run first and asks for confirmation.
+ * Always shows a dry run first and asks you to type the target's name.
  */
 import { spawnSync } from "node:child_process";
+import { createRequire } from "node:module";
+import path from "node:path";
 import { createInterface } from "node:readline/promises";
 
 const target = process.argv[2];
@@ -26,25 +30,34 @@ try {
   // No .env.local: fall back to the shell environment.
 }
 
-const refVar = target === "staging" ? "SUPABASE_STAGING_PROJECT_REF" : "SUPABASE_PROD_PROJECT_REF";
-const ref = process.env[refVar];
-if (!ref) {
-  console.error(`Missing ${refVar}. Add it to .env.local (see .env.example).`);
+const prefix = target === "staging" ? "SUPABASE_STAGING" : "SUPABASE_PROD";
+const dbUrl = process.env[`${prefix}_DB_URL`];
+const ref = process.env[`${prefix}_PROJECT_REF`];
+const remote = dbUrl || ref;
+if (!remote) {
+  console.error(`Missing ${prefix}_DB_URL (or ${prefix}_PROJECT_REF). Add it to .env.local (see .env.example).`);
   process.exit(1);
 }
 
+/** Never print the password. */
+function describe(value: string): string {
+  return value.replace(/^(postgres(?:ql)?:\/\/[^:/]+:)[^@]*@/, "$1****@");
+}
+
+// Run the CLI's Node entry directly (no shell), so special characters in the
+// connection string reach it untouched on Windows too.
+const requireFromRoot = createRequire(path.join(process.cwd(), "package.json"));
+const cliEntry = path.join(path.dirname(requireFromRoot.resolve("supabase/package.json")), "dist", "supabase.js");
+
 function supabase(args: string[]): number {
-  const result = spawnSync("pnpm", ["exec", "supabase", ...args], {
-    stdio: "inherit",
-    shell: process.platform === "win32",
-  });
+  const result = spawnSync(process.execPath, [cliEntry, ...args], { stdio: "inherit" });
   return result.status ?? 1;
 }
 
 // Wrapped in a function: tsx runs this file as CommonJS, which has no top-level await.
-async function main(projectRef: string): Promise<number> {
-  console.log(`\nDry run: migrations that would be applied to ${target} (${projectRef})\n`);
-  if (supabase(["db", "push", `--remote=${projectRef}`, "--dry-run"]) !== 0) {
+async function main(remoteTarget: string): Promise<number> {
+  console.log(`\nDry run: migrations that would be applied to ${target} (${describe(remoteTarget)})\n`);
+  if (supabase(["db", "push", `--remote=${remoteTarget}`, "--dry-run"]) !== 0) {
     return 1;
   }
 
@@ -58,7 +71,7 @@ async function main(projectRef: string): Promise<number> {
     return 1;
   }
 
-  return supabase(["db", "push", `--remote=${projectRef}`, "--yes"]);
+  return supabase(["db", "push", `--remote=${remoteTarget}`, "--yes"]);
 }
 
-main(ref).then((code) => process.exit(code));
+main(remote).then((code) => process.exit(code));
