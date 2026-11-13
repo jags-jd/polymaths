@@ -252,7 +252,7 @@ _Update this section after every meaningful session._
 **Environments (live):**
 
 - Supabase `polymaths-staging` (region ap-northeast-1) and `polymaths-prod` (region ap-southeast-2), both with the `create_profiles` migration applied. Staging was recreated once after an accidental delete; nothing was lost.
-- One Vercel project: Preview env vars → staging, Production env vars → prod. Framework Preset Next.js, Node 24.x. Previews are behind Vercel login (Deployment Protection).
+- One Vercel project (`polymaths-zbmo`), production at https://polymaths-zbmo.vercel.app: Preview env vars → staging, Production env vars → prod. Framework Preset Next.js, Node 24.x. Previews are behind Vercel login (Deployment Protection).
 
 **Done so far:**
 
