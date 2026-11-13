@@ -10,6 +10,9 @@ export default defineConfig({
   forbidOnly: !!process.env.CI,
   retries: process.env.CI ? 2 : 0,
   reporter: process.env.CI ? "github" : "list",
+  // The dev server compiles each route on first hit, which can take longer
+  // than the 5s default on a cold start.
+  expect: { timeout: 10_000 },
   use: {
     baseURL,
     trace: "on-first-retry",

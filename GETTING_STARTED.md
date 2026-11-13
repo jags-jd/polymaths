@@ -57,6 +57,27 @@ Each OAuth app (Google and Discord) needs the callback address of **every** Supa
 
 Then, in each hosted Supabase project, turn on the Google and Discord providers and paste in the client ID and secret. Add the site URLs (`http://localhost:3000`, your Vercel preview pattern, your production URL) to each project's allowed redirect URLs. For local, Claude Code will wire the providers into `supabase/config.toml` using env vars.
 
+### Setting up Google sign-in (phase 0.2)
+
+The code is done; these steps are dashboard work only you can do.
+
+1. **Google Cloud Console** → APIs & Services:
+   - **OAuth consent screen** (Google Auth Platform → Branding / Audience): app name "Polymaths", user type **External**, publishing status **Testing**, and add your own Google account as a **test user**. Scopes: the defaults (`openid`, `email`, `profile`) are all we need.
+   - **Credentials → Create credentials → OAuth client ID** → "Web application".
+     - Authorized JavaScript origins: `http://localhost:3000`, `https://polymaths-zbmo.vercel.app`
+     - Authorized redirect URIs: the three Supabase callback addresses in the table above.
+2. **Local:** put the client ID and secret in `.env.local` as `SUPABASE_AUTH_EXTERNAL_GOOGLE_CLIENT_ID` and `SUPABASE_AUTH_EXTERNAL_GOOGLE_SECRET`, then restart Supabase (`pnpm db:stop && pnpm db:start`).
+3. **Each hosted Supabase project** (staging and prod) → Authentication:
+   - **Sign In / Providers → Google:** enable, paste the client ID and secret.
+   - **Sign In / Providers → Email:** turn **off** (no email sign-up; spec).
+   - **URL Configuration:**
+     - prod — Site URL `https://polymaths-zbmo.vercel.app`; Redirect URLs `https://polymaths-zbmo.vercel.app/auth/callback`
+     - staging — Site URL `http://localhost:3000`; Redirect URLs `https://polymaths-zbmo-*.vercel.app/auth/callback` (every preview) and `http://localhost:3000/auth/callback`
+     - Check the preview pattern against a real preview URL; Vercel preview hosts look like `polymaths-zbmo-<hash>-<team>.vercel.app`. If a sign-in lands on the Site URL instead of `/auth/callback`, the redirect URL didn't match.
+4. Sign in on `http://localhost:3000/login`, then on a PR preview, then (after merging) on production.
+
+While the consent screen is in **Testing**, only listed test users can sign in. That suits the personal phase; publishing the app is a phase 1.0 task.
+
 **Never paste secrets into a chat.** Put them in `.env.local` or the Supabase/Vercel dashboards yourself.
 
 ## First Claude Code session
@@ -98,7 +119,7 @@ Then: connect the repo to Vercel, set the Preview environment variables to the s
 
 **Sign-in + onboarding.**
 
-- Google and Discord sign-in on `/login`
+- Google and Discord sign-in on `/login` (Google done; Discord deferred until its credentials exist)
 - First login → `/onboarding` for display name + IGN (validated, unique ignoring case, reserved names blocked)
 - Signed-in users without a profile are always sent to `/onboarding`
 - Signed-in landing page with an empty "no games started yet" state
