@@ -41,19 +41,24 @@ function supabase(args: string[]): number {
   return result.status ?? 1;
 }
 
-console.log(`\nDry run: migrations that would be applied to ${target} (${ref})\n`);
-if (supabase(["db", "push", `--remote=${ref}`, "--dry-run"]) !== 0) {
-  process.exit(1);
+// Wrapped in a function: tsx runs this file as CommonJS, which has no top-level await.
+async function main(projectRef: string): Promise<number> {
+  console.log(`\nDry run: migrations that would be applied to ${target} (${projectRef})\n`);
+  if (supabase(["db", "push", `--remote=${projectRef}`, "--dry-run"]) !== 0) {
+    return 1;
+  }
+
+  const confirmWord = target === "prod" ? "production" : "staging";
+  const rl = createInterface({ input: process.stdin, output: process.stdout });
+  const answer = await rl.question(`\nType "${confirmWord}" to apply these migrations: `);
+  rl.close();
+
+  if (answer.trim() !== confirmWord) {
+    console.log("Cancelled. Nothing was applied.");
+    return 1;
+  }
+
+  return supabase(["db", "push", `--remote=${projectRef}`, "--yes"]);
 }
 
-const confirmWord = target === "prod" ? "production" : "staging";
-const rl = createInterface({ input: process.stdin, output: process.stdout });
-const answer = await rl.question(`\nType "${confirmWord}" to apply these migrations: `);
-rl.close();
-
-if (answer.trim() !== confirmWord) {
-  console.log("Cancelled. Nothing was applied.");
-  process.exit(1);
-}
-
-process.exit(supabase(["db", "push", `--remote=${ref}`, "--yes"]));
+main(ref).then((code) => process.exit(code));
