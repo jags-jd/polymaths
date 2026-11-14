@@ -1,7 +1,7 @@
 # Three trackable kinds: check, pips, meter
 
 **Date:** 2026-11-12
-**Status:** Accepted
+**Status:** Accepted; amended by `2026-11-14-trackable-exceptions.md` (single-pip exception)
 
 ## Context
 The mockups needed single ticks (exits, bosses), small sets tapped individually (5 Dragon Coins, 7 hidden flowers), and counters you set to a number (finished with 14 of 20 hearts; 20 Red Coins were too fiddly to tick individually).

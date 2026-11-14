@@ -21,7 +21,7 @@ lib/games/schema.ts             # Zod schemas for everything below
 - every ID is unique across **all** games
 - every ID starts with the game's `idPrefix`
 - every `image` key exists in the art manifest, and every manifest file exists in `public/games/<slug>/`
-- `pips.count` is between 2 and 30; `meter.max` is between 2 and 999
+- `pips.count` is between 2 and 30 (or exactly 1 when the trackable sets `singlePip: true`; see Exceptions below); `meter.max` is between 2 and 999
 - no section or entry is empty
 
 ### The shape
@@ -81,7 +81,7 @@ type TrackableBase = {
 
 type Trackable =
   | (TrackableBase & { kind: 'check' })
-  | (TrackableBase & { kind: 'pips';  count: number })   // 2–30
+  | (TrackableBase & { kind: 'pips';  count: number; singlePip?: true })   // 2–30; 1 only with singlePip
   | (TrackableBase & { kind: 'meter'; max: number })     // 2–999
 
 type StatDef = {
@@ -106,6 +106,13 @@ Rules of thumb:
 - **Would a player find them one by one, in any order, and want to know which?** → `pips`.
 - **Would a player just want to say "I got 14"?** → `meter`. (Red Coins became a meter because tracking 20 individual coins was too fiddly.)
 - **More than 30 separate things?** Split into entries, or use a `meter`.
+
+#### Exceptions
+
+Agreed with Jan; see `docs/decisions/2026-11-14-trackable-exceptions.md`.
+
+- **A single pip (`count: 1`) is allowed only with `singlePip: true`.** Use it when a game shows a set everywhere else and one place has just one of them, so that place should look the same as the others. Super Mario World's Chocolate Secret Dragon Coin is the case this was made for. It's stored and counted like any pip (`<id>#1`, 1 unit). Without the flag, `count: 1` fails validation; a lone thing is normally a `check`.
+- **A game doesn't have to use all three kinds.** Super Mario World uses only `check` and `pips`. The engine's `meter` handling is still fully unit-tested in phase 0.3 with test fixtures; the first real meters are Yoshi's Crafted World's (phase 0.4).
 
 ### IDs
 

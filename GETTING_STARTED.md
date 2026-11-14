@@ -125,7 +125,7 @@ Then: connect the repo to Vercel, set the Preview environment variables to the s
 - Signed-in landing page with an empty "no games started yet" state
 - Deploy to a PR preview, sign in there, verify
 
-Then phase 0.3: the data format and Super Mario World end to end. Super Mario World goes first because it uses all three trackable kinds and the most custom skin — if the engine handles it, the other games are easy.
+Then phase 0.3: the data format and Super Mario World end to end. Super Mario World goes first because it has the most custom skin — if the engine handles it, the other games are easy. (It uses only `check` and `pips`; meters are unit-tested in 0.3 and first used by Yoshi's Crafted World in 0.4.)
 
 ## Ongoing rituals
 

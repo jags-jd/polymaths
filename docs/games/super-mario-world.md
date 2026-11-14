@@ -7,7 +7,7 @@
 | Theme | `nintendo`, header red `#D3202A` + blue stripe |
 | Skin | `smw-save-file` (see `themes.md`) |
 | Mockup | `docs/design/super-mario-world.*` |
-| Build phase | 0.3 (first game — exercises all three trackable kinds) |
+| Build phase | 0.3 (first game; uses `check` and `pips` only — no meters, an agreed exception) |
 
 ## Structure
 
@@ -19,7 +19,7 @@ Per level:
 | --------- | ---- | ---- | ----- |
 | Normal exit | `check` | `exit` | every level (castles/fortresses: "Beat <boss>", icon `castle`; switch palaces: "Press the <color> switch", icon `switch`) |
 | Secret exit | `check` | `key` | levels with two exits |
-| Dragon Coins | `pips` (count 5) | `dragon-coin` | regular courses (Chocolate Secret: 1 — see open questions) |
+| Dragon Coins | `pips` (count 5) | `dragon-coin` | regular courses (Chocolate Secret: `count: 1` with `singlePip: true`, an agreed exception — count still to verify, see open questions) |
 | 3-Up Moon | `check` | `moon` | 7 levels |
 | Bowser | `check` ×2 | `bowser-door` | Front Door, Back Door |
 
