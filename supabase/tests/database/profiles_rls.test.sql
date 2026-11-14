@@ -32,7 +32,9 @@ select throws_ok(
 );
 
 select is(
-  (select count(*)::int from public.profiles),
+  -- Only count the test users: a local db may hold real profiles too.
+  (select count(*)::int from public.profiles
+   where id in ('11111111-1111-1111-1111-111111111111', '22222222-2222-2222-2222-222222222222')),
   2,
   'a user can read every profile'
 );
