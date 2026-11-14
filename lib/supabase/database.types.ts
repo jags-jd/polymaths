@@ -19,6 +19,26 @@ export type Database = {
                   Relationships: [
                     
                   ]
+                },"progress": {
+                  Row: {
+                    "game_slug": string,"item_id": string,"updated_at": string,"user_id": string,"value": number
+                  }
+                  ComputedFields: never
+                  Insert: {
+                    "game_slug": string,"item_id": string,"updated_at"?: string,"user_id": string,"value": number
+                  }
+                  Update: {
+                    "game_slug"?: string,"item_id"?: string,"updated_at"?: string,"user_id"?: string,"value"?: number
+                  }
+                  Relationships: [
+                    {
+      foreignKeyName: "progress_user_id_fkey"
+      columns: ["user_id"]
+isOneToOne: false
+      referencedRelation: "profiles"
+      referencedColumns: ["id"]
+    }
+                  ]
                 }
           }
           Views: {
