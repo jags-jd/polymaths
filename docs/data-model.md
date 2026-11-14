@@ -85,11 +85,25 @@ type Trackable =
   | (TrackableBase & { kind: 'meter'; max: number })     // 2–999
 
 type StatDef = {
-  label: string                 // 'Exits', 'Dragon Coins', '3-Up Moons'
-  match: { trackableKind?: Trackable['kind']; icon?: string; entryKind?: string; idSuffix?: string }
+  label: string                 // 'Exits', 'Dragon Coins', '3-Up Moons', 'Worlds'
+  match:
+    | { trackableKind?: Trackable['kind']; icon?: string; entryKind?: string; idSuffix?: string } // at least one; all must hold
+    | { section: true }         // counts completed sections ('Worlds 1/9'); count must be 'completed'
   count: 'units' | 'completed'  // count every unit (each pip) or only completed trackables
 }
+
+type ArtManifest = Record<string, {   // key = the `image` used by entries
+  file: string                  // file name in public/games/<slug>/
+  alt: string
+  source?: string               // URL; required unless license is 'original'
+  owner: string                 // 'Nintendo'
+  license: 'official-unlicensed' | 'licensed' | 'original'
+}>
 ```
+
+The Zod schemas in `lib/games/schema.ts` are the source of truth; the types above are a readable summary. Objects are strict, so a misspelled field (`spolier`) fails validation. Data files end with `satisfies Game`.
+
+Trackable stats count section entries and extras only; whole-game `goals` are never counted in stats.
 
 ### The three trackable kinds
 
@@ -166,8 +180,12 @@ Pure functions, fully unit tested:
 - `units(trackable)` → 1 for check, `count` for pips, 1 for meter
 - `doneUnits(trackable, rows)` → check: row exists; pips: number of pip rows; meter: 1 if `value >= max`
 - `entryProgress`, `sectionProgress`, `gameProgress` → `{ done, total, percent }`, ignoring retired items
-- `isComplete(x)` → `done === total`
+- `isComplete(x)` → `total > 0 && done === total` (something with nothing left to count, e.g. all retired, is never complete)
 - Percentages round down, so 100% only shows when truly complete.
+- `gameProgress` includes the whole-game `goals`; `sectionProgress` includes the section's `extras`.
+- `statValue` / `gameStats` compute the summary tiles.
+
+Item lookups for the server actions live in `lib/games/load.ts`: `getTrackable(game, id)` and `resolveItem(game, itemId)` return null for unknown or retired items, a pip suffix on a non-pips trackable, or a pip number out of range.
 
 ---
 
