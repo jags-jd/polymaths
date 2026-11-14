@@ -285,7 +285,12 @@ _Update this section after every meaningful session._
 
 - Google sign-in only for now; **Discord is deferred** (no `[auth.external.discord]` block yet). Adding it later is a second button + provider config.
 
-**Next session goal:** phase 0.3 — settle the two open doc issues below, then the game data format, Zod schema, progress engine and Super Mario World end to end.
+**Decisions made before phase 0.3 (with Jan, 2026-11-14)** — see `docs/decisions/2026-11-14-trackable-exceptions.md`:
+
+- **Super Mario World uses only `check` and `pips`** — an agreed exception; a game doesn't have to use all three kinds. Meter maths is unit-tested with fixtures in 0.3; Yoshi's Crafted World brings the first real meters in 0.4.
+- **Chocolate Secret's single Dragon Coin stays `pips`**, as `count: 1` with `singlePip: true`. That flag is the only way a pips trackable may have a count of 1. Whether the count really is 1 is still SMW open question 1 (verify in research).
+
+**Next session goal:** phase 0.3 — the game data format, Zod schema, progress engine and Super Mario World end to end. Propose a plan first.
 
 **In flight:** Nothing.
 
@@ -298,10 +303,6 @@ _Update this section after every meaningful session._
 - Discord sign-in (deferred from 0.2).
 - IGN changes from settings (max once per 30 days) arrive with the settings page in phase 0.5; onboarding is the only way to set an IGN until then.
 
-**Open doc issues to settle before phase 0.3:**
-
-- Super Mario World has no `meter` trackables, so it doesn't exercise all three kinds (docs say it does). Meters are first used by Yoshi's Crafted World.
-- Chocolate Secret's single Dragon Coin is listed as `pips`, but pips need 2–30. Probably a `check` — tied to SMW open question 1.
 
 ---
 
@@ -335,7 +336,7 @@ _Add to this list as we discover them._
 | ----- | ---- |
 | **0.1** | Scaffold: Next.js, Tailwind, shadcn/ui, Supabase (local + clients), Vitest, Playwright, Husky, file structure, first migration |
 | **0.2** | Sign-in (Google + Discord), onboarding (display name + IGN), reserved IGNs |
-| **0.3** | Game data format + Zod schema + progress engine; **Super Mario World** end to end (all trackable kinds, save-file skin, saving, optimistic UI) |
+| **0.3** | Game data format + Zod schema + progress engine (all three kinds unit-tested); **Super Mario World** end to end (checks and pips, save-file skin, saving, optimistic UI) |
 | **0.4** | The other four games: Stellar Blade, Elden Ring, Yoshi's Crafted World, FF7 Remake Intergrade; in-game search, jump-to-section, reveal-all-spoilers |
 | **0.5** | Public profiles: per-game progress, showcase (up to 12 pins), profile themes |
 | **0.6** | Social: one-way follows, follower/following lists and counts, Top 8, activity events, logged-in home with friends feed |
