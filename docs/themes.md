@@ -15,7 +15,7 @@ Game.skin    → optional: replaces the section + entry renderers entirely (e.g.
 icons        → components/icons/<slug>/, each with an outline and a filled state
 ```
 
-Themes are CSS variables set on a wrapper element (`data-theme="nintendo"`), defined in `lib/themes/`. Components only use the variables (`bg-[--surface]`, `text-[--text]`), never raw hex.
+Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.ts` (theme → game `accent` → skin, via `gameTokens`). A game page renders `<ThemeStyle game={game} />`, a plain `<style>` that sets them on `:root` while the page is mounted, so the site header (outside the page, in the root layout) follows the theme too; elsewhere the header and body fall back to the default look (`.site-header` in `app/globals.css`). Components only use the variables (`bg-(--surface)`, `text-(--text)`), never raw hex. Skins add their own prefixed tokens (`--smw-frame`, …) in `SKIN_TOKENS`. Theme fonts load through `next/font` in `app/layout.tsx` with `preload: false` (Nunito, Press Start 2P and Pixelify Sans so far; the others arrive with their first game in 0.4).
 
 ### Token list (every theme defines all of these)
 
@@ -128,15 +128,17 @@ All game icons we draw are **original pixel art**, rendered by one component:
 
 ### Super Mario World set (from the mockup)
 
+Maps live in `components/icons/super-mario-world/pixel-maps.ts` (license `original`); `PixelIcon` is in `components/icons/pixel/`.
+
 | Icon | Used for | Filled look |
 | ---- | -------- | ----------- |
 | `exit` | Normal exits | Red rounded tile, bevel highlight/shade, white pixel **M** with dark-red drop shadow |
 | `key` | Secret exits | Gold key with round bow, keyhole, two teeth |
-| `switch` | Switch Palaces | Dome with white **!** on a striped gold base, in the palace's color (yellow, green, red-pink, periwinkle blue) |
+| `switch-yellow`, `switch-green`, `switch-red`, `switch-blue` | Switch Palaces | Dome with white **!** on a striped gold base, in the palace's color (yellow, green, red-pink, periwinkle blue) |
 | `castle` | Castles and fortresses | Purple rounded tile with white pixel castle (crenellations, windows, door) |
 | `dragon-coin` | Dragon Coins | Tall gold oval, highlight left, orange shade right, embossed ring, raised centre bar |
 | `moon` | 3-Up Moons | Smiling yellow crescent with dark outline and pale highlight |
-| `bowser-door` | Bowser's Front/Back Door | _Not designed yet — currently plain purple F/B squares_ |
+| `bowser-door` | Bowser's Front/Back Door | Arched wooden door with a gold knob in a grey stone frame (new for Polymaths, 2026-11-14) |
 
 ### Yoshi's Crafted World set
 

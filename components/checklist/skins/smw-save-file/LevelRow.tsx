@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, type CSSProperties } from "react";
 
 import { useChecklist } from "@/components/checklist/ChecklistProvider";
 import { PixelIcon } from "@/components/icons/pixel/PixelIcon";
@@ -27,7 +27,15 @@ function icon(key: string): SmwIconPair {
   return SMW_ICONS[key];
 }
 
-export function LevelRow({ entry, stripe, spoiler }: { entry: Entry; stripe: "a" | "b"; spoiler: boolean }) {
+type Props = {
+  entry: Entry;
+  stripe: "a" | "b";
+  spoiler: boolean;
+  /** Width of the coin column in coins: the world's largest set (at least 5). */
+  coinSlots: number;
+};
+
+export function LevelRow({ entry, stripe, spoiler, coinSlots }: Props) {
   const { progress, toggleCheck, togglePip } = useChecklist();
   const [revealed, setRevealed] = useState(false);
   const live = entry.trackables.filter((t) => !t.retired);
@@ -71,9 +79,14 @@ export function LevelRow({ entry, stripe, spoiler }: { entry: Entry; stripe: "a"
           <span className="text-[clamp(20px,5vw,27px)] leading-[1.1] font-bold uppercase">{entry.name}</span>
         )}
       </div>
-      <div className="flex flex-nowrap items-center gap-x-(--smw-gap)">
-        <div className="flex w-[calc(var(--smw-btn)*2)]">{exits.map(checkButton)}</div>
-        <div className="flex w-[calc(var(--smw-coin)*5)]">
+      <div className="flex max-w-full min-w-0 flex-nowrap items-center gap-x-(--smw-gap)">
+        <div className="flex w-[calc(var(--smw-btn)*2)] shrink-0">{exits.map(checkButton)}</div>
+        {/* As wide as the world's biggest coin set, so moons line up; on
+            phones it may shrink to 5 coins and wrap (Way Cool has 8). */}
+        <div
+          className="flex w-[calc(var(--smw-coin)*var(--coin-slots))] min-w-[calc(var(--smw-coin)*5)] flex-wrap"
+          style={{ "--coin-slots": coinSlots } as CSSProperties}
+        >
           {coins.length === 0 && <span className="block h-[clamp(52px,12vw,70px)]" />}
           {coins.map((t) =>
             Array.from({ length: t.count }, (_, i) => {
@@ -94,7 +107,7 @@ export function LevelRow({ entry, stripe, spoiler }: { entry: Entry; stripe: "a"
             }),
           )}
         </div>
-        <div className="flex w-(--smw-btn)">{moons.map(checkButton)}</div>
+        <div className="flex w-(--smw-btn) shrink-0">{moons.map(checkButton)}</div>
       </div>
     </div>
   );

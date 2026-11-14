@@ -13,6 +13,7 @@ export function WorldPanel({ section }: { section: Section }) {
   const complete = isComplete(p);
   const entries = section.entries.filter((e) => !e.retired);
   const titleId = `${section.id}-title`;
+  const coinSlots = Math.max(5, ...entries.flatMap((e) => e.trackables.map((t) => (t.kind === "pips" ? t.count : 0))));
 
   return (
     <FramedPanel id={section.id} labelledBy={titleId}>
@@ -40,7 +41,13 @@ export function WorldPanel({ section }: { section: Section }) {
       <InnerBox className="flex p-1.5">
         <div className="flex min-w-0 flex-1 flex-col px-1 pt-0.5 pb-1.5">
           {entries.map((entry, i) => (
-            <LevelRow key={entry.id} entry={entry} stripe={i % 2 === 0 ? "a" : "b"} spoiler={Boolean(section.spoiler || entry.spoiler)} />
+            <LevelRow
+              key={entry.id}
+              entry={entry}
+              stripe={i % 2 === 0 ? "a" : "b"}
+              spoiler={Boolean(section.spoiler || entry.spoiler)}
+              coinSlots={coinSlots}
+            />
           ))}
         </div>
       </InnerBox>
