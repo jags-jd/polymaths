@@ -101,18 +101,21 @@ export type StatValue = { label: string; done: number; total: number };
 
 /**
  * The value of one summary tile. Trackable stats look at section entries and
- * extras only — whole-game goals are not counted in stats.
+ * extras only — whole-game goals are not counted in stats. Pass `onlySection`
+ * to count within one section (e.g. exits per world on the section tabs).
  */
-export function statValue(game: Game, stat: StatDef, progress: ProgressMap): StatValue {
+export function statValue(game: Game, stat: StatDef, progress: ProgressMap, onlySection?: Section): StatValue {
   const { match } = stat;
   if (match.section) {
-    const counted = game.sections.map((s) => sectionProgress(s, progress)).filter((p) => p.total > 0);
+    const sections = onlySection ? [onlySection] : game.sections;
+    const counted = sections.map((s) => sectionProgress(s, progress)).filter((p) => p.total > 0);
     return { label: stat.label, done: counted.filter(isComplete).length, total: counted.length };
   }
 
   let done = 0;
   let total = 0;
-  for (const { entry, trackable } of sectionTrackables(game)) {
+  for (const { section, entry, trackable } of sectionTrackables(game)) {
+    if (onlySection && section.id !== onlySection.id) continue;
     if (entry.retired || trackable.retired) continue;
     if (match.trackableKind && trackable.kind !== match.trackableKind) continue;
     if (match.icon && trackable.icon !== match.icon) continue;

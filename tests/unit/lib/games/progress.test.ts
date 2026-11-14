@@ -9,6 +9,7 @@ import {
   isPipDone,
   meterValue,
   sectionProgress,
+  statValue,
   toProgressMap,
   trackableProgress,
   units,
@@ -154,6 +155,12 @@ describe("gameStats", () => {
     expect(stats.Coins).toEqual([3, 6]);
     expect(stats["Coin sets"]).toEqual([1, 2]); // only the single-pip set is complete
     expect(stats.Hearts).toEqual([0, 1]);
+  });
+
+  it("can count within one section", () => {
+    const exits = fixtureGame.stats[0]!;
+    expect(statValue(fixtureGame, exits, map({ "fq-cave-1-exit": 1 }), caves)).toEqual({ label: "Exits", done: 1, total: 1 });
+    expect(statValue(fixtureGame, exits, map({ "fq-cave-1-exit": 1 }), meadow)).toEqual({ label: "Exits", done: 0, total: 2 });
   });
 
   it("counts completed sections", () => {
