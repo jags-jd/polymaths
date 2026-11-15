@@ -36,7 +36,41 @@ const trackableBase = {
   retired: z.boolean().optional(),
 };
 
-export const checkSchema = z.strictObject({ ...trackableBase, kind: z.literal("check") });
+/**
+ * Which section trackables a stat or an automatic goal looks at. Every given
+ * field must hold.
+ */
+export const trackableMatchSchema = z.strictObject({
+  trackableKind: z.enum(TRACKABLE_KINDS).optional(),
+  icon: iconKey.optional(),
+  entryKind: iconKey.optional(),
+  idSuffix: z.string().min(1).optional(),
+});
+
+/**
+ * A whole-game goal that ticks itself: done when every matched trackable (in
+ * `section`, if given) is complete. Worked out from progress, never saved —
+ * docs/decisions/2026-11-15-automatic-goals.md.
+ */
+export const autoGoalSchema = z
+  .strictObject({
+    match: trackableMatchSchema,
+    /** Only look inside this section (its ID). */
+    section: id.optional(),
+    /** What the chip counts, e.g. "exits" → "52/96 exits". */
+    unit: text,
+  })
+  .refine((auto) => Object.values(auto.match).some((v) => v !== undefined), {
+    path: ["match"],
+    message: "An automatic goal needs at least one match filter",
+  });
+
+export const checkSchema = z.strictObject({
+  ...trackableBase,
+  kind: z.literal("check"),
+  /** Goals only: tick automatically when the condition is met. */
+  auto: autoGoalSchema.optional(),
+});
 
 /**
  * 2–30 pips, or exactly 1 with `singlePip: true` — the agreed exception in
@@ -120,13 +154,7 @@ export const sectionSchema = z.strictObject({
 export const statDefSchema = z
   .strictObject({
     label: text,
-    match: z.strictObject({
-      trackableKind: z.enum(TRACKABLE_KINDS).optional(),
-      icon: iconKey.optional(),
-      entryKind: iconKey.optional(),
-      idSuffix: z.string().min(1).optional(),
-      section: z.literal(true).optional(),
-    }),
+    match: trackableMatchSchema.extend({ section: z.literal(true).optional() }),
     count: z.enum(["units", "completed"]),
   })
   .superRefine((stat, ctx) => {
@@ -171,9 +199,35 @@ export const gameSchema = z
       if (seen.has(itemId)) ctx.addIssue({ code: "custom", path, message: `Duplicate ID "${itemId}"` });
       seen.add(itemId);
     }
+    // Automatic ticks are for whole-game goals only.
+    game.sections.forEach((section, s) => {
+      const groups = [
+        { entries: section.entries, path: ["sections", s, "entries"] },
+        ...(section.extras ?? []).map((g, gi) => ({ entries: g.entries, path: ["sections", s, "extras", gi, "entries"] })),
+      ];
+      for (const { entries, path } of groups) {
+        entries.forEach((entry, e) =>
+          entry.trackables.forEach((t, ti) => {
+            if (t.kind === "check" && t.auto) {
+              ctx.addIssue({ code: "custom", path: [...path, e, "trackables", ti, "auto"], message: "Only whole-game goals can tick automatically" });
+            }
+          }),
+        );
+      }
+    });
+    const sectionIds = new Set(game.sections.map((section) => section.id));
+    game.goals?.forEach((entry, e) =>
+      entry.trackables.forEach((t, ti) => {
+        if (t.kind === "check" && t.auto?.section && !sectionIds.has(t.auto.section)) {
+          ctx.addIssue({ code: "custom", path: ["goals", e, "trackables", ti, "auto", "section"], message: `No section "${t.auto.section}"` });
+        }
+      }),
+    );
   });
 
 export type Check = z.infer<typeof checkSchema>;
+export type TrackableMatch = z.infer<typeof trackableMatchSchema>;
+export type AutoGoal = z.infer<typeof autoGoalSchema>;
 export type Pips = z.infer<typeof pipsSchema>;
 export type Meter = z.infer<typeof meterSchema>;
 export type Trackable = z.infer<typeof trackableSchema>;

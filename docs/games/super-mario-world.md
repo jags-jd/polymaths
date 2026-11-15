@@ -24,7 +24,7 @@ Entry kinds: `course`, `ghost-house`, `ghost-ship` (Sunken Ghost Ship), `switch-
 | 3-Up Moon | `check` | `moon` | `<level>-moon` | 7 levels |
 | Bowser | `check` ×2 | `bowser-door` | `smw-bowsers-castle-front-door`, `-back-door` | Bowser's Castle, in Valley of Bowser. **Not exits** (not in the 96). |
 
-Whole-game goals: Find all 96 exits; Press all four switches; Clear the Special Zone.
+Whole-game goals tick themselves (`auto`, `docs/decisions/2026-11-15-automatic-goals.md`): Find all 96 exits (every `-exit`), Press all four switches (every `switch-palace` exit), Clear the Special Zone (its 8 exits; Dragon Coins not needed).
 
 Stats: Exits (IDs ending `-exit`, 96), Dragon Coins (pip units), Coin sets (completed pips trackables), 3-Up Moons, Koopalings (castle exits only — Roy's and Larry's castles also have coins), Worlds (completed sections).
 
