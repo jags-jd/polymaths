@@ -149,7 +149,8 @@ export const SKIN_TOKENS: Record<SkinName, Record<string, string>> = {
     "smw-off": "#8C7A4A",
     "smw-star": "#FFD21A",
     "font-pixel": "var(--font-press-start, monospace)",
-    "font-body": `var(--font-pixelify, var(--font-nunito, ${SANS}))`,
+    // One pixel font for everything on the page (Jan, 2026-11-15).
+    "font-body": "var(--font-press-start, monospace)",
   },
 };
 

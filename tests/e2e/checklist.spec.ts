@@ -75,6 +75,31 @@ test("a player's ticks save, survive a reload, and can be undone", async ({ page
   await noHorizontalScroll(page);
 });
 
+test("whole-game goals tick themselves and can't be ticked by hand", async ({ page, context }) => {
+  const user = await createOnboardedUser("Goal Tester");
+  await signInAs(context, user);
+  await page.goto(PAGE);
+
+  const goal = page.getByRole("listitem").filter({ hasText: "Press all four switches" });
+  await expect(goal).toContainText("0/4 switches");
+  await expect(goal.getByRole("button")).toHaveCount(0);
+
+  for (const color of ["yellow", "green", "red", "blue"]) {
+    const palace = `${color[0]!.toUpperCase()}${color.slice(1)} Switch Palace`;
+    await page.getByRole("button", { name: `${palace}: Press the ${color} switch` }).click();
+  }
+  await expect(goal).toContainText("Done!");
+  // 4 switches + the goal; the goal itself is never saved.
+  await expect(page.getByText("5 of 358 done. 353 to go.")).toBeVisible();
+  await expect
+    .poll(async () => (await admin.from("progress").select("item_id").eq("user_id", user.id)).data?.length)
+    .toBe(4);
+
+  await page.reload();
+  await expect(goal).toContainText("Done!");
+  await noHorizontalScroll(page);
+});
+
 test("a failed save is undone and the player is told", async ({ page, context }) => {
   const user = await createOnboardedUser("Offline Tester");
   await signInAs(context, user);
