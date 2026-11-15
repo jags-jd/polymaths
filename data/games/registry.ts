@@ -1,7 +1,11 @@
+import type { ArtManifest, Game } from "@/lib/games/schema";
+
 /**
- * Ordered list of supported games.
- *
- * Empty until phase 0.3, when the Game type and Zod schema (lib/games/schema.ts)
- * arrive and Super Mario World is added. See docs/data-model.md.
+ * Ordered list of supported games, each with its art manifest.
+ * Add a game here after following docs/adding-a-game.md.
  */
-export const games: readonly unknown[] = [];
+export type RegisteredGame = { game: Game; art: ArtManifest };
+
+export const registry: readonly RegisteredGame[] = [];
+
+export const games: readonly Game[] = registry.map((entry) => entry.game);
