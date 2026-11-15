@@ -128,3 +128,18 @@
     @apply font-sans;
   }
 }
+/*
+ * The site header follows the current game's theme. <ThemeStyle> sets these
+ * tokens on :root while a game page is shown; elsewhere the fallbacks apply.
+ */
+.site-header {
+  background: var(--header-bg, var(--background));
+  color: var(--header-text, var(--foreground));
+  border-bottom: var(--header-stripe-size, 1px) solid var(--header-stripe, var(--border));
+}
+
+/* Themed pages also set the page background and text color. */
+body {
+  background: var(--bg, var(--background));
+  color: var(--text, var(--foreground));
+}
