@@ -4,14 +4,17 @@ import { cn } from "@/lib/utils";
 
 /** Small shared pieces of the SMW save-file skin (docs/themes.md). */
 
-/** Gold framed panel: `#F8C030` frame, 3px brown border, 16px radius, 4px drop. */
+/**
+ * Gold panel: a `#F8C030` title bar over the cream body, 3px brown border,
+ * 16px radius, 4px drop. The body runs to the border (no gold around it).
+ */
 export function FramedPanel({ id, className, children, labelledBy }: { id?: string; className?: string; children: ReactNode; labelledBy?: string }) {
   return (
     <section
       id={id}
       aria-labelledby={labelledBy}
       className={cn(
-        "scroll-mt-4 rounded-2xl border-3 border-(--smw-brown) bg-(--smw-frame) p-1.5 shadow-[0_4px_0_var(--smw-brown)] sm:p-2",
+        "scroll-mt-4 overflow-hidden rounded-2xl border-3 border-(--smw-brown) bg-(--smw-frame) shadow-[0_4px_0_var(--smw-brown)]",
         className,
       )}
     >
@@ -20,9 +23,9 @@ export function FramedPanel({ id, className, children, labelledBy }: { id?: stri
   );
 }
 
-/** The cream box inside a panel. */
+/** The cream body under a panel's title bar, edge to edge. */
 export function InnerBox({ className, children }: { className?: string; children: ReactNode }) {
-  return <div className={cn("rounded-lg border-3 border-(--smw-brown) bg-(--smw-inner)", className)}>{children}</div>;
+  return <div className={cn("border-t-3 border-(--smw-brown) bg-(--smw-inner)", className)}>{children}</div>;
 }
 
 const STAR_PATH = "M12 2.5l2.9 6 6.6.9-4.8 4.6 1.2 6.5L12 17.4l-5.9 3.1 1.2-6.5-4.8-4.6 6.6-.9z";

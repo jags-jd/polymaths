@@ -100,7 +100,7 @@ A skin replaces the section and entry renderers for one game. Allowed only when 
 Inspired by a save-file / course-list screen.
 
 - Page `#FFF1BF` with a faint dot pattern.
-- Each world is a **framed panel**: `#F8C030` frame, 3px `#6B4700` border, 16px radius, `0 5px 0 #6B4700` shadow; inner box `#FFFBEA` with the same border.
+- Each world (and the summary and Whole game cards) is a **panel**: a `#F8C030` title bar over a `#FFFBEA` body, 3px `#6B4700` border, 16px radius, `0 4px 0 #6B4700` shadow. The body runs to the border on the left, right and bottom (no gold around it, Jan 2026-11-17); a 3px brown line separates it from the title bar.
 - **One font:** everything on the page is **Press Start 2P** (Jan, 2026-11-15), sized small (10–12px for names and text) because it's wide. It has one weight, so no bold.
 - **Title bars:** world name with a 2px white text-shadow, and the score on the right. No chevrons or arrows.
 - **Rows:** rounded (10px) bars, alternating `#FBE3F0` / `#FAD27A`, ~4px apart, no labels.

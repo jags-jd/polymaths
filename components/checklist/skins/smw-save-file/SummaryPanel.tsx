@@ -15,12 +15,12 @@ export function SummaryPanel() {
   return (
     <div className="flex flex-col gap-4 pt-6 pb-5">
       <FramedPanel labelledBy="game-title">
-        <div className="px-2 pt-1.5 pb-2.5 sm:px-2.5 sm:pt-2 sm:pb-3">
+        <div className="px-3.5 py-2.5 sm:px-5 sm:py-3">
           <h1 id="game-title" className="m-0 text-[clamp(18px,3.8vw,32px)] leading-[1.3] uppercase [text-shadow:2px_2px_0_#FFFFFF]">
             {game.title}
           </h1>
         </div>
-        <InnerBox className="flex flex-wrap items-center gap-x-7 gap-y-4 px-3.5 py-3.5 sm:px-[18px] sm:py-4">
+        <InnerBox className="flex flex-wrap items-center gap-x-7 gap-y-4 px-3.5 py-3.5 sm:px-5 sm:py-4">
           <div className="flex min-w-0 flex-[1_1_260px] flex-col gap-2.5">
             <div className="flex items-baseline justify-between gap-3">
               <span className="text-[11px] sm:text-xs">COMPLETE</span>
