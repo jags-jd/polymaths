@@ -19,6 +19,8 @@ Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.t
 
 ### Token list (every theme defines all of these)
 
+**Site header** (`components/layout/SiteHeader.tsx`, same on every page): a minimal 48px bar, the checkmark mark + "Polymaths" wordmark (`--font-display`, else the site heading font) on the left, and the avatar (ringed, initials in the header colors) or a "Sign in" pill on the right. Content is 1040px wide to line up with a game page. Colors come from `--header-bg` / `--header-text` / `--header-stripe` (Jan chose "minimal", 2026-11-17).
+
 `--bg`, `--surface`, `--surface-2`, `--border`, `--text`, `--muted`, `--accent`, `--on-accent` (text on accent), `--done-bg`, `--done-border`, `--header-bg`, `--header-text`, `--header-stripe`, `--radius-card`, `--radius-control`, `--font-body`, `--font-display`, `--display-case` (`none` or `uppercase`), `--shadow-card`.
 
 Contrast: `--text` on `--bg`/`--surface`, `--muted` on `--surface`, and `--on-accent` on `--accent` must all be at least 4.5:1. A unit test checks every theme.

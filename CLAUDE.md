@@ -3,7 +3,7 @@
 > This file is read by Claude Code at the start of every session.
 > Update it after every meaningful change. Don't trust memory — trust this file.
 
-**Last updated:** 2026-11-15 (phase 0.3 polish)
+**Last updated:** 2026-11-17 (phase 0.3 polish)
 **Owner:** Jan
 **Status:** Phase 0.3 (engine + Super Mario World): #5–#7 merged, but SMW reaches `main` only via PR #8; polish + automatic goals in a PR on top of #8. Discord sign-in deferred (see Current build state)
 
@@ -306,10 +306,12 @@ _Update this section after every meaningful session._
 
 - **Whole-game goals tick themselves** — an `auto` condition on the goal's `check`, worked out from progress and never saved. See `docs/decisions/2026-11-15-automatic-goals.md`.
 - **SMW skin:** Press Start 2P for all text, no `>>>` chevrons or ▷ arrows, icons at one pixel scale (2× desktop, 1.5× phone). Pixelify Sans removed.
+- **SMW panels** run edge to edge: gold only behind the title bar (2026-11-17).
+- **Site header: minimal** — 48px bar, checkmark mark + wordmark, avatar or Sign in pill, 1040px wide, themed by `--header-*` (2026-11-17).
 
 **Next session goal:** make sure prod has the `progress` migration (`pnpm db:push:prod`), merge #8, then the polish PR; verify on production at phone and desktop size. Then phase 0.4 — propose a plan first.
 
-**In flight:** PR #8 (SMW to `main`) and the polish + automatic goals PR stacked on it. Jan ran `db:push` for the `progress` migration on 2026-11-15; confirm prod has it before merging #8.
+**In flight:** PR #8 (SMW to `main`); #9 (polish + automatic goals) is merged into its branch; #10 (edge-to-edge panels) and the minimal-header PR are stacked on it — merge the header PR into #10's branch, then #10, then #8. Jan ran `db:push` for the `progress` migration on 2026-11-15; confirm prod has it before merging #8.
 
 **Stacked PRs:** merge the top one first (into its parent branch), then work down to `main`. Merging the bottom one first leaves the rest stranded on a merged branch (that's how #8 happened).
 
