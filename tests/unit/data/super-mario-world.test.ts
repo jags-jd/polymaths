@@ -1,7 +1,7 @@
 import { describe, expect, it } from "vitest";
 
 import game from "@/data/games/super-mario-world/index";
-import { EMPTY_PROGRESS, gameProgress, gameStats, sectionProgress, statValue } from "@/lib/games/progress";
+import { autoGoalValue, EMPTY_PROGRESS, gameProgress, gameStats, sectionProgress, statValue } from "@/lib/games/progress";
 import { gameSchema } from "@/lib/games/schema";
 
 /**
@@ -67,6 +67,15 @@ describe("Super Mario World data", () => {
       s.entries.flatMap((e) => e.trackables.filter((t) => t.kind === "pips" && "singlePip" in t && t.singlePip).map((t) => t.id)),
     );
     expect(single).toEqual(["smw-chocolate-secret-dragon-coins"]);
+  });
+
+  it("has goals that tick themselves, with the right conditions", () => {
+    const goals = game.goals.map((e) => e.trackables[0]).map((t) => [t.id, "auto" in t && t.auto ? autoGoalValue(game, t.auto, EMPTY_PROGRESS).total : null]);
+    expect(goals).toEqual([
+      ["smw-goal-96-exits-done", 96],
+      ["smw-goal-all-switches-done", 4],
+      ["smw-goal-special-zone-done", 8],
+    ]);
   });
 
   it("section totals add up to the game total", () => {

@@ -33,7 +33,8 @@ export async function setCheck(gameSlug: string, trackableId: string, done: bool
   const input = checkInput.safeParse({ gameSlug, trackableId, done });
   if (!input.success) return invalid("check", gameSlug, trackableId);
   const ref = lookup(input.data.gameSlug, input.data.trackableId);
-  if (ref?.kind !== "check") return invalid("check", gameSlug, trackableId);
+  // Automatic goals are worked out from other progress, never saved.
+  if (ref?.kind !== "check" || ref.auto) return invalid("check", gameSlug, trackableId);
   return setFlag(input.data.gameSlug, input.data.trackableId, input.data.done);
 }
 

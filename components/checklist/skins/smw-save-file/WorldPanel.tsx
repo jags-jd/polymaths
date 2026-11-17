@@ -2,7 +2,7 @@
 
 import { useChecklist } from "@/components/checklist/ChecklistProvider";
 import { LevelRow } from "@/components/checklist/skins/smw-save-file/LevelRow";
-import { Chevrons, FramedPanel, InnerBox, Score, Star } from "@/components/checklist/skins/smw-save-file/parts";
+import { FramedPanel, InnerBox, Score, Star } from "@/components/checklist/skins/smw-save-file/parts";
 import { isComplete, sectionProgress } from "@/lib/games/progress";
 import type { Section } from "@/lib/games/schema";
 
@@ -17,29 +17,23 @@ export function WorldPanel({ section }: { section: Section }) {
 
   return (
     <FramedPanel id={section.id} labelledBy={titleId}>
-      <div className="flex flex-wrap items-center gap-x-3 gap-y-2 px-2.5 pt-2 pb-3">
-        <Chevrons />
-        <svg aria-hidden="true" width="14" height="16" viewBox="0 0 14 16" className="shrink-0">
-          <path d="M1 1l12 7-12 7z" fill="#FFFFFF" stroke="var(--smw-ink)" strokeWidth="2" strokeLinejoin="round" />
-        </svg>
-        <h2
-          id={titleId}
-          className="m-0 min-w-0 flex-[1_1_200px] font-(family-name:--font-pixel) text-[clamp(19.5px,3.6vw,28.5px)] leading-[1.4] uppercase [text-shadow:2px_2px_0_#FFFFFF]"
-        >
+      <div className="flex items-center gap-x-3 px-2 pt-1.5 pb-2.5 sm:px-2.5 sm:pt-2 sm:pb-3">
+        <h2 id={titleId} className="m-0 min-w-0 flex-1 text-[clamp(14px,2.4vw,20px)] leading-[1.4] uppercase [text-shadow:2px_2px_0_#FFFFFF]">
           {section.title}
         </h2>
+        {/* Space is always reserved, so nothing moves when it appears. Just the star on phones. */}
         <span
-          className="inline-flex items-center gap-1.5 rounded-md border-2 border-(--smw-brown) bg-(--smw-inner) px-2.5 py-1 text-[21px] font-bold uppercase"
+          className="inline-flex shrink-0 items-center gap-1.5 text-[10px] uppercase sm:rounded-md sm:border-2 sm:border-(--smw-brown) sm:bg-(--smw-inner) sm:px-2 sm:py-1"
           style={{ visibility: complete ? "visible" : "hidden" }}
           aria-hidden={!complete}
         >
-          <Star />
-          World complete
+          <Star size={14} />
+          <span className="sr-only sm:not-sr-only">World complete</span>
         </span>
-        <Score done={p.done} total={p.total} className="text-[16.5px]" />
+        <Score done={p.done} total={p.total} className="shrink-0 text-[11px] sm:text-xs" />
       </div>
-      <InnerBox className="flex p-1.5">
-        <div className="flex min-w-0 flex-1 flex-col px-1 pt-0.5 pb-1.5">
+      <InnerBox className="flex p-1 sm:p-1.5">
+        <div className="flex min-w-0 flex-1 flex-col px-0.5 pb-1 sm:px-1 sm:pb-1.5">
           {entries.map((entry, i) => (
             <LevelRow
               key={entry.id}

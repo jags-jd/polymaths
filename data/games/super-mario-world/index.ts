@@ -753,9 +753,24 @@ const game = {
     },
   ],
   goals: [
-    { id: "smw-goal-96-exits", name: "Find all 96 exits", kind: "goal", trackables: [{ id: "smw-goal-96-exits-done", kind: "check", label: "Find all 96 exits", icon: "star" }] },
-    { id: "smw-goal-all-switches", name: "Press all four switches", kind: "goal", trackables: [{ id: "smw-goal-all-switches-done", kind: "check", label: "Press all four switches", icon: "star" }] },
-    { id: "smw-goal-special-zone", name: "Clear the Special Zone", kind: "goal", trackables: [{ id: "smw-goal-special-zone-done", kind: "check", label: "Clear the Special Zone", icon: "star" }] },
+    {
+      id: "smw-goal-96-exits",
+      name: "Find all 96 exits",
+      kind: "goal",
+      trackables: [{ id: "smw-goal-96-exits-done", kind: "check", label: "Find all 96 exits", icon: "star", auto: { match: { idSuffix: "-exit" }, unit: "exits" } }],
+    },
+    {
+      id: "smw-goal-all-switches",
+      name: "Press all four switches",
+      kind: "goal",
+      trackables: [{ id: "smw-goal-all-switches-done", kind: "check", label: "Press all four switches", icon: "star", auto: { match: { entryKind: "switch-palace" }, unit: "switches" } }],
+    },
+    {
+      id: "smw-goal-special-zone",
+      name: "Clear the Special Zone",
+      kind: "goal",
+      trackables: [{ id: "smw-goal-special-zone-done", kind: "check", label: "Clear the Special Zone", icon: "star", auto: { match: { idSuffix: "-exit" }, section: "smw-special-zone", unit: "exits" } }],
+    },
   ],
   stats: [
     { label: "Exits", match: { idSuffix: "-exit" }, count: "completed" },

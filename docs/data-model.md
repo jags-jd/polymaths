@@ -80,9 +80,17 @@ type TrackableBase = {
 }
 
 type Trackable =
-  | (TrackableBase & { kind: 'check' })
+  | (TrackableBase & { kind: 'check'; auto?: AutoGoal })   // auto: whole-game goals only
   | (TrackableBase & { kind: 'pips';  count: number; singlePip?: true })   // 2–30; 1 only with singlePip
   | (TrackableBase & { kind: 'meter'; max: number })     // 2–999
+
+// A goal that ticks itself when every matched section trackable is complete.
+// Worked out from progress, never saved — decisions/2026-11-15-automatic-goals.md
+type AutoGoal = {
+  match: { trackableKind?: Trackable['kind']; icon?: string; entryKind?: string; idSuffix?: string } // at least one
+  section?: string              // only look inside this section
+  unit: string                  // 'exits' → the chip shows '52/96 exits'
+}
 
 type StatDef = {
   label: string                 // 'Exits', 'Dragon Coins', '3-Up Moons', 'Worlds'
@@ -183,6 +191,7 @@ Pure functions, fully unit tested:
 - `isComplete(x)` → `total > 0 && done === total` (something with nothing left to count, e.g. all retired, is never complete)
 - Percentages round down, so 100% only shows when truly complete.
 - `gameProgress` includes the whole-game `goals`; `sectionProgress` includes the section's `extras`.
+- Automatic goals (`auto`) are worked out by `isGoalDone` / `goalProgress` / `autoGoalValue`; a saved row for one is ignored and `setCheck` refuses them. Never read a goal's row directly.
 - `statValue` / `gameStats` compute the summary tiles.
 
 Item lookups for the server actions live in `lib/games/load.ts`: `getTrackable(game, id)` and `resolveItem(game, itemId)` return null for unknown or retired items, a pip suffix on a non-pips trackable, or a pip number out of range.

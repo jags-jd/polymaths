@@ -15,7 +15,7 @@ Game.skin    → optional: replaces the section + entry renderers entirely (e.g.
 icons        → components/icons/<slug>/, each with an outline and a filled state
 ```
 
-Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.ts` (theme → game `accent` → skin, via `gameTokens`). A game page renders `<ThemeStyle game={game} />`, a plain `<style>` that sets them on `:root` while the page is mounted, so the site header (outside the page, in the root layout) follows the theme too; elsewhere the header and body fall back to the default look (`.site-header` in `app/globals.css`). Components only use the variables (`bg-(--surface)`, `text-(--text)`), never raw hex. Skins add their own prefixed tokens (`--smw-frame`, …) in `SKIN_TOKENS`. Theme fonts load through `next/font` in `app/layout.tsx` with `preload: false` (Nunito, Press Start 2P and Pixelify Sans so far; the others arrive with their first game in 0.4).
+Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.ts` (theme → game `accent` → skin, via `gameTokens`). A game page renders `<ThemeStyle game={game} />`, a plain `<style>` that sets them on `:root` while the page is mounted, so the site header (outside the page, in the root layout) follows the theme too; elsewhere the header and body fall back to the default look (`.site-header` in `app/globals.css`). Components only use the variables (`bg-(--surface)`, `text-(--text)`), never raw hex. Skins add their own prefixed tokens (`--smw-frame`, …) in `SKIN_TOKENS`. Theme fonts load through `next/font` in `app/layout.tsx` with `preload: false` (Nunito and Press Start 2P so far; the others arrive with their first game in 0.4).
 
 ### Token list (every theme defines all of these)
 
@@ -101,12 +101,14 @@ Inspired by a save-file / course-list screen.
 
 - Page `#FFF1BF` with a faint dot pattern.
 - Each world is a **framed panel**: `#F8C030` frame, 3px `#6B4700` border, 16px radius, `0 5px 0 #6B4700` shadow; inner box `#FFFBEA` with the same border.
-- **Title bars:** `>>>` chevrons + ▷ + world name in **Press Start 2P** with a 2px white text-shadow.
+- **One font:** everything on the page is **Press Start 2P** (Jan, 2026-11-15), sized small (10–12px for names and text) because it's wide. It has one weight, so no bold.
+- **Title bars:** world name with a 2px white text-shadow, and the score on the right. No chevrons or arrows.
 - **Rows:** rounded (10px) bars, alternating `#FBE3F0` / `#FAD27A`, ~4px apart, no labels.
-- **Proportions (desktop):** stage names **27px** Pixelify Sans 700 uppercase; icons 1.75× the base size — exit/castle tiles ~40–46px, Dragon Coins 33×44px packed almost touching, moon 46px. Names column ~460px, then exits, then 5 coins, then moon, all column-aligned.
-- **Phones:** sizes scale with `clamp()`; icons stay on one line under the name; no horizontal scroll.
+- **Proportions:** every pixel icon is drawn at the same scale, `--smw-px` screen pixels per art pixel: **2** from `sm`, **1.5** on phones. So a 16-pixel exit is 32px and a 12×16 Dragon Coin is 24×32px on desktop. Rows are 48px (40px on phones). Names column ~330px, then exits, then coins (as wide as the world's biggest set), then moon, all column-aligned.
+- **Phones:** icons sit on one line under the name; world tabs are one swipeable line; no horizontal page scroll.
 - **Summary panel:** striped red progress bar and a two-column score list (one column on phones).
-- "World complete" badge and tab stars **reserve their space** so nothing moves when they appear.
+- The "World complete" badge **reserves its space** so nothing moves when it appears (just the star on phones). A tab gets a star when its world is complete.
+- **Whole game:** goals tick themselves (`auto`, see `data-model.md`), so they are flat cards, not buttons, each showing its progress ("52/96 exits").
 
 ---
 

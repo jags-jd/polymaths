@@ -13,10 +13,16 @@ let nextResults: { data?: unknown; error?: { code: string } | null }[] = [];
 let user: { id: string } | null = { id: "user-1" };
 
 vi.mock("server-only", () => ({}));
-vi.mock("@/data/games/registry", () => ({
-  registry: [{ game: fixtureGame, art: fixtureArt }],
-  games: [fixtureGame],
-}));
+// The fixture again, under its own slug, with its goal made automatic.
+vi.mock("@/data/games/registry", async () => {
+  const { clone } = await import("@/tests/unit/fixtures/games");
+  const game = { ...clone(fixtureGame), slug: "fixture-auto" };
+  (game.goals[0].trackables[0] as { auto?: unknown }).auto = { match: { idSuffix: "-exit" }, unit: "exits" };
+  return {
+    registry: [{ game: fixtureGame, art: fixtureArt }, { game, art: fixtureArt }],
+    games: [fixtureGame, game],
+  };
+});
 vi.mock("@/lib/auth/session", () => ({ getSessionUser: async () => user }));
 vi.mock("@/lib/supabase/server", () => ({
   createClient: async () => ({
@@ -79,6 +85,13 @@ describe("setCheck", () => {
     ]) {
       expect(await setCheck(game, id, true), id).toEqual({ ok: false, reason: "invalid" });
     }
+    expect(calls).toEqual([]);
+  });
+
+  it("refuses automatic goals, which are never saved", async () => {
+    expect(await setCheck(GAME, "fq-goal-all-exits-done", true)).toEqual({ ok: true }); // manual goal
+    calls.length = 0;
+    expect(await setCheck("fixture-auto", "fq-goal-all-exits-done", true)).toEqual({ ok: false, reason: "invalid" });
     expect(calls).toEqual([]);
   });
 

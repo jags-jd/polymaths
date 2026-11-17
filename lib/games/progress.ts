@@ -1,5 +1,5 @@
 import { pipId } from "@/lib/games/ids";
-import type { Entry, EntryGroup, Game, Section, StatDef, Trackable } from "@/lib/games/schema";
+import type { AutoGoal, Check, Entry, EntryGroup, Game, Section, StatDef, Trackable, TrackableMatch } from "@/lib/games/schema";
 
 /**
  * Progress maths — see docs/data-model.md ("Progress maths").
@@ -79,12 +79,46 @@ export function sectionProgress(section: Section, progress: ProgressMap): Progre
   ]);
 }
 
-/** Every section plus the whole-game goals. */
+/** Every section plus the whole-game goals (automatic goals worked out, not read). */
 export function gameProgress(game: Game, progress: ProgressMap): Progress {
   return sum([
     ...game.sections.map((s) => sectionProgress(s, progress)),
-    ...(game.goals ?? []).map((e) => entryProgress(e, progress)),
+    ...(game.goals ?? []).map((e) => goalProgress(game, e, progress)),
   ]);
+}
+
+/** A whole-game goal entry. Automatic checks ignore any saved row. */
+export function goalProgress(game: Game, entry: Entry, progress: ProgressMap): Progress {
+  if (entry.retired) return makeProgress(0, 0);
+  return sum(
+    entry.trackables.map((t) => {
+      if (t.kind !== "check" || !t.auto || t.retired) return trackableProgress(t, progress);
+      return makeProgress(isGoalDone(game, t, progress) ? 1 : 0, 1);
+    }),
+  );
+}
+
+/**
+ * Whether a goal check is done: automatic goals when their condition is met,
+ * manual goals when ticked.
+ */
+export function isGoalDone(game: Game, check: Check, progress: ProgressMap): boolean {
+  if (!check.auto) return (progress.get(check.id) ?? 0) >= 1;
+  const v = autoGoalValue(game, check.auto, progress);
+  return v.total > 0 && v.done === v.total;
+}
+
+/** How far an automatic goal has got: matched trackables completed / matched. */
+export function autoGoalValue(game: Game, auto: AutoGoal, progress: ProgressMap): { done: number; total: number } {
+  let done = 0;
+  let total = 0;
+  for (const { section, entry, trackable } of sectionTrackables(game)) {
+    if (auto.section && section.id !== auto.section) continue;
+    if (entry.retired || trackable.retired || !matchesTrackable(auto.match, entry, trackable)) continue;
+    done += isComplete(trackableProgress(trackable, progress)) ? 1 : 0;
+    total += 1;
+  }
+  return { done, total };
 }
 
 /**
@@ -116,11 +150,7 @@ export function statValue(game: Game, stat: StatDef, progress: ProgressMap, only
   let total = 0;
   for (const { section, entry, trackable } of sectionTrackables(game)) {
     if (onlySection && section.id !== onlySection.id) continue;
-    if (entry.retired || trackable.retired) continue;
-    if (match.trackableKind && trackable.kind !== match.trackableKind) continue;
-    if (match.icon && trackable.icon !== match.icon) continue;
-    if (match.entryKind && entry.kind !== match.entryKind) continue;
-    if (match.idSuffix && !trackable.id.endsWith(match.idSuffix)) continue;
+    if (entry.retired || trackable.retired || !matchesTrackable(match, entry, trackable)) continue;
 
     const p = trackableProgress(trackable, progress);
     if (stat.count === "units") {
@@ -139,6 +169,15 @@ export function gameStats(game: Game, progress: ProgressMap): StatValue[] {
 }
 
 // --- Helpers -------------------------------------------------------------------
+
+/** Whether a trackable passes every given filter. */
+export function matchesTrackable(match: TrackableMatch, entry: Entry, trackable: Trackable): boolean {
+  if (match.trackableKind && trackable.kind !== match.trackableKind) return false;
+  if (match.icon && trackable.icon !== match.icon) return false;
+  if (match.entryKind && entry.kind !== match.entryKind) return false;
+  if (match.idSuffix && !trackable.id.endsWith(match.idSuffix)) return false;
+  return true;
+}
 
 /** Every trackable in a game's sections (entries and extras), in order. */
 export function* sectionTrackables(game: Game): Generator<{ section: Section; entry: Entry; trackable: Trackable }> {

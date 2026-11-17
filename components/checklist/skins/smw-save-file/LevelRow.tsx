@@ -12,15 +12,17 @@ import { cn } from "@/lib/utils";
 
 /**
  * One level: name, then exits (every check but the moon), Dragon Coins
- * (pips), and the 3-Up Moon, each in an aligned column. Sizes follow the
- * mockup; --smw-btn / --smw-coin / --smw-gap are set on the skin root.
+ * (pips), and the 3-Up Moon, each in an aligned column. --smw-px, --smw-btn,
+ * --smw-coin, --smw-row and --smw-gap are set on the skin root (SaveFile).
  */
 
 type Check = Extract<Trackable, { kind: "check" }>;
 
-const ICON = "h-auto w-[clamp(30px,8vw,46px)]";
-const COIN_ICON = "h-auto w-[clamp(21px,5.8vw,33px)]";
-const BUTTON = "flex h-[clamp(52px,12vw,70px)] shrink-0 items-center justify-center";
+// Art width × the pixel scale, so every icon has the same pixel size.
+const ICON = "h-auto w-[calc(16*var(--smw-px))]";
+const COIN_ICON = "h-auto w-[calc(12*var(--smw-px))]";
+const BUTTON = "flex h-(--smw-row) shrink-0 items-center justify-center";
+const NAME = "text-[10px] leading-[1.6] uppercase sm:text-xs";
 
 function icon(key: string): SmwIconPair {
   if (!isSmwIconKey(key)) throw new Error(`Super Mario World has no "${key}" icon`);
@@ -64,30 +66,30 @@ export function LevelRow({ entry, stripe, spoiler, coinSlots }: Props) {
   return (
     <div
       className={cn(
-        "mt-1 flex min-h-[clamp(52px,12vw,70px)] flex-wrap items-center gap-x-5 rounded-[10px] px-[clamp(10px,3vw,18px)]",
+        "mt-1 flex min-h-(--smw-row) flex-wrap items-center gap-x-4 rounded-lg px-2.5 sm:px-3.5",
         stripe === "a" ? "bg-(--smw-row-a)" : "bg-(--smw-row-b)",
       )}
     >
-      <div className="flex min-w-0 flex-[0_1_460px] items-center py-2">
+      <div className="flex min-w-0 flex-[0_1_330px] items-center py-2 sm:py-0">
         {hidden ? (
           <button type="button" onClick={() => setRevealed(true)} className={cn(FOCUS, "text-left")} aria-label="Hidden spoiler. Reveal level name">
-            <span aria-hidden="true" className="block blur-[7px] select-none text-[clamp(20px,5vw,27px)] leading-[1.1] font-bold uppercase">
+            <span aria-hidden="true" className={cn(NAME, "block blur-[5px] select-none")}>
               {entry.name}
             </span>
           </button>
         ) : (
-          <span className="text-[clamp(20px,5vw,27px)] leading-[1.1] font-bold uppercase">{entry.name}</span>
+          <span className={NAME}>{entry.name}</span>
         )}
       </div>
       <div className="flex max-w-full min-w-0 flex-nowrap items-center gap-x-(--smw-gap)">
         <div className="flex w-[calc(var(--smw-btn)*2)] shrink-0">{exits.map(checkButton)}</div>
         {/* As wide as the world's biggest coin set, so moons line up; on
-            phones it may shrink to 5 coins and wrap (Way Cool has 8). */}
+            narrow phones it may shrink to 5 coins and wrap. */}
         <div
           className="flex w-[calc(var(--smw-coin)*var(--coin-slots))] min-w-[calc(var(--smw-coin)*5)] flex-wrap"
           style={{ "--coin-slots": coinSlots } as CSSProperties}
         >
-          {coins.length === 0 && <span className="block h-[clamp(52px,12vw,70px)]" />}
+          {coins.length === 0 && <span className="block h-(--smw-row)" />}
           {coins.map((t) =>
             Array.from({ length: t.count }, (_, i) => {
               const n = i + 1;
