@@ -89,8 +89,8 @@ describe("Yoshi's Crafted World data", () => {
     expect(hiddenHills.entries.flatMap((e) => e.trackables).some((t) => t.icon === "pup")).toBe(false);
   });
 
-  it("blurs the final world and the costume named after the final boss", () => {
-    expect(game.sections.filter((s) => "spoiler" in s && s.spoiler).map((s) => s.id)).toEqual(["ycw-shadowville"]);
+  it("blurs the final world, Hidden Hills and the costume named after the final boss", () => {
+    expect(game.sections.filter((s) => "spoiler" in s && s.spoiler).map((s) => s.id)).toEqual(["ycw-shadowville", "ycw-hidden-hills"]);
     const costumes = game.sections.flatMap((s) => (s.extras ?? []).flatMap((g) => g.entries));
     expect(costumes.filter((e) => "spoiler" in e && e.spoiler).map((e) => e.id)).toEqual(["ycw-costume-the-great-king-bowser"]);
   });
