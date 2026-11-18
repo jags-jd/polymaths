@@ -1,5 +1,6 @@
 import type { z } from "zod";
 
+import { autoGoalValue } from "@/lib/games/progress";
 import { artManifestSchema, collectIds, gameSchema, type Entry, type Game } from "@/lib/games/schema";
 
 /**
@@ -34,6 +35,15 @@ export function validateRegistry(registry: RegistryInput, fileExists: (publicPat
       const owner = idOwner.get(id);
       if (owner && owner !== game.slug) problems.push(`${label}: ID "${id}" is also used by ${owner}`);
       idOwner.set(id, game.slug);
+    }
+
+    // An automatic goal that matches nothing could never tick.
+    for (const entry of game.goals ?? []) {
+      for (const t of entry.trackables) {
+        if (t.kind === "check" && t.auto && autoGoalValue(game, t.auto, new Map()).total === 0) {
+          problems.push(`${label}: goal "${t.id}" ticks automatically but its condition matches nothing`);
+        }
+      }
     }
 
     const artResult = artManifestSchema.safeParse(raw.art);
