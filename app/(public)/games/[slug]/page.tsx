@@ -6,7 +6,7 @@ import { ChecklistProvider } from "@/components/checklist/ChecklistProvider";
 import { SaveFile } from "@/components/checklist/skins/smw-save-file/SaveFile";
 import { ThemeStyle } from "@/components/themes/ThemeStyle";
 import { getSessionUser } from "@/lib/auth/session";
-import { getGame, listGames } from "@/lib/games/load";
+import { getGame, hasPage, listGames } from "@/lib/games/load";
 import type { Game } from "@/lib/games/schema";
 import { getProgressRows } from "@/lib/progress/queries";
 
@@ -31,7 +31,7 @@ export default async function GamePage({ params }: PageProps<"/games/[slug]">) {
   const game = getGame((await params).slug);
   // `dynamicParams` isn't available with Cache Components, so unknown slugs
   // are rejected here. Games without a skin get the shared layouts in 0.4.
-  if (!game?.skin) notFound();
+  if (!game || !hasPage(game)) notFound();
 
   return (
     <>
