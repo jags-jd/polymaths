@@ -19,6 +19,8 @@ Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.t
 
 ### Token list (every theme defines all of these)
 
+**Site header** (`components/layout/SiteHeader.tsx`, same on every page): a minimal 48px bar, the checkmark mark + "Polymaths" wordmark (`--font-display`, else the site heading font) on the left, and the avatar (ringed, initials in the header colors) or a "Sign in" pill on the right. Content is 1040px wide to line up with a game page. Colors come from `--header-bg` / `--header-text` / `--header-stripe` (Jan chose "minimal", 2026-11-17).
+
 `--bg`, `--surface`, `--surface-2`, `--border`, `--text`, `--muted`, `--accent`, `--on-accent` (text on accent), `--done-bg`, `--done-border`, `--header-bg`, `--header-text`, `--header-stripe`, `--radius-card`, `--radius-control`, `--font-body`, `--font-display`, `--display-case` (`none` or `uppercase`), `--shadow-card`.
 
 Contrast: `--text` on `--bg`/`--surface`, `--muted` on `--surface`, and `--on-accent` on `--accent` must all be at least 4.5:1. A unit test checks every theme.
@@ -100,7 +102,7 @@ A skin replaces the section and entry renderers for one game. Allowed only when 
 Inspired by a save-file / course-list screen.
 
 - Page `#FFF1BF` with a faint dot pattern.
-- Each world is a **framed panel**: `#F8C030` frame, 3px `#6B4700` border, 16px radius, `0 5px 0 #6B4700` shadow; inner box `#FFFBEA` with the same border.
+- Each world (and the summary and Whole game cards) is a **panel**: a `#F8C030` title bar over a `#FFFBEA` body, 3px `#6B4700` border, 16px radius, `0 4px 0 #6B4700` shadow. The body runs to the border on the left, right and bottom (no gold around it, Jan 2026-11-17); a 3px brown line separates it from the title bar.
 - **One font:** everything on the page is **Press Start 2P** (Jan, 2026-11-15), sized small (10–12px for names and text) because it's wide. It has one weight, so no bold.
 - **Title bars:** world name with a 2px white text-shadow, and the score on the right. No chevrons or arrows.
 - **Rows:** rounded (10px) bars, alternating `#FBE3F0` / `#FAD27A`, ~4px apart, no labels.

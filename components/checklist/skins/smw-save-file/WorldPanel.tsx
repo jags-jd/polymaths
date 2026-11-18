@@ -17,7 +17,7 @@ export function WorldPanel({ section }: { section: Section }) {
 
   return (
     <FramedPanel id={section.id} labelledBy={titleId}>
-      <div className="flex items-center gap-x-3 px-2 pt-1.5 pb-2.5 sm:px-2.5 sm:pt-2 sm:pb-3">
+      <div className="flex items-center gap-x-3 px-3.5 py-2.5 sm:px-5 sm:py-3">
         <h2 id={titleId} className="m-0 min-w-0 flex-1 text-[clamp(14px,2.4vw,20px)] leading-[1.4] uppercase [text-shadow:2px_2px_0_#FFFFFF]">
           {section.title}
         </h2>
@@ -32,8 +32,8 @@ export function WorldPanel({ section }: { section: Section }) {
         </span>
         <Score done={p.done} total={p.total} className="shrink-0 text-[11px] sm:text-xs" />
       </div>
-      <InnerBox className="flex p-1 sm:p-1.5">
-        <div className="flex min-w-0 flex-1 flex-col px-0.5 pb-1 sm:px-1 sm:pb-1.5">
+      <InnerBox className="flex px-1.5 pt-0.5 pb-1.5 sm:px-2.5 sm:pb-2.5">
+        <div className="flex min-w-0 flex-1 flex-col">
           {entries.map((entry, i) => (
             <LevelRow
               key={entry.id}

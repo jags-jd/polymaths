@@ -2,6 +2,7 @@
 
 import { LogOut } from "lucide-react";
 
+import { HEADER_FOCUS } from "@/components/layout/header-styles";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import {
   DropdownMenu,
@@ -36,11 +37,14 @@ export function UserMenu({ ign, displayName, avatarUrl }: Props) {
     <DropdownMenu>
       <DropdownMenuTrigger
         aria-label="Account menu"
-        className="rounded-full outline-none focus-visible:ring-3 focus-visible:ring-ring/50"
+        className={`${HEADER_FOCUS} rounded-full`}
       >
-        <Avatar className="size-8">
+        {/* Ringed in the header's text color so it reads on any bar. */}
+        <Avatar className="size-8 ring-2 ring-[var(--header-text,var(--foreground))]">
           {avatarUrl && <AvatarImage src={avatarUrl} alt="" referrerPolicy="no-referrer" />}
-          <AvatarFallback>{initials(displayName)}</AvatarFallback>
+          <AvatarFallback className="bg-[var(--header-text,var(--foreground))] text-xs font-bold text-[var(--header-bg,var(--background))]">
+            {initials(displayName)}
+          </AvatarFallback>
         </Avatar>
       </DropdownMenuTrigger>
       <DropdownMenuContent align="end" className="min-w-48">
