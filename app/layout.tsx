@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 
 // Theme fonts (docs/themes.md). Not preloaded: a page only downloads them when
 // its theme's CSS variables use them.
-const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["600", "800", "900"], preload: false });
+const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["400", "600", "700", "800", "900"], preload: false });
 const pressStart = Press_Start_2P({ variable: "--font-press-start", subsets: ["latin"], weight: "400", preload: false });
 
 export const metadata: Metadata = {

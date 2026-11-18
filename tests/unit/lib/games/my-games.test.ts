@@ -54,11 +54,8 @@ describe("summarizeGames", () => {
     expect(summarizeGames([quest], [row("gone-game", "gg-x", "2026-11-10T09:00:00+00:00")])).toEqual({ started: [], others: [quest] });
   });
 
-  it("leaves out games without a page", () => {
-    const noPage = clone(otherGame) as Game;
-    expect(summarizeGames([quest, noPage], [row("other-game", "og-thing-done", "2026-11-10T09:00:00+00:00")])).toEqual({
-      started: [],
-      others: [quest],
-    });
+  it("lists every game, skinned or not (shared layouts since phase 0.4)", () => {
+    const plain = clone(otherGame) as Game;
+    expect(summarizeGames([quest, plain], [])).toEqual({ started: [], others: [quest, plain] });
   });
 });

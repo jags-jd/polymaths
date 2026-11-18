@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
 
-import { contrastRatio, gameTokens, SKIN_TOKENS, THEMES, tokensToCss } from "@/lib/themes/tokens";
+import { contrastRatio, GAME_TOKENS, gameTokens, SKIN_TOKENS, THEMES, tokensToCss } from "@/lib/themes/tokens";
+import { games } from "@/data/games/registry";
 
 describe("contrastRatio", () => {
   it("matches known values", () => {
@@ -39,7 +40,30 @@ describe("smw-save-file skin", () => {
   });
 });
 
+// Every registered game's final tokens (theme + accent + overrides + skin) keep
+// the same contrast rules, including white text on the accent (filled chips).
+describe.each(games.map((g) => [g.slug, gameTokens(g)] as const))("game %s", (_slug, t) => {
+  it.each([
+    ["text", "bg"],
+    ["text", "surface"],
+    ["muted", "surface"],
+    ["muted", "bg"],
+    ["on-accent", "accent"],
+    ["accent", "surface"],
+  ])("%s on %s is at least 4.5:1", (fg, bg) => {
+    if (t[fg]!.startsWith("var(") || t[bg]!.startsWith("var(")) return;
+    expect(contrastRatio(t[fg]!, t[bg]!)).toBeGreaterThanOrEqual(4.5);
+  });
+});
+
 describe("gameTokens", () => {
+  it("applies a game's own overrides after the accent", () => {
+    const t = gameTokens({ slug: "yoshis-crafted-world", theme: "nintendo", accent: "#1F7F2D" });
+    expect(t.bg).toBe(GAME_TOKENS["yoshis-crafted-world"]!.bg);
+    expect(t["header-bg"]).toBe("#1F7F2D");
+    expect(t["header-stripe"]).toBe("#E5202E");
+  });
+
   it("applies the accent, and on nintendo the header too", () => {
     const t = gameTokens({ theme: "nintendo", accent: "#1F7F2D" });
     expect(t.accent).toBe("#1F7F2D");

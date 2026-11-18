@@ -41,7 +41,10 @@ test("a player's started games show under My games with their progress", async (
   await page.goto("/");
   const card = page.getByRole("region", { name: "My games" }).getByRole("link", { name: /Super Mario World/ });
   await expect(card).toContainText("1 of 358 done");
-  await expect(page.getByRole("region", { name: "All games" })).toHaveCount(0);
+  // Started games move out of All games; the rest stay there.
+  const allGames = page.getByRole("region", { name: "All games" });
+  await expect(allGames.getByRole("link", { name: /Super Mario World/ })).toHaveCount(0);
+  await expect(allGames.getByRole("link", { name: /Yoshi's Crafted World/ })).toBeVisible();
   await noHorizontalScroll(page);
 
   await card.click();
