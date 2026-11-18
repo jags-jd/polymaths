@@ -315,7 +315,7 @@ _Update this section after every meaningful session._
 
 **In flight:** Yoshi's Crafted World data (`data/yoshis-crafted-world-initial` → `main`): 17 worlds, 43 courses, 6 bosses, 693 Smiley Flowers, 121 crafts, 170 costumes, 958 units. Hidden (`hasPage` needs a skin) until the shared layouts land.
 
-**Decisions for Yoshi (Jan, 2026-11-18):** track score/race flowers; leave out Amiibo costumes; blur the final world (Shadowville) and final boss; use the mockup's world order. Automatic goals can now match several filter sets and count units (`count: "units"`), used by the Sundream Stone goal (693 flowers).
+**Decisions for Yoshi (Jan, 2026-11-18):** track score/race flowers; Amiibo costumes later (not 0.4); blur Shadowville (final world + boss) and Hidden Hills; keep boss challenges and a Sprout tick per course; use the mockup's world order. Automatic goals can now match several filter sets and count units (`count: "units"`), used by the Sundream Stone goal (693 flowers).
 
 **Stacked PRs:** merge the top one first (into its parent branch), then work down to `main`. Merging the bottom one first leaves the rest stranded on a merged branch (that's how #8 happened).
 

@@ -1226,6 +1226,7 @@ const game = {
       title: "Hidden Hills",
       label: "Post-game",
       layout: "cards",
+      spoiler: true,
       entries: [
         {
           id: "ycw-rough-rolling",
