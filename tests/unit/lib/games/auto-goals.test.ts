@@ -37,6 +37,12 @@ describe("automatic goals: schema", () => {
     expect(messages(withAutoGoal({ match: {}, unit: "things" }))).toContain("An automatic goal needs at least one match filter");
   });
 
+  it("accepts several filter sets, each needing a filter", () => {
+    expect(messages(withAutoGoal({ match: [{ idSuffix: "-exit" }, { trackableKind: "pips" }], unit: "things" }))).toEqual([]);
+    expect(messages(withAutoGoal({ match: [{ idSuffix: "-exit" }, {}], unit: "things" }))).toContain("An automatic goal needs at least one match filter");
+    expect(messages(withAutoGoal({ match: [], unit: "things" })).length).toBeGreaterThan(0);
+  });
+
   it("rejects a section that doesn't exist", () => {
     expect(messages(withAutoGoal({ ...allExits, section: "fq-nowhere" }))).toContain('No section "fq-nowhere"');
   });
@@ -63,6 +69,18 @@ describe("automatic goals: progress", () => {
   it("counts matched trackables", () => {
     expect(autoGoalValue(game, allExits, map({}))).toEqual({ done: 0, total: 3 });
     expect(autoGoalValue(game, allExits, map({ "fq-meadow-1-exit": 1 }))).toEqual({ done: 1, total: 3 });
+  });
+
+  it("matches any of several filter sets, counting each trackable once", () => {
+    // Exits (3) + pips (meadow coins, cave single pip); "-exit" and pips never overlap here.
+    const either: AutoGoal = { match: [{ idSuffix: "-exit" }, { trackableKind: "pips" }, { idSuffix: "-exit" }], unit: "things" };
+    expect(autoGoalValue(game, either, map({ "fq-meadow-1-exit": 1, "fq-cave-1-coins#1": 1 }))).toEqual({ done: 2, total: 5 });
+  });
+
+  it("can count units instead of completed trackables", () => {
+    const coins: AutoGoal = { match: { trackableKind: "pips" }, count: "units", unit: "coins" };
+    // Meadow coins 5 + cave single pip 1 = 6 units.
+    expect(autoGoalValue(game, coins, map({ "fq-meadow-1-coins#2": 1, "fq-meadow-1-coins#4": 1 }))).toEqual({ done: 2, total: 6 });
   });
 
   it("can be limited to one section", () => {
