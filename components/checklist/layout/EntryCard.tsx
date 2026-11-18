@@ -13,7 +13,8 @@ import { cn } from "@/lib/utils";
 /**
  * One entry as a card (`cards` layout): kind, name, "x / y found", a % pill,
  * then its trackables in data order. Consecutive checks share a chip row;
- * each `group` ("Craft requests", "Flip Side") starts under its own heading.
+ * each `group` ("Craft requests", "Flip Side") sits in its own tinted panel.
+ * A card that reaches 100% fades to the done colours with a soft glow.
  */
 
 type Block = { group: string | undefined; items: Trackable[] };
@@ -54,9 +55,10 @@ export function EntryCard({ entry, section }: { entry: Entry; section: Section |
   const p = entryProgress(entry, progress);
   const hidden = isEntryHidden(section, entry, progress, isRevealed);
   const live = entry.trackables.filter((t) => !t.retired);
+  const complete = p.percent === 100;
   const card = cn(
-    "flex scroll-mt-24 flex-col gap-4 rounded-(--radius-card) border-2 p-4 transition-shadow sm:p-5",
-    p.percent === 100 ? "border-(--done-border) bg-(--done-bg)" : "border-(--border) bg-(--surface)",
+    "flex scroll-mt-24 flex-col gap-4 rounded-(--radius-card) border-2 p-4 transition-[background-color,border-color,box-shadow] duration-300 sm:p-5",
+    complete ? "border-(--done-border) bg-(--done-bg) shadow-[0_0_0_4px_color-mix(in_srgb,var(--done-border)_14%,transparent)]" : "border-(--border) bg-(--surface)",
     highlighted === entry.id && "ring-4 ring-(--accent)/40",
   );
 
@@ -81,13 +83,13 @@ export function EntryCard({ entry, section }: { entry: Entry; section: Section |
             {p.done} / {p.total} found
           </span>
         </div>
-        <span className={cn("shrink-0 rounded-full px-2.5 py-0.5 text-xs font-extrabold tabular-nums", p.percent === 100 ? "bg-(--accent) text-(--on-accent)" : "bg-(--surface-2) text-(--muted)")}>
+        <span className={cn("shrink-0 rounded-full px-2.5 py-0.5 text-xs font-extrabold tabular-nums", complete ? "bg-(--accent) text-(--on-accent)" : "bg-(--surface-2) text-(--muted)")}>
           {p.percent}%
         </span>
       </header>
       {entry.note && <p className="m-0 text-sm text-(--muted)">{entry.note}</p>}
       {toBlocks(live).map((block, i) => (
-        <div key={i} className={cn("flex flex-col gap-3", i > 0 && "border-t-2 border-dashed border-(--border) pt-3")}>
+        <div key={i} className={cn("flex flex-col gap-3", block.group && cn("rounded-[calc(var(--radius-card)-6px)] p-3", complete ? "bg-(--surface)/70" : "bg-(--surface-2)"))}>
           {block.group && <span className="text-xs font-bold tracking-wider text-(--muted) uppercase">{block.group}</span>}
           <BlockItems entryName={entry.name} items={block.items} />
         </div>

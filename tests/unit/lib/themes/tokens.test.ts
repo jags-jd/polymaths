@@ -48,6 +48,9 @@ describe.each(games.map((g) => [g.slug, gameTokens(g)] as const))("game %s", (_s
     ["text", "surface"],
     ["muted", "surface"],
     ["muted", "bg"],
+    ["text", "surface-2"],
+    ["muted", "surface-2"],
+    ["muted", "done-bg"],
     ["on-accent", "accent"],
     ["accent", "surface"],
   ])("%s on %s is at least 4.5:1", (fg, bg) => {
