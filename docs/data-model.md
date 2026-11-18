@@ -87,10 +87,12 @@ type Trackable =
 // A goal that ticks itself when every matched section trackable is complete.
 // Worked out from progress, never saved — decisions/2026-11-15-automatic-goals.md
 type AutoGoal = {
-  match: { trackableKind?: Trackable['kind']; icon?: string; entryKind?: string; idSuffix?: string } // at least one
+  match: Match | Match[]        // one filter set, or several (a trackable counts if it matches any)
   section?: string              // only look inside this section
+  count?: 'completed' | 'units' // default 'completed'; 'units' counts every pip ('650/693 Smiley Flowers')
   unit: string                  // 'exits' → the chip shows '52/96 exits'
 }
+type Match = { trackableKind?: Trackable['kind']; icon?: string; entryKind?: string; idSuffix?: string } // at least one
 
 type StatDef = {
   label: string                 // 'Exits', 'Dragon Coins', '3-Up Moons', 'Worlds'

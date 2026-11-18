@@ -54,16 +54,27 @@ export const trackableMatchSchema = z.strictObject({
  */
 export const autoGoalSchema = z
   .strictObject({
-    match: trackableMatchSchema,
+    /** One filter set, or several: a trackable counts if it matches any of them. */
+    match: z.union([trackableMatchSchema, z.array(trackableMatchSchema).min(1)]),
     /** Only look inside this section (its ID). */
     section: id.optional(),
+    /**
+     * "completed" (default) counts matched trackables that are complete;
+     * "units" counts their units (each pip), e.g. every Smiley Flower.
+     */
+    count: z.enum(["units", "completed"]).optional(),
     /** What the chip counts, e.g. "exits" → "52/96 exits". */
     unit: text,
   })
-  .refine((auto) => Object.values(auto.match).some((v) => v !== undefined), {
+  .refine((auto) => matchList(auto.match).every((m) => Object.values(m).some((v) => v !== undefined)), {
     path: ["match"],
     message: "An automatic goal needs at least one match filter",
   });
+
+/** An automatic goal's filter sets as a list. */
+export function matchList<T>(match: T | readonly T[]): readonly T[] {
+  return Array.isArray(match) ? match : [match as T];
+}
 
 export const checkSchema = z.strictObject({
   ...trackableBase,

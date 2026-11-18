@@ -1,5 +1,7 @@
 import superMarioWorldArt from "@/data/games/super-mario-world/art";
 import superMarioWorld from "@/data/games/super-mario-world/index";
+import yoshisCraftedWorldArt from "@/data/games/yoshis-crafted-world/art";
+import yoshisCraftedWorld from "@/data/games/yoshis-crafted-world/index";
 import type { ArtManifest, Game } from "@/lib/games/schema";
 
 /**
@@ -8,6 +10,9 @@ import type { ArtManifest, Game } from "@/lib/games/schema";
  */
 export type RegisteredGame = { game: Game; art: ArtManifest };
 
-export const registry: readonly RegisteredGame[] = [{ game: superMarioWorld, art: superMarioWorldArt }];
+export const registry: readonly RegisteredGame[] = [
+  { game: superMarioWorld, art: superMarioWorldArt },
+  { game: yoshisCraftedWorld, art: yoshisCraftedWorldArt },
+];
 
 export const games: readonly Game[] = registry.map((entry) => entry.game);

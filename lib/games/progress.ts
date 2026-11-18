@@ -1,5 +1,5 @@
 import { pipId } from "@/lib/games/ids";
-import type { AutoGoal, Check, Entry, EntryGroup, Game, Section, StatDef, Trackable, TrackableMatch } from "@/lib/games/schema";
+import { matchList, type AutoGoal, type Check, type Entry, type EntryGroup, type Game, type Section, type StatDef, type Trackable, type TrackableMatch } from "@/lib/games/schema";
 
 /**
  * Progress maths — see docs/data-model.md ("Progress maths").
@@ -108,15 +108,25 @@ export function isGoalDone(game: Game, check: Check, progress: ProgressMap): boo
   return v.total > 0 && v.done === v.total;
 }
 
-/** How far an automatic goal has got: matched trackables completed / matched. */
+/**
+ * How far an automatic goal has got: matched trackables completed / matched,
+ * or with `count: "units"`, their units done / units (every pip counts).
+ */
 export function autoGoalValue(game: Game, auto: AutoGoal, progress: ProgressMap): { done: number; total: number } {
+  const matches = matchList(auto.match);
   let done = 0;
   let total = 0;
   for (const { section, entry, trackable } of sectionTrackables(game)) {
     if (auto.section && section.id !== auto.section) continue;
-    if (entry.retired || trackable.retired || !matchesTrackable(auto.match, entry, trackable)) continue;
-    done += isComplete(trackableProgress(trackable, progress)) ? 1 : 0;
-    total += 1;
+    if (entry.retired || trackable.retired || !matches.some((m) => matchesTrackable(m, entry, trackable))) continue;
+    const p = trackableProgress(trackable, progress);
+    if (auto.count === "units") {
+      done += p.done;
+      total += p.total;
+    } else {
+      done += isComplete(p) ? 1 : 0;
+      total += 1;
+    }
   }
   return { done, total };
 }
