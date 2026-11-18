@@ -72,9 +72,14 @@ test("course cards have two sides: the course on the front, extras on the back",
   await expect(front).toHaveAttribute("aria-selected", "true");
   await expect(button(page, "Rail-Yard Run: Red Coins 1 of 20")).toBeVisible();
   await expect(button(page, "Rail-Yard Run: Found Sprout")).toHaveCount(0);
+  // Crafts sit on the side of the course they're found on.
+  await expect(button(page, "Rail-Yard Run: Cow ×5")).toBeVisible();
+  await expect(button(page, "Rail-Yard Run: Paper Airplane")).toHaveCount(0);
 
   await back.click();
   await expect(button(page, "Rail-Yard Run: Red Coins 1 of 20")).toHaveCount(0);
+  await expect(button(page, "Rail-Yard Run: Paper Airplane")).toBeVisible();
+  await expect(button(page, "Rail-Yard Run: Cow ×5")).toHaveCount(0);
   await button(page, "Rail-Yard Run: Found Sprout").click();
   await expect(back).toContainText("1/");
   await expect(front).toContainText("0/");

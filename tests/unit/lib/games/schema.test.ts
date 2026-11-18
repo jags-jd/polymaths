@@ -54,6 +54,12 @@ describe("gameSchema", () => {
     expect(gameSchema.safeParse(game).success).toBe(false);
   });
 
+  it("accepts side: \"back\" and nothing else (omitted means the front)", () => {
+    const check = { id: "fq-a-exit", kind: "check", label: "Exit", icon: "exit" };
+    expect(trackableSchema.safeParse({ ...check, side: "back" }).success).toBe(true);
+    expect(trackableSchema.safeParse({ ...check, side: "front" }).success).toBe(false);
+  });
+
   it("rejects unknown themes and skins, and bad accents", () => {
     expect(gameSchema.safeParse({ ...fixtureGame, theme: "pastel" }).success).toBe(false);
     expect(gameSchema.safeParse({ ...fixtureGame, skin: "made-up" }).success).toBe(false);

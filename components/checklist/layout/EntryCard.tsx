@@ -16,8 +16,8 @@ import { cn } from "@/lib/utils";
  * One entry as a card (`cards` layout): kind, name, "x / y found", a % pill,
  * then its trackables in data order. Consecutive checks share a chip row;
  * each `group` ("Craft requests", "Flip Side") sits in its own tinted panel.
- * An entry with both ungrouped and grouped trackables is a two-sided card
- * (CardSides): the course on the front, the grouped extras on the back.
+ * An entry with trackables marked `side: "back"` is a two-sided card
+ * (CardSides).
  * A card that reaches 100% fades to the done colours with a soft glow.
  */
 

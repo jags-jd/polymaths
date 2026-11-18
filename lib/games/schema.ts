@@ -32,6 +32,11 @@ const trackableBase = {
   label: text,
   icon: iconKey,
   group: text.optional(),
+  /**
+   * Which face of a two-sided entry card it sits on (docs/data-model.md). Only
+   * "back" is ever written; leaving it out means the front.
+   */
+  side: z.literal("back").optional(),
   spoiler: z.boolean().optional(),
   retired: z.boolean().optional(),
 };

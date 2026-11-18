@@ -22,7 +22,7 @@
 
 17 sections (worlds), layout `cards`. Each has course entries, a boss entry where the world has one, and an extras `gallery` of its 10 capsule costumes.
 
-Per course (front side → crafts → Flip Side → after the story):
+Per course, as a two-sided card. **Front:** the course, then the crafts found on the front side. **Back** (`side: "back"`): Flip Side, then the crafts found on the flip side, then after the story.
 
 | Trackable | Kind | Icon | ID | Flowers |
 | --------- | ---- | ---- | -- | ------- |
@@ -32,10 +32,10 @@ Per course (front side → crafts → Flip Side → after the story):
 | Hearts at the goal | `meter`, max 20 | `heart` | `<course>-hearts` | 1 at 20 |
 | Hidden Smiley Flowers | `pips` (2–8) | `flower` | `<course>-flowers` | 1 per pip |
 | Score/race flowers (6 courses) | `pips`, 3 | `score` | `<course>-score-flowers` | 1 per pip |
-| Each craft request | `check`, group "Craft requests" | `craft` | `<course>-craft-<craft>` | 1 |
-| Poochy Pups (40 main courses) | `pips`, 3, group "Flip Side" | `pup` | `<course>-pups` | 1 per pip |
-| All pups within the time limit | `check`, group "Flip Side" | `stopwatch` | `<course>-pups-in-time` | 1 |
-| Found Sprout | `check`, group "After the story" | `sprout` | `<course>-sprout` | — |
+| Each craft request | `check`, group "Craft requests"; `side: "back"` when found on the flip side (58 of 121) | `craft` | `<course>-craft-<craft>` | 1 |
+| Poochy Pups (40 main courses) | `pips`, 3, group "Flip Side", `side: "back"` | `pup` | `<course>-pups` | 1 per pip |
+| All pups within the time limit | `check`, group "Flip Side", `side: "back"` | `stopwatch` | `<course>-pups-in-time` | 1 |
+| Found Sprout | `check`, group "After the story", `side: "back"` | `sprout` | `<course>-sprout` | — |
 
 **Bosses** (6 boss levels): "Beaten (\<color\> Dream Gem)" `check` (`<boss>-cleared`, icon `tick`), plus "Boss challenges" `pips` ×3 (`<boss>-challenges`, icon `challenge`, 1 flower each). The challenges are listed in the entry's note. Mini-bosses fought inside courses (Yarrctopus, Shogun of Skewers, Mr. Geary) give nothing and aren't separate levels, so they aren't entries.
 
@@ -103,6 +103,7 @@ Researched 2026-11-18. Every value comes from a fetched page; the full per-cours
 - Hey Poor Player, [per-course collectible guides](https://www.heypoorplayer.com/2019/03/29/yoshis-crafted-world-guide/) (craft requests) and the [Sprout guide](https://www.heypoorplayer.com/2019/05/20/sprout-yoshis-crafted-world-guide/)
 - [joshuaw.xyz playing log](https://joshuaw.xyz/games/playinglog/yoshiscraftedworld/): a 100% checklist with costumes per world
 - [Wikipedia](https://en.wikipedia.org/wiki/Yoshi%27s_Crafted_World), [iMore costumes](https://www.imore.com/how-collect-all-costumes-yoshis-crafted-world), [iMore Hidden Hills](https://www.imore.com/how-unlock-hidden-hills-and-secret-final-boss-yoshis-crafted-world), [GamesHedge costumes](https://www.gameshedge.com/yoshis-crafted-world-costumes/), [Miketendo64 (317)](https://miketendo64.com/2019/03/30/spoilers-yoshis-crafted-world-all-smiley-flowers-reward/)
+- Front side or flip side for every craft (added 2026-11-19, from Jan): Super Mario Guides, [Craft locations](https://supermarioguides.com/guides/yoshis-crafted-world/craft-locations/). It's machine-translated from German, so names differ ("Cancer" = Crab, "screw" = Snail, "spirit level" = Dragonfly, "Antlitzfels" = Curious Rock); each course's list was matched to ours by order and count, and all 121 crafts and every count agree. 63 are on the front, 58 on the flip side; the three shared crafts (Caramel Billboard, Zebra, Can Robot) are on the front in all three of their courses.
 - 693 total: [Yoshi fan wiki](https://yoshi.fandom.com/wiki/Smiley_Flower) (search snippet; the page itself was blocked) and a 100%-completion video title
 - Blocked (403/402): Neoseeker, GameFAQs, GameSpot, Nintendo Life, Fandom. These are probably the best sources to settle the single-source items below.
 
@@ -114,6 +115,7 @@ Researched 2026-11-18. Every value comes from a fetched page; the full per-cours
 - Craft requests Clothesline, Crown and Flutter Sign: Hey Poor Player leaves them out. Neoseeker/GameFAQs search snippets agree, but those pages couldn't be fetched.
 - That each shared craft is one request: Super Mario Wiki (Hey Poor Player is consistent).
 - Dried Fish count (1).
+- Which side each craft is on: Super Mario Guides only, except 8 our earlier research also recorded, all of which agree (Clothesline, Paper Airplane, Milk Bottle, Derby Sheep, Pumpkin, Tulip, Buffalo, Flutter Sign). Hey Poor Player's per-course guides are the second source to check against.
 - Costumes: Shadowville (all 10), Hidden Hills (all 10) and Big Paper Peak's Mine Cart (Super Mario Wiki only).
 
 ## Calls made where sources disagree (please check)

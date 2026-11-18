@@ -12,9 +12,9 @@ import type { Entry, Trackable } from "@/lib/games/schema";
 import { cn } from "@/lib/utils";
 
 /**
- * A two-sided entry card: the course itself on the front (ungrouped
- * trackables), its grouped extras ("Craft requests", "Flip Side", "After the
- * story") on the back. Tabs show each side's count, so the side you can't see
+ * A two-sided entry card: trackables with `side: "back"` (Yoshi: the Flip
+ * Side pups and timer, flip-side crafts, the Sprout) on the back, everything
+ * else on the front (docs/data-model.md). Tabs show each side's count, so the side you can't see
  * still shows its progress.
  *
  * Both faces are always rendered, stacked in one grid cell, so the card is as
@@ -29,10 +29,10 @@ import { cn } from "@/lib/utils";
 type Side = "front" | "back";
 export type Sides = { front: Trackable[]; back: Trackable[] };
 
-/** Two sides only when an entry has both ungrouped and grouped trackables. */
+/** Two sides only when an entry has trackables on both faces. */
 export function splitSides(trackables: Trackable[]): Sides | null {
-  const front = trackables.filter((t) => !t.group);
-  const back = trackables.filter((t) => t.group);
+  const front = trackables.filter((t) => t.side !== "back");
+  const back = trackables.filter((t) => t.side === "back");
   return front.length > 0 && back.length > 0 ? { front, back } : null;
 }
 
