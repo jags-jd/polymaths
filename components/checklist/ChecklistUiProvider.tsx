@@ -15,8 +15,13 @@ type ChecklistUi = {
   reveal: (entryId: string) => void;
   /** The entry to highlight after a search jump, or null. */
   highlighted: string | null;
-  jumpTo: (entryId: string) => void;
+  /** The latest search jump: which entry, and the trackable label that matched (null for a name match). */
+  lastJump: Jump | null;
+  jumpTo: (entryId: string, matched?: string | null) => void;
 };
+
+/** `seq` makes every jump distinct, so jumping to the same card twice still flips it. */
+export type Jump = { entryId: string; matched: string | null; seq: number };
 
 const Context = createContext<ChecklistUi | null>(null);
 
@@ -65,6 +70,7 @@ export function ChecklistUiProvider({ gameSlug, children }: { gameSlug: string; 
 
   const [revealed, setRevealed] = useState<ReadonlySet<string>>(() => new Set());
   const [highlighted, setHighlighted] = useState<string | null>(null);
+  const [lastJump, setLastJump] = useState<Jump | null>(null);
 
   const setRevealAll = useCallback(
     (on: boolean) => {
@@ -74,8 +80,9 @@ export function ChecklistUiProvider({ gameSlug, children }: { gameSlug: string; 
     [key],
   );
 
-  const jumpTo = useCallback((entryId: string) => {
+  const jumpTo = useCallback((entryId: string, matched: string | null = null) => {
     setHighlighted(entryId);
+    setLastJump((prev) => ({ entryId, matched, seq: (prev?.seq ?? 0) + 1 }));
     document.getElementById(entryId)?.scrollIntoView({ behavior: "smooth", block: "center" });
     window.setTimeout(() => setHighlighted((current) => (current === entryId ? null : current)), 2400);
   }, []);
@@ -87,9 +94,10 @@ export function ChecklistUiProvider({ gameSlug, children }: { gameSlug: string; 
       isRevealed: (id) => revealAll || revealed.has(id),
       reveal: (id) => setRevealed((prev) => new Set(prev).add(id)),
       highlighted,
+      lastJump,
       jumpTo,
     }),
-    [revealAll, setRevealAll, revealed, highlighted, jumpTo],
+    [revealAll, setRevealAll, revealed, highlighted, lastJump, jumpTo],
   );
 
   return <Context value={value}>{children}</Context>;

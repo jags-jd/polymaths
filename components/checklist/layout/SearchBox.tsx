@@ -25,7 +25,7 @@ export function SearchBox() {
 
   const pick = (r: SearchResult) => {
     setQuery("");
-    jumpTo(r.entry.id);
+    jumpTo(r.entry.id, r.matched);
   };
 
   return (

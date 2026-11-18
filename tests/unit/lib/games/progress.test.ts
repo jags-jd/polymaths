@@ -12,6 +12,7 @@ import {
   statValue,
   toProgressMap,
   trackableProgress,
+  trackablesProgress,
   units,
   type ProgressMap,
 } from "@/lib/games/progress";
@@ -34,6 +35,14 @@ describe("units", () => {
     expect(units(pips)).toBe(5);
     expect(units(single)).toBe(1);
     expect(units(meter)).toBe(1);
+  });
+});
+
+describe("trackablesProgress", () => {
+  it("sums any list of trackables (one side of a two-sided card)", () => {
+    const p = trackablesProgress([check, pips, meter], map({ "fq-x-exit": 1, "fq-x-coins#2": 1, "fq-x-hearts": 20 }));
+    expect(p).toEqual({ done: 3, total: 7, percent: 42 }); // floored, like every percent
+    expect(trackablesProgress([], map({}))).toEqual({ done: 0, total: 0, percent: 0 });
   });
 });
 

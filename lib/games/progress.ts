@@ -62,9 +62,14 @@ export function trackableProgress(trackable: Trackable, progress: ProgressMap): 
 
 // --- Entries, sections, games --------------------------------------------------
 
+/** Progress over any list of trackables (e.g. one side of a two-sided card). */
+export function trackablesProgress(trackables: readonly Trackable[], progress: ProgressMap): Progress {
+  return sum(trackables.map((t) => trackableProgress(t, progress)));
+}
+
 export function entryProgress(entry: Entry, progress: ProgressMap): Progress {
   if (entry.retired) return makeProgress(0, 0);
-  return sum(entry.trackables.map((t) => trackableProgress(t, progress)));
+  return trackablesProgress(entry.trackables, progress);
 }
 
 export function groupProgress(group: EntryGroup, progress: ProgressMap): Progress {

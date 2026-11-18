@@ -61,6 +61,30 @@ test("meters: tap the number you reached; tap it again to go down one", async ({
   await noHorizontalScroll(page);
 });
 
+test("course cards have two sides: the course on the front, extras on the back", async ({ page, context }) => {
+  const user = await createOnboardedUser("Card Flipper");
+  await signInAs(context, user);
+  await page.goto(PAGE);
+  const card = page.locator("#ycw-rail-yard-run");
+  const front = card.getByRole("tab", { name: /Front/ });
+  const back = card.getByRole("tab", { name: /Back/ });
+
+  await expect(front).toHaveAttribute("aria-selected", "true");
+  await expect(button(page, "Rail-Yard Run: Red Coins 1 of 20")).toBeVisible();
+  await expect(button(page, "Rail-Yard Run: Found Sprout")).toHaveCount(0);
+
+  await back.click();
+  await expect(button(page, "Rail-Yard Run: Red Coins 1 of 20")).toHaveCount(0);
+  await button(page, "Rail-Yard Run: Found Sprout").click();
+  await expect(back).toContainText("1/");
+  await expect(front).toContainText("0/");
+  await expect.poll(() => rows(user.id)).toEqual([{ item_id: "ycw-rail-yard-run-sprout", value: 1 }]);
+
+  // Bosses have no extras, so they stay one-sided.
+  await expect(page.locator("#ycw-the-tin-can-condor").getByRole("tab")).toHaveCount(0);
+  await noHorizontalScroll(page);
+});
+
 test("spoilers stay hidden until revealed; reveal-all is remembered", async ({ page }) => {
   await page.goto(PAGE);
   const shadowville = page.locator("#ycw-shadowville");
@@ -95,6 +119,13 @@ test("search finds courses and crafts, jumps to them, and never shows hidden spo
   // The craft request (Rail-Yard Run) and the costume.
   await expect(results.getByRole("button")).toHaveCount(2);
   await expect(results.getByRole("button").first()).toContainText("Milk Bottle");
+
+  // The craft lives on the back of Rail-Yard Run's card: the jump turns it over.
+  const railYard = page.locator("#ycw-rail-yard-run");
+  await expect(railYard.getByRole("tab", { name: /Front/ })).toHaveAttribute("aria-selected", "true");
+  await results.getByRole("button", { name: /Rail-Yard Run/ }).click();
+  await expect(railYard.getByRole("tab", { name: /Back/ })).toHaveAttribute("aria-selected", "true");
+  await expect(button(page, "Rail-Yard Run: Milk Bottle ×5")).toBeVisible();
 
   await search.fill("whistlestop");
   await results.getByRole("button", { name: /Whistlestop Rails/ }).click();

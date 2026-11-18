@@ -4,9 +4,11 @@ import { EyeOff } from "lucide-react";
 
 import { useChecklist } from "@/components/checklist/ChecklistProvider";
 import { useChecklistUi } from "@/components/checklist/ChecklistUiProvider";
-import { CheckChip, FOCUS, MeterRow, PipRow } from "@/components/checklist/layout/Trackables";
+import { CardSides, splitSides } from "@/components/checklist/layout/CardSides";
+import { Blocks } from "@/components/checklist/layout/Blocks";
+import { FOCUS } from "@/components/checklist/layout/Trackables";
 import { entryProgress } from "@/lib/games/progress";
-import type { Check, Entry, Section, Trackable } from "@/lib/games/schema";
+import type { Entry, Section } from "@/lib/games/schema";
 import { isEntryHidden } from "@/lib/games/visibility";
 import { cn } from "@/lib/utils";
 
@@ -14,40 +16,10 @@ import { cn } from "@/lib/utils";
  * One entry as a card (`cards` layout): kind, name, "x / y found", a % pill,
  * then its trackables in data order. Consecutive checks share a chip row;
  * each `group` ("Craft requests", "Flip Side") sits in its own tinted panel.
+ * An entry with both ungrouped and grouped trackables is a two-sided card
+ * (CardSides): the course on the front, the grouped extras on the back.
  * A card that reaches 100% fades to the done colours with a soft glow.
  */
-
-type Block = { group: string | undefined; items: Trackable[] };
-
-/** Trackables split into groups, keeping data order. */
-function toBlocks(trackables: Trackable[]): Block[] {
-  const blocks: Block[] = [];
-  for (const t of trackables) {
-    const last = blocks.at(-1);
-    if (last && last.group === t.group) last.items.push(t);
-    else blocks.push({ group: t.group, items: [t] });
-  }
-  return blocks;
-}
-
-function BlockItems({ entryName, items }: { entryName: string; items: Trackable[] }) {
-  const out: React.ReactNode[] = [];
-  let chips: Check[] = [];
-  const flush = () => {
-    if (chips.length) out.push(<div key={`chips-${chips[0]!.id}`} className="flex flex-wrap gap-2">{chips.map((t) => <CheckChip key={t.id} entryName={entryName} trackable={t} />)}</div>);
-    chips = [];
-  };
-  for (const t of items) {
-    if (t.kind === "check") {
-      chips.push(t);
-      continue;
-    }
-    flush();
-    out.push(t.kind === "pips" ? <PipRow key={t.id} entryName={entryName} trackable={t} /> : <MeterRow key={t.id} entryName={entryName} trackable={t} />);
-  }
-  flush();
-  return <>{out}</>;
-}
 
 export function EntryCard({ entry, section }: { entry: Entry; section: Section | null }) {
   const { progress } = useChecklist();
@@ -56,6 +28,7 @@ export function EntryCard({ entry, section }: { entry: Entry; section: Section |
   const hidden = isEntryHidden(section, entry, progress, isRevealed);
   const live = entry.trackables.filter((t) => !t.retired);
   const complete = p.percent === 100;
+  const sides = splitSides(live);
   const card = cn(
     "flex scroll-mt-24 flex-col gap-4 rounded-(--radius-card) border-2 p-4 transition-[background-color,border-color,box-shadow] duration-300 sm:p-5",
     complete ? "border-(--done-border) bg-(--done-bg) shadow-[0_0_0_4px_color-mix(in_srgb,var(--done-border)_14%,transparent)]" : "border-(--border) bg-(--surface)",
@@ -88,12 +61,7 @@ export function EntryCard({ entry, section }: { entry: Entry; section: Section |
         </span>
       </header>
       {entry.note && <p className="m-0 text-sm text-(--muted)">{entry.note}</p>}
-      {toBlocks(live).map((block, i) => (
-        <div key={i} className={cn("flex flex-col gap-3", block.group && cn("rounded-[calc(var(--radius-card)-6px)] p-3", complete ? "bg-(--surface)/70" : "bg-(--surface-2)"))}>
-          {block.group && <span className="text-xs font-bold tracking-wider text-(--muted) uppercase">{block.group}</span>}
-          <BlockItems entryName={entry.name} items={block.items} />
-        </div>
-      ))}
+      {sides ? <CardSides entry={entry} sides={sides} complete={complete} /> : <Blocks entryName={entry.name} items={live} complete={complete} />}
     </article>
   );
 }
