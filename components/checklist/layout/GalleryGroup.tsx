@@ -25,7 +25,7 @@ function initials(name: string): string {
     .join("");
 }
 
-function Tile({ entry, section }: { entry: Entry; section: Section }) {
+export function Tile({ entry, section }: { entry: Entry; section: Section }) {
   const { progress, toggleCheck } = useChecklist();
   const { isRevealed, reveal, highlighted } = useChecklistUi();
   const check = entry.trackables.find((t) => t.kind === "check" && !t.retired);
@@ -55,7 +55,10 @@ function Tile({ entry, section }: { entry: Entry; section: Section }) {
       <span aria-hidden="true" className="flex aspect-square items-center justify-center bg-(--surface-2) text-2xl font-black text-(--muted) opacity-70">
         {initials(entry.name)}
       </span>
-      <span className="px-2 py-1.5 text-xs leading-tight font-bold">{entry.name}</span>
+      <span className="flex flex-col gap-0.5 px-2 py-1.5">
+        <span className="text-xs leading-tight font-bold">{entry.name}</span>
+        {entry.note && <span className="line-clamp-3 text-[11px] leading-snug text-(--muted)">{entry.note}</span>}
+      </span>
       <span
         aria-hidden="true"
         className="absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-full bg-(--accent) text-(--on-accent)"

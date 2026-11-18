@@ -1,3 +1,5 @@
+import stellarBladeArt from "@/data/games/stellar-blade/art";
+import stellarBlade from "@/data/games/stellar-blade/index";
 import superMarioWorldArt from "@/data/games/super-mario-world/art";
 import superMarioWorld from "@/data/games/super-mario-world/index";
 import yoshisCraftedWorldArt from "@/data/games/yoshis-crafted-world/art";
@@ -13,6 +15,7 @@ export type RegisteredGame = { game: Game; art: ArtManifest };
 export const registry: readonly RegisteredGame[] = [
   { game: superMarioWorld, art: superMarioWorldArt },
   { game: yoshisCraftedWorld, art: yoshisCraftedWorldArt },
+  { game: stellarBlade, art: stellarBladeArt },
 ];
 
 export const games: readonly Game[] = registry.map((entry) => entry.game);

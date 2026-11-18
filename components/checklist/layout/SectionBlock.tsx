@@ -4,17 +4,94 @@ import { Check } from "lucide-react";
 
 import { useChecklist } from "@/components/checklist/ChecklistProvider";
 import { EntryCard } from "@/components/checklist/layout/EntryCard";
-import { GalleryGroup } from "@/components/checklist/layout/GalleryGroup";
+import { GalleryGroup, Tile } from "@/components/checklist/layout/GalleryGroup";
+import { RowItem, singleCheck } from "@/components/checklist/layout/RowItem";
 import { CheckChip } from "@/components/checklist/layout/Trackables";
-import { groupProgress, isComplete, sectionProgress } from "@/lib/games/progress";
-import type { Check as CheckTrackable, EntryGroup, Section } from "@/lib/games/schema";
+import { entriesProgress, groupProgress, isComplete, sectionProgress } from "@/lib/games/progress";
+import type { Check as CheckTrackable, Entry, EntryGroup, Section } from "@/lib/games/schema";
 
 /**
  * One section: header (label, title, complete badge, bar, score), its
- * entries, then its extras groups. `cards` is built; `rows` and `gallery`
- * sections render as cards until their first game needs them (Stellar Blade,
- * phase 0.4 step 3).
+ * entries, then its extras groups. Entries are laid out by `section.layout`:
+ * `cards` (EntryCard), `rows` (a tile per single-check entry, RowItem; any
+ * other entry, like a Stellar Blade camp meter, is a card in the same grid) or `gallery` (square tiles; an entry
+ * without a check falls back to a full-width card).
+ * Consecutive entries sharing an `Entry.group` sit under a small sub-heading.
  */
+
+type EntryRun = { group: string | undefined; entries: Entry[] };
+
+/** Splits entries into runs of the same `group`, keeping data order. */
+export function groupRuns(entries: Entry[]): EntryRun[] {
+  const runs: EntryRun[] = [];
+  for (const entry of entries) {
+    const last = runs.at(-1);
+    if (last && last.group === entry.group) last.entries.push(entry);
+    else runs.push({ group: entry.group, entries: [entry] });
+  }
+  return runs;
+}
+
+function Entries({ entries, section }: { entries: Entry[]; section: Section }) {
+  if (section.layout === "gallery") {
+    return (
+      <div className="grid grid-cols-[repeat(auto-fill,minmax(120px,1fr))] gap-3 sm:grid-cols-[repeat(auto-fill,minmax(150px,1fr))]">
+        {entries.map((e) =>
+          e.trackables.some((t) => t.kind === "check" && !t.retired) ? (
+            <Tile key={e.id} entry={e} section={section} />
+          ) : (
+            <div key={e.id} className="col-span-full">
+              <EntryCard entry={e} section={section} />
+            </div>
+          ),
+        )}
+      </div>
+    );
+  }
+  if (section.layout === "rows") {
+    return (
+      <div className="grid gap-2.5 sm:grid-cols-2 lg:grid-cols-3">
+        {entries.map((e) => {
+          const check = singleCheck(e);
+          return check ? <RowItem key={e.id} entry={e} check={check} section={section} /> : <EntryCard key={e.id} entry={e} section={section} />;
+        })}
+      </div>
+    );
+  }
+  return (
+    <div className="grid items-start gap-4 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))]">
+      {entries.map((entry) => (
+        <EntryCard key={entry.id} entry={entry} section={section} />
+      ))}
+    </div>
+  );
+}
+
+function EntryRuns({ entries, section }: { entries: Entry[]; section: Section }) {
+  const { progress } = useChecklist();
+  const runs = groupRuns(entries);
+  if (runs.length === 1 && !runs[0]!.group) return <Entries entries={entries} section={section} />;
+  return (
+    <div className="flex flex-col gap-5">
+      {runs.map((run, i) => {
+        const p = entriesProgress(run.entries, progress);
+        return (
+          <div key={`${run.group ?? ""}-${i}`} className="flex flex-col gap-2.5">
+            {run.group && (
+              <h3 className="m-0 flex items-baseline justify-between gap-3 text-xs font-bold tracking-wider text-(--muted) uppercase">
+                <span>{run.group}</span>
+                <span className="text-sm tracking-normal text-(--text) tabular-nums normal-case">
+                  {p.done} / {p.total}
+                </span>
+              </h3>
+            )}
+            <Entries entries={run.entries} section={section} />
+          </div>
+        );
+      })}
+    </div>
+  );
+}
 
 function ChipsGroup({ group }: { group: EntryGroup }) {
   const { progress } = useChecklist();
@@ -69,11 +146,7 @@ export function SectionBlock({ section }: { section: Section }) {
           </span>
         </span>
       </header>
-      <div className="grid items-start gap-4 sm:grid-cols-[repeat(auto-fill,minmax(320px,1fr))]">
-        {entries.map((entry) => (
-          <EntryCard key={entry.id} entry={entry} section={section} />
-        ))}
-      </div>
+      <EntryRuns entries={entries} section={section} />
       {(section.extras ?? []).map((group) =>
         group.layout === "gallery" ? <GalleryGroup key={group.id} group={group} section={section} /> : <ChipsGroup key={group.id} group={group} />,
       )}

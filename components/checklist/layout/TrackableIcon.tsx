@@ -1,4 +1,27 @@
-import { Check, Coins, Dog, Medal, Shirt, Sprout, Star, Swords, Timer, Scissors, type LucideIcon } from "lucide-react";
+import {
+  ArrowBigUpDash,
+  BookHeart,
+  Check,
+  Clapperboard,
+  ClipboardList,
+  Coins,
+  CupSoda,
+  Dog,
+  Fish,
+  Flag,
+  Medal,
+  Scissors,
+  ScrollText,
+  Shirt,
+  Skull,
+  Sprout,
+  Star,
+  Swords,
+  Tent,
+  Timer,
+  Trophy,
+  type LucideIcon,
+} from "lucide-react";
 
 import { FlowerIcon, HeartIcon, RedCoinIcon } from "@/components/icons/yoshis-crafted-world/icons";
 import { cn } from "@/lib/utils";
@@ -23,6 +46,19 @@ const CHIP_ICONS: Record<string, LucideIcon> = {
   challenge: Swords,
   costume: Shirt,
   star: Star,
+  // Stellar Blade
+  mission: Flag,
+  boss: Skull,
+  ending: Clapperboard,
+  story: BookHeart,
+  quest: ScrollText,
+  request: ClipboardList,
+  can: CupSoda,
+  fish: Fish,
+  camp: Tent,
+  trophy: Trophy,
+  upgrade: ArrowBigUpDash,
+  combat: Swords,
 };
 
 export function hasArt(icon: string): icon is keyof typeof ART {

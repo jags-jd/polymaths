@@ -44,6 +44,18 @@ describe("validateRegistry", () => {
     expect(problems).toContain('fixture-copy: ID "fq-meadow-1-exit" is also used by fixture-quest');
   });
 
+  it("keeps each entry group together in its section", () => {
+    const setGroups = (groups: (string | undefined)[]) => {
+      const game = clone(fixtureGame);
+      groups.forEach((g, i) => {
+        (game.sections[0].entries[i] as { group?: string }).group = g;
+      });
+      return validateRegistry([{ game, art: fixtureArt }], allFilesExist);
+    };
+    expect(setGroups(["Field", "Field", "Castle"])).toEqual([]);
+    expect(setGroups(["Field", "Castle", "Field"])).toEqual(['fixture-quest: section "fq-meadow" has group "Field" in two places; keep its entries together']);
+  });
+
   it("finds duplicate slugs", () => {
     const problems = validateRegistry(
       [

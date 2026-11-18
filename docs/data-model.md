@@ -63,6 +63,7 @@ type Entry = {
   name: string                  // 'Donut Plains 1'
   kind: string                  // free label per game: 'course', 'castle', 'boss', 'costume', 'chapter'...
   note?: string                 // short how-to, in our own words
+  group?: string                // optional sub-heading for section entries: 'Xion', 'Wasteland' (keep each group's entries together)
   spoiler?: boolean
   retired?: boolean
   image?: string                // key into the art manifest
@@ -182,7 +183,7 @@ Agreed with Jan; see `docs/decisions/2026-11-14-trackable-exceptions.md`.
 }
 ```
 
-Trackables are grouped visually (front side / crafts / Flip Side) by their optional `group`; the renderer groups consecutive trackables with the same `group` under a small heading.
+Trackables are grouped visually (front side / crafts / Flip Side) by their optional `group`; the renderer groups consecutive trackables with the same `group` under a small heading. Entries work the same way: consecutive entries with the same `Entry.group` sit under a sub-heading with their own score (Stellar Blade's side quests by hub, cans by area; added 2026-11-19).
 
 An entry becomes a **two-sided card** (`cards` layout) when some of its trackables have `side: "back"`: those go on the back, the rest on the front, and tabs switch between them. `side` is display only: it never changes an ID or the maths, so moving an item between faces is always safe. Yoshi's Crafted World uses it for each course's Flip Side, flip-side crafts and Sprout (2026-11-19).
 

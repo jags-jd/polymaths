@@ -73,7 +73,12 @@ export function entryProgress(entry: Entry, progress: ProgressMap): Progress {
 }
 
 export function groupProgress(group: EntryGroup, progress: ProgressMap): Progress {
-  return sum(group.entries.map((e) => entryProgress(e, progress)));
+  return entriesProgress(group.entries, progress);
+}
+
+/** Any list of entries, e.g. a run of entries sharing an `Entry.group`. */
+export function entriesProgress(entries: readonly Entry[], progress: ProgressMap): Progress {
+  return sum(entries.map((e) => entryProgress(e, progress)));
 }
 
 /** A section's entries plus its extras groups. */
