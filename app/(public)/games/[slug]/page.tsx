@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { Suspense } from "react";
 
 import { ChecklistProvider } from "@/components/checklist/ChecklistProvider";
+import { ChecklistPage } from "@/components/checklist/layout/ChecklistPage";
 import { SaveFile } from "@/components/checklist/skins/smw-save-file/SaveFile";
 import { ThemeStyle } from "@/components/themes/ThemeStyle";
 import { getSessionUser } from "@/lib/auth/session";
@@ -30,7 +31,7 @@ export async function generateMetadata({ params }: PageProps<"/games/[slug]">): 
 export default async function GamePage({ params }: PageProps<"/games/[slug]">) {
   const game = getGame((await params).slug);
   // `dynamicParams` isn't available with Cache Components, so unknown slugs
-  // are rejected here. Games without a skin get the shared layouts in 0.4.
+  // are rejected here.
   if (!game || !hasPage(game)) notFound();
 
   return (
@@ -48,7 +49,7 @@ async function PlayerChecklist({ game }: { game: Game }) {
   const rows = user ? await getProgressRows(user.id, game.slug) : [];
   return (
     <ChecklistProvider game={game} rows={rows} mode={user ? "edit" : "sign-in"}>
-      <SaveFile />
+      {game.skin ? <SaveFile /> : <ChecklistPage />}
     </ChecklistProvider>
   );
 }

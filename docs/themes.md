@@ -15,7 +15,7 @@ Game.skin    → optional: replaces the section + entry renderers entirely (e.g.
 icons        → components/icons/<slug>/, each with an outline and a filled state
 ```
 
-Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.ts` (theme → game `accent` → skin, via `gameTokens`). A game page renders `<ThemeStyle game={game} />`, a plain `<style>` that sets them on `:root` while the page is mounted, so the site header (outside the page, in the root layout) follows the theme too; elsewhere the header and body fall back to the default look (`.site-header` in `app/globals.css`). Components only use the variables (`bg-(--surface)`, `text-(--text)`), never raw hex. Skins add their own prefixed tokens (`--smw-frame`, …) in `SKIN_TOKENS`. Theme fonts load through `next/font` in `app/layout.tsx` with `preload: false` (Nunito and Press Start 2P so far; the others arrive with their first game in 0.4).
+Themes are CSS variables defined as TypeScript constants in `lib/themes/tokens.ts` (theme → game `accent` → per-game overrides in `GAME_TOKENS` → skin, via `gameTokens`; every registered game's final tokens are contrast-tested). A game page renders `<ThemeStyle game={game} />`, a plain `<style>` that sets them on `:root` while the page is mounted, so the site header (outside the page, in the root layout) follows the theme too; elsewhere the header and body fall back to the default look (`.site-header` in `app/globals.css`). Components only use the variables (`bg-(--surface)`, `text-(--text)`), never raw hex. Skins add their own prefixed tokens (`--smw-frame`, …) in `SKIN_TOKENS`. Theme fonts load through `next/font` in `app/layout.tsx` with `preload: false` (Nunito 400–900 and Press Start 2P so far; the others arrive with their first game in 0.4).
 
 ### Token list (every theme defines all of these)
 
@@ -56,7 +56,7 @@ Signature: progress ring, category chips, gallery cards with "Image" slots for b
 
 **Per-game accents:**
 
-- **Yoshi's Crafted World:** accent `#1F7F2D`; header green with faint white egg-spot dots and a 6px red (`#E5202E`) bottom stripe; page `#F2F6EC`, borders `#DCE6D2`, text `#1C2619`, muted `#4D5A47`, done cards `#EEF7E9`. Hearts and Red Coins stay red.
+- **Yoshi's Crafted World:** layout `cards` (the mockup; Jan, 2026-11-18). Accent `#1F7F2D`; header green with faint white egg-spot dots and a 6px red (`#E5202E`) bottom stripe; page `#F2F6EC`, borders `#DCE6D2`, text `#1C2619`, muted `#4D5A47`, done cards `#EEF7E9`. Hearts and Red Coins stay red.
 - **Super Mario World:** header red `#D3202A` with a 6px blue (`#1E4FBF`) stripe; uses the `smw-save-file` skin below.
 
 ### `souls` — FromSoftware games (Elden Ring; future Dark Souls, Bloodborne, Sekiro)
@@ -89,9 +89,20 @@ Icons: vinyl disc (music discs), red materia orb (summons), sword (weapons), dre
 
 | Layout | Use for | Notes |
 | ------ | ------- | ----- |
-| `rows` | Levels with several trackables each (SMW, Yoshi) | Name left; trackable icons in aligned columns |
+| `rows` | Levels with several trackables each (SMW's skin) | Name left; trackable icons in aligned columns. Shared version arrives with Stellar Blade; until then `rows` and `gallery` sections render as cards |
 | `cards` | Entries with grouped trackables (a chapter with quests, discs, weapons) | Full-width card per entry, groups with small headings |
 | `gallery` | Things you collect and want to see (bosses, costumes, legendary items) | Grid of square/portrait tiles with art or placeholder, "Defeated"/"Owned" badge |
+
+
+### Shared layouts (`components/checklist/layout/`, phase 0.4)
+
+Every game without a skin renders `<ChecklistPage>`: `SummaryCard` (progress ring, "Game checklist", title, "X of Y done", stat tiles, in-game search, a "Reveal all spoilers" switch when the game has spoilers), `SectionNav` (jump-to-section links with %; one swipeable line on phones), one `SectionBlock` per section, then `GoalsSection`.
+
+- **`cards`** (Yoshi's Crafted World): `EntryCard` shows kind, name, "x / y found" and a % pill, then the trackables in data order. Consecutive checks share a chip row (`CheckChip`, filled with the accent when done); pips are icon buttons (`PipRow`); meters are `max` steps you tap like a health bar (`MeterRow`). Pips and meter steps share a 10-column grid (28–32px targets, 22px icons), so a 20-step meter is two rows of 10 and flowers line up with coins. An entry with trackables marked `side: "back"` is a **two-sided card** (`CardSides`, shadcn `tabs`); the rest go on the front. The tabs show each side's count and a tick when that side is done; both faces stay rendered in one grid cell, so the card is as tall as its taller side and never resizes; turning rotates them 180° in 3D (`motion-safe:` only) and the face turned away becomes `invisible` and `inert` half-way through, so only one side is ever seen, and a search hit on the back turns the card over. Entries with only one kind (bosses) stay one-sided. A `group` ("Craft requests", "Flip Side") sits in a tinted sub-panel (`--surface-2`; `--surface` at 70% on a finished card). Ticking is a transition, never a load animation: a filled icon grows from 90% to full size, chips and icons shrink slightly while pressed (all `motion-safe:`), and a card at 100% fades to the done colours with a soft glow.
+- **Extras:** `gallery` groups are square tiles (`GalleryGroup`: placeholder initials until art exists, a tick badge when owned); `chips` groups are a chip per entry.
+- **Spoilers:** a hidden entry is a single "Spoiler · tap to reveal" button (cards) or an eye tile (gallery); nothing in it is named, not even in aria-labels. One rule in `lib/games/visibility.ts`; reveal state and the per-game switch (`localStorage` key `pm-reveal-<slug>`) live in `ChecklistUiProvider`.
+- **Search:** `SearchBox` filters entry names and trackable labels (`searchGame`), never hidden spoilers; picking a result scrolls to the entry and highlights it.
+- Icons: `TrackableIcon.tsx` maps icon keys to our own art (Yoshi's flower, red coin, heart) or lucide line icons for chips; unknown keys fall back to a tick.
 
 ## Custom skins
 

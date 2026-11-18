@@ -75,6 +75,7 @@ type TrackableBase = {
   label: string                 // 'Secret exit', 'Dragon Coins', 'Hearts at the goal'
   icon: string                  // icon key in the game's icon set
   group?: string                // optional visual group: 'Front side', 'Craft requests', 'Flip Side'
+  side?: 'back'                 // on a two-sided card, sits on the back; omitted = front
   spoiler?: boolean
   retired?: boolean
 }
@@ -182,6 +183,8 @@ Agreed with Jan; see `docs/decisions/2026-11-14-trackable-exceptions.md`.
 ```
 
 Trackables are grouped visually (front side / crafts / Flip Side) by their optional `group`; the renderer groups consecutive trackables with the same `group` under a small heading.
+
+An entry becomes a **two-sided card** (`cards` layout) when some of its trackables have `side: "back"`: those go on the back, the rest on the front, and tabs switch between them. `side` is display only: it never changes an ID or the maths, so moving an item between faces is always safe. Yoshi's Crafted World uses it for each course's Flip Side, flip-side crafts and Sprout (2026-11-19).
 
 ### Progress maths (`lib/games/progress.ts`)
 

@@ -89,8 +89,26 @@ describe("Yoshi's Crafted World data", () => {
     expect(hiddenHills.entries.flatMap((e) => e.trackables).some((t) => t.icon === "pup")).toBe(false);
   });
 
-  it("blurs the final world and the costume named after the final boss", () => {
-    expect(game.sections.filter((s) => "spoiler" in s && s.spoiler).map((s) => s.id)).toEqual(["ycw-shadowville"]);
+  it("puts the Flip Side, flip-side crafts and Sprouts on the back of the card", () => {
+    const all = allTrackables();
+    const back = all.filter((t) => t.side === "back");
+    // 40 pups + 40 time limits + 43 Sprouts + 58 flip-side crafts.
+    expect(back).toHaveLength(181);
+    expect(all.filter((t) => ["pup", "stopwatch", "sprout"].includes(t.icon)).every((t) => t.side === "back")).toBe(true);
+    const crafts = all.filter((t) => t.group === "Craft requests");
+    expect(crafts.filter((t) => t.side === "back")).toHaveLength(58);
+    expect(crafts.filter((t) => t.side !== "back")).toHaveLength(63);
+    // Spot checks from the source (Rail-Yard Run; the shared crafts are on the front everywhere).
+    const side = (id: string) => all.find((t) => t.id === id)!.side ?? "front";
+    expect(side("ycw-rail-yard-run-craft-cow")).toBe("front");
+    expect(side("ycw-rail-yard-run-craft-paper-airplane")).toBe("back");
+    expect(side("ycw-big-paper-peak-craft-caramel-billboard")).toBe("front");
+    // The course itself is always on the front.
+    expect(all.filter((t) => ["tick", "coins", "flower", "red-coin", "heart"].includes(t.icon)).some((t) => t.side === "back")).toBe(false);
+  });
+
+  it("blurs the final world, Hidden Hills and the costume named after the final boss", () => {
+    expect(game.sections.filter((s) => "spoiler" in s && s.spoiler).map((s) => s.id)).toEqual(["ycw-shadowville", "ycw-hidden-hills"]);
     const costumes = game.sections.flatMap((s) => (s.extras ?? []).flatMap((g) => g.entries));
     expect(costumes.filter((e) => "spoiler" in e && e.spoiler).map((e) => e.id)).toEqual(["ycw-costume-the-great-king-bowser"]);
   });

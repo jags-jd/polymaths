@@ -154,14 +154,33 @@ export const SKIN_TOKENS: Record<SkinName, Record<string, string>> = {
   },
 };
 
-/** The tokens for a game: theme, then the game's accent, then its skin. */
-export function gameTokens(game: Pick<Game, "theme" | "accent" | "skin">): Record<string, string> {
+/**
+ * Per-game overrides on top of the theme and accent, for games whose mockup
+ * changes more than the accent (docs/themes.md, "Per-game accents").
+ */
+export const GAME_TOKENS: Record<string, Record<string, string>> = {
+  "yoshis-crafted-world": {
+    bg: "#F2F6EC",
+    "surface-2": "#F2F6EC",
+    border: "#DCE6D2",
+    text: "#1C2619",
+    muted: "#4D5A47",
+    "done-bg": "#EEF7E9",
+    "done-border": "#1F7F2D",
+    "header-stripe": "#E5202E",
+    "header-stripe-size": "6px",
+  },
+};
+
+/** The tokens for a game: theme, then the game's accent, its own overrides, then its skin. */
+export function gameTokens(game: Pick<Game, "theme" | "accent" | "skin"> & { slug?: string }): Record<string, string> {
   const tokens: Record<string, string> = { ...THEMES[game.theme] };
   if (game.accent) {
     tokens.accent = game.accent;
     // On the nintendo theme the header is the accent color.
     if (game.theme === "nintendo") tokens["header-bg"] = game.accent;
   }
+  if (game.slug && GAME_TOKENS[game.slug]) Object.assign(tokens, GAME_TOKENS[game.slug]);
   if (game.skin) Object.assign(tokens, SKIN_TOKENS[game.skin]);
   return tokens;
 }

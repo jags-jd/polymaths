@@ -12,11 +12,11 @@ export function listGames(): readonly Game[] {
 }
 
 /**
- * Whether a game has a checklist page yet. Until the shared layouts arrive in
- * phase 0.4, only games with a custom skin do.
+ * Whether a game has a checklist page. Every game does since the shared
+ * layouts (phase 0.4); kept as the one place to hide a game if ever needed.
  */
 export function hasPage(game: Game): boolean {
-  return Boolean(game.skin);
+  return game.sections.length > 0;
 }
 
 export function getGame(slug: string): Game | null {

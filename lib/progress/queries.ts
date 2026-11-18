@@ -4,6 +4,9 @@ import type { DatedProgressRow } from "@/lib/games/my-games";
 import type { ProgressRow } from "@/lib/games/progress";
 import { createClient } from "@/lib/supabase/server";
 
+/** Supabase returns at most this many rows per request by default. */
+const PAGE = 1000;
+
 /**
  * A player's progress rows for one game. Progress is public (RLS), so this
  * also serves read-only views of other players' checklists (phase 0.5).
@@ -12,17 +15,21 @@ import { createClient } from "@/lib/supabase/server";
  */
 export async function getProgressRows(userId: string, gameSlug: string): Promise<ProgressRow[]> {
   const supabase = await createClient();
-  const { data, error } = await supabase
-    .from("progress")
-    .select("item_id, value")
-    .eq("user_id", userId)
-    .eq("game_slug", gameSlug);
-  if (error) throw new Error(`Could not load progress: ${error.message}`);
-  return data;
+  const rows: ProgressRow[] = [];
+  // Paged: a finished Yoshi's Crafted World save is ~955 rows, near the limit.
+  for (let from = 0; ; from += PAGE) {
+    const { data, error } = await supabase
+      .from("progress")
+      .select("item_id, value")
+      .eq("user_id", userId)
+      .eq("game_slug", gameSlug)
+      .order("item_id")
+      .range(from, from + PAGE - 1);
+    if (error) throw new Error(`Could not load progress: ${error.message}`);
+    rows.push(...data);
+    if (data.length < PAGE) return rows;
+  }
 }
-
-/** Supabase returns at most this many rows per request by default. */
-const PAGE = 1000;
 
 /**
  * All of a player's progress rows, every game, for the home page's
