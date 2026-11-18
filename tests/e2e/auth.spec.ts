@@ -56,7 +56,7 @@ test("new player is sent to onboarding, picks an IGN, lands home, signs out", as
 
   await expect(page).toHaveURL(/\/$/);
   await expect(page.getByRole("heading", { level: 1, name: "Polymaths" })).toBeVisible();
-  await expect(page.getByText("No games started yet, Kiko Tester.")).toBeVisible();
+  await expect(page.getByText("Nothing ticked yet, Kiko Tester. Pick a game below to start.")).toBeVisible();
 
   // Onboarding is done: it now bounces home.
   await page.goto("/onboarding");

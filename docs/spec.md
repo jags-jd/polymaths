@@ -17,13 +17,15 @@
 
 ### Home — `/`
 
-**Signed out:** short pitch, game search, and the grid of supported games.
+**Signed out:** short pitch, game search, and the grid of supported games. *(Shipped 2026-11-18: pitch + games grid; search comes with the other games in 0.4.)*
 
 **Signed in:**
 
 1. **My games** — games you've started, as cards with the game's theme color, % complete and a progress bar. Sorted by most recently updated.
 2. **Friends' activity** — recent completions by people you follow ("**Kiko** cleared **Donut Plains** in Super Mario World · 2h ago"). 30 most recent; spoilers blurred.
 3. **Game search** — filters supported games by title.
+
+*Shipped 2026-11-18:* My games (cards with the game's header colors, %, bar, "X of Y done", most recently played first) and **All games** (games not started yet). Friends' activity is phase 0.6; search 0.4. Code: `app/(public)/page.tsx`, `components/home/GameCard.tsx`, `lib/games/my-games.ts`.
 
 ### Game checklist — `/games/[slug]`
 
