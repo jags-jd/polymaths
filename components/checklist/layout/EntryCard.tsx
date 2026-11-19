@@ -52,9 +52,11 @@ export function EntryCard({ entry, section }: { entry: Entry; section: Section |
           <h3 id={`${entry.id}-name`} className="m-0 text-lg leading-tight font-extrabold">
             {entry.name}
           </h3>
-          <span className="text-sm text-(--muted) tabular-nums">
-            {p.done} / {p.total} found
-          </span>
+          {!(live.length === 1 && live[0]!.kind === "meter") && (
+            <span className="text-sm text-(--muted) tabular-nums">
+              {p.done} / {p.total} found
+            </span>
+          )}
         </div>
         <span className={cn("shrink-0 rounded-full px-2.5 py-0.5 text-xs font-extrabold tabular-nums", complete ? "bg-(--accent) text-(--on-accent)" : "bg-(--surface-2) text-(--muted)")}>
           {p.percent}%

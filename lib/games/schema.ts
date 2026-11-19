@@ -136,6 +136,8 @@ export const entrySchema = z.strictObject({
   /** Free label per game: 'course', 'castle', 'boss', 'costume'... Used by stats. */
   kind: iconKey,
   note: text.optional(),
+  /** Optional sub-heading inside a section ('Xion', 'Wasteland'); consecutive entries with the same group sit together. */
+  group: text.optional(),
   spoiler: z.boolean().optional(),
   retired: z.boolean().optional(),
   /** Key into the game's art manifest. */

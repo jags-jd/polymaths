@@ -37,6 +37,19 @@ export function validateRegistry(registry: RegistryInput, fileExists: (publicPat
       idOwner.set(id, game.slug);
     }
 
+    // Entry groups are runs: a group that comes back later would split into two headings.
+    for (const section of game.sections) {
+      const seen = new Set<string>();
+      let current: string | undefined;
+      for (const entry of section.entries) {
+        if (entry.group !== current && entry.group !== undefined && seen.has(entry.group)) {
+          problems.push(`${label}: section "${section.id}" has group "${entry.group}" in two places; keep its entries together`);
+        }
+        if (entry.group !== undefined) seen.add(entry.group);
+        current = entry.group;
+      }
+    }
+
     // An automatic goal that matches nothing could never tick.
     for (const entry of game.goals ?? []) {
       for (const t of entry.trackables) {
